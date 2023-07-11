@@ -1,0 +1,142 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health">
+    <div class="grid global">
+        <div class="col-12 title-health">
+            Products Management
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="tabmenu">
+                <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="health-tab">
+    <div class="grid global">
+        <div class="sm:col-4 md:col-4 lg:col-4 xl:col-4 ul-title">
+            Category Management   
+        </div>
+        <div class="sm:col-8 md:col-4 lg:col-4 xl:col-3 xl:col-offset-5 lg:col-offset-4 md:col-offset-4 create-btn">
+            <p-button label="Add Category" icon="pi pi-plus" (click)="createCategory()"></p-button>
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="categories"  dataKey="p_cat_id" [rowHover]="true" styleClass="p-datatable-gridlines" [loading]="loading"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"  responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" [globalFilterFields]="['p_cat_id','p_cat_title']">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th id="p_cat_id" pSortableColumn="p_cat_id">Product Category Id<p-sortIcon field="p_cat_id">
+                                                <p-columnFilter type="text" field="p_cat_id" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="p_cat_title" pSortableColumn="p_cat_title">Product Category Title<p-sortIcon field="p_cat_title">
+                                                <p-columnFilter type="text" field="p_cat_title" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="actions" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-category>
+                                        <tr>
+                                            <td>{{category.p_cat_id}}</td>
+                                            <td>{{category.p_cat_title}}</td>
+                                            <td style="text-align: left">
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editCategory(category.p_cat_id)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteCategory(category.p_cat_id)"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No Category found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="prodDialog" [style]="{width: '500px'}" [modal]="true" styleClass="p-fluid">
+    <p-header *ngIf="!editmode">Add Category</p-header>
+    <p-header *ngIf="editmode">Edit Category</p-header>
+    <ng-template pTemplate="content" >
+
+        <form [formGroup]="product_form">
+
+            <div class="field">
+                <input formControlName="p_cat_title" placeholder="Category Title" type="text" pInputText id="p_cat_title" autofocus />
+                <small *ngIf="createProductForm.p_cat_title.invalid && isSubmitted" class="p-error">
+                    Category title is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="p_cat_top">Show as Category Top</label>
+                <p-selectButton [options]="stateOptions" formControlName="p_cat_top" optionLabel="label" optionValue="value"></p-selectButton>
+                <small *ngIf="createProductForm.p_cat_top.invalid && isSubmitted" class="p-error">
+                    This is required!
+                </small>
+            </div>
+
+            <div class="field col-12 md:col-12"> 
+                <label for="product_img1">Category Image</label>
+                <p-fileUpload name="demo[]" url="./upload.php"  (onUpload)="onUpload($event)"
+                multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+                <input type="file" formControlName="p_cat_image">
+               </p-fileUpload>
+            </div>
+
+        </form>
+        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="cancel-button" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button" (click)="saveProduct()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

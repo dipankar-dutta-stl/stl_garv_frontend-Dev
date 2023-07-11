@@ -1,0 +1,92 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<stl-garv-health-menu></stl-garv-health-menu>
+<div class="health-tab">
+    <div class="grid global">
+        <div class="col-12 ul-title">
+            Case List    
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="cases" dataKey="case_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" sortField="created_date" [sortOrder]="-1" [globalFilterFields]="['case_number','created_date','first_name', 'aadhar_card_no']">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th pSortableColumn="reg_number" id="reg_number">Case No<p-sortIcon field="case_number">
+                                                <p-columnFilter type="text" field="case_number" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="user_image" id="user_image">Image<p-sortIcon field="patient.details[0].user_image"></p-sortIcon></th>
+                                            <th pSortableColumn="first_name" id="first_name">Patient Name<p-sortIcon field="patient.details[0].first_name">
+                                                <p-columnFilter type="text" field="patient.details.first_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="Aadhar No." id="aadhar-no">Aadhar No.<p-sortIcon field="patient.details[0].aadhar_card_no">
+                                                <p-columnFilter type="text" field="patient.details.aadhar_card_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="created_date" id="created_date">Case Date<p-sortIcon field="created_date"></p-sortIcon></th>
+                                            <th pSortableColumn="case_status" id="case_status">Status<p-sortIcon field="case_status"></p-sortIcon></th>
+                                            <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-case>
+                                        <tr>
+                                            <td>#{{case.case.case_number}}</td>
+                                            <td><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{case.case.patient.details[0].user_image}}" alt=""></td>
+                                            <td>{{case.case.patient.details[0].first_name + ' '+ case.case.patient.details[0].last_name}}</td>
+                                            <td>{{maskNumber(case.case.patient.details[0].aadhar_card_no)}}</td>
+                                            <td>{{case.created_date | date: 'MM/dd/yyyy'}}</td>
+                                            <td>
+                                                <div [ngClass]="{'active': case.case.case_status === 'active' , 'inactive': case.case.case_status !== 'active', 'treated': case.case.case_status === 'treated'}">
+                                                    {{case.case.case_status}}
+                                                </div>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/doctor/case-details/{{case.case_id}}"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/health/doctor/cases-form/{{case.case_id}}"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No cases found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

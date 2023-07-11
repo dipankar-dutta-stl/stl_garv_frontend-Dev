@@ -1,0 +1,130 @@
+.amar-media-details {
+      
+    padding-top: 100px;
+    padding-bottom: 200px;
+    min-height: calc(100vh - 1px);
+  .title-download {
+      text-align: left;
+      font: normal normal medium 34px/36px 'Lato', sans-serif;
+      font-size: 25px;
+      font-weight: 500;
+      letter-spacing: 0px;
+      color: #1E2323;
+      opacity: 1;
+  }
+  
+  .p-card {
+      margin-top: 48px;
+      
+
+      a {
+          color: $primary-color;
+          font-weight: 600;
+      }
+      
+
+     
+      
+      .count{
+          text-align: left;
+          letter-spacing: 0.12px;
+          color: #131523;
+          opacity: 1;
+          padding-top: 23px;
+          font-size: 32px;
+          font-weight: 500;
+      }
+
+      .icon{
+          text-align: right;
+          color: $primary-color;
+      }
+
+      .more{
+          padding-top: 35px;
+          font-weight: 100px;
+
+          .pi{
+              padding-left: 8px;
+              display:inline-block;
+          }
+
+          &:hover{
+              color: $primary-color-light;
+          }
+
+           
+      }
+
+      .media-title{
+        margin-top: 0px;
+      }
+
+      .action{
+        margin-top: 40px;
+        size: 50px;
+        text-align: left;
+
+        button{
+            width: 200px;
+            height: 80px;
+            background-color: $primary-color;
+
+            &:hover{
+                background-color: $primary-color-light;
+            }
+
+            .pi{
+                font-size: 1.5em;
+            }
+        }
+      }
+  }
+
+  .p-card-content {
+      padding: 15px;
+  }
+  .p-card-header{
+
+    width: 300px;
+   
+  }
+  .p-card-body{
+      padding: 10px;
+      
+  }
+  
+}
+
+/*****************globals*************/
+body {
+   
+    overflow-x: hidden;
+    
+}
+  
+  img {
+    max-width: 100%; }
+  
+
+  
+  
+ 
+  
+ 
+  
+ 
+  
+
+
+  
+ 
+  
+
+  
+ 
+  
+
+  
+
+  

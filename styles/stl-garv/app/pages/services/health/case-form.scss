@@ -1,0 +1,157 @@
+.case-form{
+    margin-top: 0px;
+    min-height: calc(100vh - 10px);
+    padding-bottom: 35px;
+
+    .ul-title{
+        text-align: left;
+        padding: 10px 10px 20px 10px;
+        font-size: 43px;
+        font-family: 'Harabara', sans-serif;
+        font-weight: 400;
+        letter-spacing: 1.23px;
+        color: #3C3C3C;
+        opacity: 1;
+    }
+
+    .p-button{
+        height: 40px;
+        background: $primary-color;
+
+        &:hover{
+            background: $primary-color-light;
+        }
+    }
+
+    .ul-table{
+        margin-top: 50px;
+    }
+
+    .misc{
+        padding: 0px;
+    }
+
+    .p-card-body{
+        padding: 0px;
+    }
+
+    .p-card-content{
+        padding: 0px;
+
+        .user-image{
+            max-width: 100%;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: 34px;
+            // margin-left: 27%;
+            
+            border-style: none;
+            -moz-box-shadow: 0px 6px 5px #13548d;
+           -webkit-box-shadow: 0px 6px 5px #13548d;
+            box-shadow: 0px 6px 5px #13548d;
+
+        }
+        
+    }
+
+    .p-element.p-sortable-column {
+        background-color: $primary-color;
+        text-align: left;
+        font: normal normal 900 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+    
+    .case-form{
+        padding: 40px;
+        background: #B9DAF2;
+        opacity: 0.75;
+        border-radius: 13px;
+    }
+
+    .field{
+        padding: 15px;
+    }
+
+    .p-inputgroup-addon{
+         border-top-right-radius: 13px;
+         border-bottom-right-radius: 13px;
+         background-color: #727272;
+         color: #FFFFFF;
+    }
+    
+    
+    .p-button-sm{
+      text-align: center;  
+      width: 130px;
+      height: 50px;
+      margin-top: 5px;
+      border-radius: 24px;
+    }
+
+
+    input[type='text']{
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-top-left-radius: 13px;
+        border-bottom-left-radius: 13px;
+        border: none;
+    }
+    input[type='file']{
+        
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+
+    .p-dropdown {
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+    textarea{
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+
+    .p-input-icon-left{
+        margin-left: 900px;
+
+        .p-inputtext.p-component.p-element{
+            // background-color: #E0E0E0;
+            border-radius:10px;
+            width: 290px;
+            height: 39px;
+            margin-top: 5px;
+            margin-left: 4px;
+            padding-left: 9px;
+        }
+
+        em.pi.pi-search::before{
+            width: 25px;
+            font-size: 1.1em;
+            color: $primary-color;
+            margin-left: 260px;
+            display: none;
+        }
+    }
+
+
+    input::file-selector-button {
+        
+        background-color: $primary-color;
+        color: white;
+        padding: 0.5em;
+        border: thin solid grey;
+        border-radius: 3px;
+    }
+    
+    
+}

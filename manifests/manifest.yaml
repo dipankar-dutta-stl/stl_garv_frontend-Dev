@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stl-garv-frontend-deployment
+  namespace: stlgarvdevnamespace
+  labels:
+    app: stl-garv-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stl-garv-frontend
+  template:
+    metadata:
+      labels:
+        app: stl-garv-frontend
+    spec:
+      containers:
+        - name: stl-garv-frontend-container
+          image: 817555535470.dkr.ecr.us-east-1.amazonaws.com/stl-garv-frontend:build-number
+          ports:
+          - containerPort: 4200
+            name: frontend-port
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: stl-garv-frontend-service
+  namespace: stlgarvdevnamespace
+  labels:
+    app: stl-garv-frontend
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+spec:
+  type: NodePort
+  selector:
+    app: stl-garv-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: frontend-port

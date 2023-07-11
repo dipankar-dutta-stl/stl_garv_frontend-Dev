@@ -1,0 +1,213 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-form">
+    <div class="grid global">
+        <div class="col-4 ul-title">
+            Edit Profile   
+        </div>  
+    </div>
+   <div class="grid global">
+        <div class="col-12 md:col-12 lg:col-6 xl:col-3 ">
+            <div class="grid">
+                <div class="col-12">
+                    <form [formGroup]="form">
+                        <p-card styleClass="profile" class="text-center">
+                       
+                            <img *ngIf="isUploaded" class="user-image" style="height: 120px; width: 120px;" [src]="imageDisplay" alt=""> 
+                            <img *ngIf="!isUploaded" class="user-image" style="height: 120px; width: 120px;" src="{{cloudFrontURL}}assets/user_image/{{fetchimage}}" alt="">
+                        
+    
+                            <div class="field col-12 md:col-12 lg:col-12 text-center" >
+                                <p-button class="browse-button" label="Browse Image"  styleClass="p-button-sm" onclick="document.getElementById('getFile').click()" ></p-button>
+                                <input id="getFile" type="file" style="display:none" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" /> 
+                                
+                            </div>
+
+                              <!-- <small *ngIf="updateProfileForm.imageDisplay.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="updateProfileForm.imageDisplay.errors.pattern">Supported Format: jpg, jpeg, png Max-size: 5MB!</span>
+                            </small>  -->
+
+                            <small class="p-error">
+                               ( Supported Format: jpg, jpeg, png. ) <br>
+                                ( Max-size: 5MB! )
+                            </small>
+                           
+                        </p-card>
+                    </form>
+                </div>
+                <div class="col-12">
+                      
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-12 lg:col-6 xl:col-9">
+            <form [formGroup]="form">
+                <div class="card">
+                    <div class="formgrid grid">
+
+                        <div class="field col-12 md:col-4 input-placeholder">
+                            <input id="first_name" formControlName="first_name" required="required" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <div class="placeholder">
+                                First Name <span>*</span>
+                             </div>
+                            <small *ngIf="updateProfileForm.first_name.invalid && isSubmitted" class="p-error">
+                            First Name is required!
+                            </small>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <input id="middle_name" formControlName="middle_name" placeholder="Middle Name" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                        </div>
+                       
+                        <div class="field col-12 md:col-4">
+                            <input id="last_name" formControlName="last_name" placeholder="Last Name" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            
+                        </div>
+    
+                        <div class="field col-12 md:col-4 input-placeholder">
+                            <input id="unique_id" formControlName="unique_id" placeholder="Mobile No *" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <!-- <div class="placeholder">
+                                Mobile No. <span>*</span>
+                             </div> -->
+                            <small *ngIf="updateProfileForm.unique_id.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="updateProfileForm.unique_id.errors.required">Mobile No. is required!</span>
+                            </small>
+                        </div>
+
+
+                        <div class="field col-12 md:col-4">
+                            <input id="whatsapp_no" formControlName="whatsapp_no" placeholder="Whatsapp No." type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="updateProfileForm.whatsapp_no.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="updateProfileForm.whatsapp_no.errors.pattern">Please enter valid whatsapp number!</span>
+                            </small>
+                        </div>
+                       
+                        <div class="field col-12 md:col-4">
+                            <input id="email" formControlName="email" placeholder="Email" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="updateProfileForm.email.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="updateProfileForm.email.errors.email">Please enter valid email address!</span>
+                            </small>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="gender"
+                                    [options]="gender"
+                                    optionLabel="gender_name"
+                                    optionValue="gender_code"
+                                    [style]="{ width: '100%' }"
+                                    [showClear]="true"
+                                    placeholder="Gender"
+                                >
+                                    ></p-dropdown>
+                                    
+                        </div>
+    
+                        <div class="field col-12 md:col-4">
+                            <input id="date_of_birth" type="date" [max]="formattedDate" formControlName="date_of_birth" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full" (change)="getAge(updateProfileForm.date_of_birth.value)">
+                            
+                        </div>
+    
+                        <div class="field col-12 md:col-4">
+                            <input id="age" formControlName="age" placeholder="Age" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="state_id"
+                                    [options]="states"
+                                    optionLabel="state_name"
+                                    optionValue="state_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="state_name"
+                                    [showClear]="true"
+                                    placeholder="State"
+                                   (onChange)="getDistbyStateId(updateProfileForm.state_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="district_id"
+                                    [options]="districts"
+                                    optionLabel="district_name"
+                                    optionValue="district_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="district_name"
+                                    [showClear]="true"
+                                    placeholder="District"
+                                    (onChange)="getTalukabyDistrictId(updateProfileForm.district_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="taluka_id"
+                                    [options]="talukas"
+                                    optionLabel="taluka_name"
+                                    optionValue="taluka_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="taluka_name"
+                                    [showClear]="true"
+                                    placeholder="Taluka"
+                                    (onChange)="getVillagebyTalukaId(updateProfileForm.taluka_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="village_id"
+                                    [options]="villages"
+                                    optionLabel="village_name"
+                                    optionValue="village_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="village_name"
+                                    [showClear]="true"
+                                    placeholder="Village"
+                                    (onChange)="getPanchaytbyVillageId(updateProfileForm.village_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4 input-placeholder">
+                            <p-dropdown
+                                    formControlName="panchayatfield"
+                                    [options]="panchayat"
+                                    optionLabel="panchayat_name"
+                                    optionValue="panchayat_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="panchayat_name"
+                                    [showClear]="true"
+                                    placeholder="Panchayat *"
+                                    (onChange)="getAllDataByPanchayt(updateProfileForm.panchayatfield.value)"
+                                >
+                                    ></p-dropdown>
+                                    <small *ngIf="updateProfileForm.panchayatfield.invalid && isSubmitted" class="p-error">
+                                        <span *ngIf="updateProfileForm.panchayatfield.errors.required">Panchayat is required!</span>
+                                    </small>
+                        </div>
+                        
+                        <div class="field col-12 md:col-4">
+                            <textarea id="address" formControlName="address" placeholder="Landmark/ House No." type="text" rows="1" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full"></textarea>   
+                        </div>
+                        
+                        <div class="field col-2 md:col-2 log_button" >
+                            <p-button label="Update Profile" styleClass="p-button-sm" (onClick)="onUpdate()" [disabled]='!hasChange'></p-button>     
+                        </div>
+                           
+                    </div>
+                </div>
+            </form>
+        </div>
+   </div>
+</div>
+
+

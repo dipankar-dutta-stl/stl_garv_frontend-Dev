@@ -1,0 +1,169 @@
+.amar-all-category {
+      
+      padding-top: 100px;
+      padding-bottom: 260px;
+      min-height: calc(100vh - 1px);
+    .menu-bar{
+          margin-left: 0px;
+    
+            .p-menuitem-text {
+                text-align: center;
+                font: normal normal medium 'Roboto', sans-serif;
+                font-size: 12px;
+                letter-spacing: 1.43px;
+                opacity: 1;
+        
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+            .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+                background: #ffffff;
+                border-color: $primary-color;
+                color: $primary-color; 
+            }
+          
+          
+    }
+
+    .title-category {
+        text-align: left;
+        font: normal normal medium 34px/36px 'Lato', sans-serif;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        color: #1E2323;
+        opacity: 1;
+        margin-top: 8px;
+        margin-bottom: 20px;
+    }
+
+    .media-search{
+        
+        background-color: #E0E0E0;
+        border-radius:10px;
+        width: 300px;
+        height: 39px;
+        margin-top: 7px;
+    
+        .pi{
+            width: 25px;
+            font-size: 1.3em;
+            color: $primary-color;
+            margin-top: 7px;
+            margin-left: 10px;
+        }
+
+        .searchTerm{
+            height: 35px;
+            width: 200px;
+            background-color: transparent;
+            color: #757575;
+            border: 0;
+            margin-left: 5px;
+
+            &:focus,
+            &:active {
+                border: 0;
+                outline: none;
+            }
+        }
+    }
+     
+    .category-list{
+        margin-top: 6px;
+        text-align: right;
+
+        .p-button{
+            background-color: $primary-color;
+            height: 40px;
+
+            &:hover{
+                background-color: $primary-color-light;
+            }
+        }
+
+        .p-tieredmenu .p-menuitem-link{
+
+            .pi{
+                color: $primary-color;
+            }
+            
+            &:hover {
+                background-color: #fbdde7;
+            }
+        }
+
+        .p-tieredmenu .p-menuitem.p-menuitem-active > .p-menuitem-link {
+            background-color: #fbdde7;
+        }
+        
+    }
+
+    .p-card {
+        margin-top: 48px;
+        
+
+        a {
+            color: $primary-color;
+            font-weight: 600;
+        }
+        .card-head{
+            padding-bottom: 0px;
+        }
+
+        &:hover {
+           background-color: #fbdde7; 
+        }
+        
+        .count{
+            text-align: left;
+            letter-spacing: 0.12px;
+            color: #131523;
+            opacity: 1;
+            padding-top: 23px;
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .icon{
+            text-align: right;
+            color: $primary-color;
+        }
+
+        .more{
+            padding-top: 35px;
+            font-weight: 100px;
+
+            .pi{
+                padding-left: 8px;
+                display:inline-block;
+            }
+
+            &:hover{
+                color: $primary-color-light;
+            }
+
+             
+        }
+    }
+
+    .p-card-content {
+        padding: 0px;
+    }
+    .p-card-body{
+        padding: 0px;
+        
+    }
+
+    .p-card-header{
+      
+        img {
+            &:hover {
+                opacity: 0.8;
+            }
+            
+           }
+        }
+    
+}

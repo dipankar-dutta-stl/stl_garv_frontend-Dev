@@ -1,0 +1,38 @@
+{
+    "projectType": "library",
+    "sourceRoot": "libs/e-portal-api/src",
+    "prefix": "stl-garv-frontend",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["{workspaceRoot}/dist/libs/e-portal-api"],
+            "options": {
+                "project": "libs/e-portal-api/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/e-portal-api/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/e-portal-api/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/libs/e-portal-api"],
+            "options": {
+                "jestConfig": "libs/e-portal-api/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": ["libs/e-portal-api/**/*.ts", "libs/e-portal-api/**/*.html"]
+            }
+        }
+    },
+    "tags": []
+}

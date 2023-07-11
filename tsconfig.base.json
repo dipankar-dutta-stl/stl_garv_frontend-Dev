@@ -1,0 +1,28 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@env/*": ["environments/*"],
+            "@stl-garv-frontend/e-portal-api": ["libs/e-portal-api/src/index.ts"],
+            "@stl-garv-frontend/entertainment-api": ["libs/entertainment-api/src/index.ts"],
+            "@stl-garv-frontend/environment": ["libs/environment/src/index.ts"],
+            "@stl-garv-frontend/health-api": ["libs/health-api/src/index.ts"],
+            "@stl-garv-frontend/ui": ["libs/ui/src/index.ts"],
+            "@stl-garv-frontend/users": ["libs/users/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

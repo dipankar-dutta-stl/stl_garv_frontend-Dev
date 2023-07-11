@@ -1,0 +1,91 @@
+<div class="login-background">
+    <div class="grid">
+        <div class="sm:col-4 md:col-3 lg:col-3 xl:col-2  login-img">
+            <img alt="Img" src="{{cloudFrontURL}}frontend/logo/logo-login.png">
+        </div>
+        <div class="sm:col-4 md:col-6 lg:col-6 xl:col-8 title-login">
+            Hello,
+        </div>
+        <div class="sm:col-4 md:col-3 lg:col-3 xl:col-2 about-us">
+            <a href="https://www.stlgarv.com/">About Us</a>
+        </div>
+    </div>
+    <!-- <div class="title-login">
+        Hello,
+    </div> -->
+    <div class="login-desc text-center">
+        <p>Please enter the below mentioned credentials to make a step towards <br> Empowering Digital Transformation</p>
+    </div>
+    <div class="container-login">
+        <div class="card-login">
+            
+            <form [formGroup]="loginFormGroup">
+
+                <div class="grid">
+                    <div class="col-12">
+                        <input type="text" class="log-email" placeholder="Mobile number" formControlName="unique_id" pInputText />
+                        <small *ngIf="loginForm.unique_id.invalid && isSubmitted" class="p-error">
+                            <span *ngIf="loginForm.unique_id.errors.required">Mobile number is required!</span>
+                            <span *ngIf="loginForm.unique_id.errors.unique_id">Mobile number is invalid!</span>
+                        </small>
+                    </div>
+                </div>
+                
+
+                <div class="grid">
+                    <div class="col-12"> 
+                        <p-password type="password" class="log-pass" placeholder="Password" formControlName="password" [feedback]="false"></p-password>
+                        <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error">
+                            <span *ngIf="loginForm.password.errors.required">Password is required!</span>
+                            <span *ngIf="loginForm.password.errors.password">Password is invalid!</span>
+                        </small>
+                    </div>
+                </div>
+    
+                <div class="grid">
+                    <div class="col-12">
+                        <p-dropdown class="language" [options]="languages" formControlName="selectedlanguage" optionLabel="name" placeholder="Choose Language"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-12" *ngIf="isSubmitted && authError">
+                        <small class="p-error">{{authErrorMessage}}</small>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-8 no-acc">
+                        Don't have an account? 
+                        <a routerLink="/register"> Register Now <em  class="pi pi-arrow-circle-right" style="font-size: small"></em>  </a>      
+                    </div>
+
+                    <div class="col-4 no-acc text-right"> 
+                        <a routerLink="/reset-password"> Reset Password ?</a>      
+                     </div>
+                </div>
+                
+                <div class="grid">
+                    <div class="col-12 log_button" >
+                        <p-button label="Login" styleClass="p-button-sm" (onClick)="onSubmit()" ></p-button>  
+                    </div> 
+                    
+                </div>
+
+            </form>
+            <div class="grid">
+                <div class="col-12 guest-login"> 
+                    <a routerLink="/" (click)="guestLogin()"> Continue as Guest <em  class="pi pi-arrow-circle-right" style="font-size: small"></em>  </a>      
+                </div>
+            </div>  
+        </div>  
+    </div> 
+
+</div>
+<footer>
+    <div class="grid global">
+        <div class="col-4 col-offset-4 content">
+            © 2022-2023 Sterlite Technologies Limited
+        </div>
+    </div>
+</footer>

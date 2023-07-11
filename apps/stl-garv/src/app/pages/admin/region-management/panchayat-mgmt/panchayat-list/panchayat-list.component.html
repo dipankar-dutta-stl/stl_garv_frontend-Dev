@@ -1,0 +1,286 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health">
+    <div class="grid global">
+        <div class="col-12 title-health">
+            Region Management
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="tabmenu">
+                <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="health-tab">
+    <div class="grid global">
+        <div class="sm:col-4 md:col-4 lg:col-4 xl:col-4 ul-title">
+            Panchayat Management   
+        </div>
+        <div class="sm:col-8 md:col-4 lg:col-4 xl:col-3 xl:col-offset-5 lg:col-offset-4 md:col-offset-4 create-btn">
+            <p-button pRipple label="Add Panchayat" icon="pi pi-plus" (click)="createRegion()"></p-button>
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="panchayats" dataKey="panchayat_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                            [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [filterDelay]="0" [globalFilterFields]="['panchayat_unique_id','panchayat_name','pincode','belongs_to_village.belongs_to_taluka.taluka_name','belongs_to_village.village_name','belongs_to_village.belongs_to_taluka.belongs_to_district.district_name','belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name','status']">
+                            
+                            <ng-template pTemplate="caption">
+                                <div class="table-header">
+                                    <div class="grid">
+                                       <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                        <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                            <div class="text-right">
+                                                <span class="p-input-icon-left">
+                                                    <em class="pi pi-search"></em> 
+                                                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+    
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th id="panchayat_unique_id" pSortableColumn="panchayat_unique_id">Unique Id<p-sortIcon field="panchayat_unique_id">
+                                        <p-columnFilter type="text" field="panchayat_unique_id" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="panchayat_name" pSortableColumn="panchayat_name">Panchayat Name<p-sortIcon field="panchayat_name">
+                                        <p-columnFilter type="text" field="panchayat_name" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="pincode" pSortableColumn="pincode">Pincode<p-sortIcon field="pincode">
+                                        <p-columnFilter type="text" field="pincode" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="village_name" pSortableColumn="belongs_to_village.village_name">Village Name<p-sortIcon field="belongs_to_village.village_name">
+                                        <p-columnFilter type="text" field="village_name" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="taluka_name" pSortableColumn="belongs_to_village.belongs_to_taluka.taluka_name">Taluka Name<p-sortIcon field="belongs_to_village.belongs_to_taluka.taluka_name">
+                                        <p-columnFilter type="text" field="taluka_name" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="district_name" pSortableColumn="belongs_to_village.belongs_to_taluka.belongs_to_district.district_name">District Name<p-sortIcon field="belongs_to_village.belongs_to_taluka.belongs_to_district.district_name">
+                                        <p-columnFilter type="text" field="district_name" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="state_name" pSortableColumn="belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name">State Name<p-sortIcon field="belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name">
+                                        <p-columnFilter type="text" field="state_name" display="menu"></p-columnFilter>
+                                    </p-sortIcon></th>
+                                    <th id="actions" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                </tr>
+                            </ng-template>
+    
+                            <ng-template pTemplate="body" let-region>
+                                <tr>
+                                    <td>{{region.panchayat_unique_id}}</td>
+                                    <td>{{region.panchayat_name}}</td>
+                                    <td>{{region.pincode}}</td>
+                                    <td>{{region.belongs_to_village.village_name}}</td>
+                                    <td>{{region.belongs_to_village.belongs_to_taluka.taluka_name}}</td>
+                                    <td>{{region.belongs_to_village.belongs_to_taluka.belongs_to_district.district_name}}</td>
+                                    <td>{{region.belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name}}</td>
+                                    <td style="text-align: left">
+                                        <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="bi bi-grid" pTooltip="Assign Modules" tooltipPosition="bottom" style="margin-right:10px" (click)="selectModule(region.panchayat_id)"></button>
+                                        <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.panchayat_id)"></button>
+                                        <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.panchayat_id)"></button>
+                                        <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-chart-pie" pTooltip="Module Count" tooltipPosition="bottom" style="margin-right:10px"  routerLink="/admin/metadata/region-management/panchayat/list/module-count/{{region.panchayat_id}}"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+    
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="8"><strong>No Panchayat found.</strong></td>
+                                </tr>
+                            </ng-template>
+    
+                    </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="panchayatDialog" [style]="{width: '700px'}" [modal]="true" styleClass="p-fluid">
+    <p-header *ngIf="!editmode">Add Panchayat</p-header>
+    <p-header *ngIf="editmode">Edit Panchayat</p-header>
+    <ng-template pTemplate="content" > 
+        <form [formGroup]="region_form">
+            <div class="field">
+                    <p-dropdown 
+                    formControlName="state_id"  
+                    [options]="states" 
+                    optionLabel="state_name" 
+                    optionValue="state_id" 
+                    placeholder="State"
+                    [showClear]="true"
+                    [filter]="true"
+                    fiterBy="state_name"
+                    (onChange)="getDistbyStateId(createRegionForm.state_id.value)"
+                    appendTo="body"
+                    >
+                    </p-dropdown>
+                    <small *ngIf="createRegionForm.state_id.invalid && isSubmitted" class="p-error">
+                        State Name is required!
+                    </small>
+            </div>
+            <div class="field">
+                    <p-dropdown 
+                    formControlName="district_id"  
+                    [options]="districts" 
+                    optionLabel="district_name" 
+                    optionValue="district_id" 
+                    placeholder="District"
+                    [showClear]="true"
+                    [filter]="true"
+                    fiterBy="district_name"
+                    (onChange)="getTalukabyDistrictId(createRegionForm.district_id.value)"
+                    appendTo="body">
+                    </p-dropdown>
+                    <small *ngIf="createRegionForm.district_id.invalid && isSubmitted" class="p-error">
+                        District Name is required!
+                    </small>
+            </div>
+            <div class="field">
+                    <p-dropdown 
+                    formControlName="taluka_id"  
+                    [options]="talukas" 
+                    optionLabel="taluka_name" 
+                    optionValue="taluka_id" 
+                    placeholder="Taluka"
+                    [showClear]="true"
+                    [filter]="true"
+                    fiterBy="taluka_name"
+                    (onChange)="getVillagebyTalukaId(createRegionForm.taluka_id.value)"
+                    appendTo="body">
+                    </p-dropdown>
+                    <small *ngIf="createRegionForm.taluka_id.invalid && isSubmitted" class="p-error">
+                        Taluka Name is required!
+                    </small>
+            </div>
+
+            <div class="field">
+                    <p-dropdown 
+                    formControlName="village_id"  
+                    [options]="villages" 
+                    optionLabel="village_name" 
+                    optionValue="village_id" 
+                    placeholder="Village"
+                    [showClear]="true"
+                    [filter]="true"
+                    fiterBy="village_name"
+                    appendTo="body">
+                    </p-dropdown>
+                    <small *ngIf="createRegionForm.village_id.invalid && isSubmitted" class="p-error">
+                        Village Name is required!
+                    </small>
+            </div>
+              
+            <div class="field">
+                    <input formControlName="panchayat_name" placeholder="Panchayat Name" type="text" pInputText id="name"  required autofocus />
+                    <small *ngIf="createRegionForm.panchayat_name.invalid && isSubmitted" class="p-error">
+                        Panchayat Name is required!
+                    </small>
+            </div>
+
+            <div class="field">
+                    <input formControlName="panchayat_unique_id" placeholder="Unique Id" type="text" pInputText id="name"  required/>
+                    <small *ngIf="createRegionForm.panchayat_unique_id.invalid && isSubmitted" class="p-error">
+                        Unique Id is required!
+                    </small>
+            </div>
+
+            <div class="field">
+                    <input formControlName="pincode" placeholder="Pincode" type="text" pInputText id="name"  required autofocus />
+                    <small *ngIf="createRegionForm.pincode.invalid && isSubmitted" class="p-error">
+                        Pincode is required!
+                    </small>
+            </div>
+    
+            <div class="field">
+                    <p-dropdown 
+                    formControlName="panchayat_status" 
+                    [options]="status" 
+                    optionLabel="status_name" 
+                    optionValue="status_code" 
+                    placeholder="Status"
+                    [showClear]="true"
+                    appendTo="body">
+                    </p-dropdown>
+                    <small *ngIf="createRegionForm.panchayat_status.invalid && isSubmitted" class="p-error">
+                        Status is required!
+                    </small>
+            </div>
+        </form>
+        
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="cancel-button" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button" (click)="saveRegion()"></button>
+    </ng-template>
+
+
+</p-dialog>
+
+<p-dialog [(visible)]="moduleDialog" [style]="{width: '400px'}" [modal]="true" styleClass="p-fluid">
+    <p-header>Assign Modules</p-header>
+    <ng-template pTemplate="content" > 
+            <div class="col-12 select-module">
+
+                <p-listbox 
+                [options]="modules" 
+                [(ngModel)]="selectedModule" 
+                [metaKeySelection]="false" 
+                [checkbox]="true" 
+                [filter]="true"
+                [multiple]="true" 
+                optionLabel="module_name" 
+                optionValue="module_id" 
+                [style]="{'width':'20rem', 'border':'none'}"
+                (ngModelChange)="onChange($event)"
+            >
+                <ng-template let-module pTemplate="item">
+                    <div class="country-item">
+                        <div>{{module.module_name}}</div>
+                    </div>
+                </ng-template>
+            </p-listbox>
+
+            </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="cancel-button" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button" (click)="createModule()"></button>
+    </ng-template>
+
+
+</p-dialog>
+
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+
+
+
+
+
+
+
+
+

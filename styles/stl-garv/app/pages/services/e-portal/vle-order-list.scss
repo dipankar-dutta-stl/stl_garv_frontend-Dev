@@ -1,0 +1,225 @@
+.order {
+    margin-top: 10px;
+    min-height: calc(100vh - 10px);
+    padding-bottom: 35px;
+   
+
+    .order-title{
+        text-align: left;
+        padding: 10px;
+        font-size: 43px;
+        font-family: 'harabara', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0px;
+        color: #3C3C3C;
+        opacity: 1;
+    }
+
+    .order-manage-card{
+        opacity: 0.8;
+    }
+
+    .p-button{
+        height: 40px;
+        //background: $primary-color;
+
+        &:hover{
+            background: $primary-color-light;
+        }
+    }
+
+    .ul-table{
+        margin-top: 50px;
+    }
+
+    .misc{
+        padding: 0px;
+    }
+
+    .p-card-body{
+        padding: 0px;
+    }
+
+    .p-card-content{
+        padding: 0px;
+
+        .user-image{
+            max-width: 45%;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: 34px;
+            margin-left: 27%;
+            
+            border-style: none;
+            -moz-box-shadow: 0px 6px 5px #827E7E;
+           -webkit-box-shadow: 0px 6px 5px #827E7E;
+            box-shadow: 0px 6px 5px #827E7E;
+
+        }
+        
+    }
+
+    .p-element.p-sortable-column {
+        background-color: $primary-color;
+        text-align: left;
+        font: normal normal 900 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+    
+    .p-datatable .p-sortable-column:not(.p-highlight):hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable .p-sortable-column.p-highlight:hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable-loading-icon.pi.pi-spin.pi-spinner{
+        color: $primary-color-light;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-down {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    // table images
+    .table_img{
+        height: 80px; 
+        width: 80px; 
+        border-radius: 50%; 
+        border-style: none; 
+        box-shadow: 0px 6px 5px #827e7e;
+    }
+   
+    .p-button-sm{
+      text-align: center;  
+      width: 120px;
+      margin-top: 5px;
+    }
+
+    .profile{
+        padding: 17px;
+        background-color: #E6E9F47F;
+         .p-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .p-checkbox .p-checkbox-box.p-highlight {  
+            background: $primary-color;
+        }
+    }
+
+    .p-input-icon-left{
+        
+
+        .p-inputtext.p-component.p-element{
+            background-color: #E0E0E0;
+            border-radius:10px;
+            width: 290px;
+            height: 39px;
+            margin-top: 5px;
+            margin-left: 4px;
+            padding-left: 9px;
+        }
+
+        em.pi.pi-search::before{
+            width: 25px;
+            font-size: 1.1em;
+            color: $primary-color;
+            margin-left: 260px;
+            display: none;
+        }
+    }
+
+    .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td{
+        text-align: left;
+        font: normal normal normal 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #000000CC;
+        opacity: 1;
+    }
+
+    
+}
+
+.p-button.p-button-text {
+    background-color: transparent;
+    color: $primary-color;
+    border-color: transparent;
+  }
+   .p-button.p-button-text:enabled:hover{
+     &:hover{
+       background-color: $hover-effect;
+     }
+   }
+
+   .p-button{
+    background-color: $primary-color;
+  
+}
+
+.p-button:enabled:hover{
+    background-color: $primary-color-light;
+}
+  
+.p-dialog .p-dialog-footer .cancel-button{
+    background-color: transparent;
+    border: none;
+    .p-button-label{
+        color: $primary-color;
+    }
+    .pi-times:before{
+        color: $primary-color;
+    }
+    .pi-times::after{
+        &:hover{
+        background-color: $hover-effect;
+        }
+    }
+    &:hover {
+    background-color: $hover-effect;
+    }
+}
+
+.p-fluid .p-fileupload .p-button {
+    width: auto;
+    background-color: $primary-color;
+
+
+    &:hover{
+        background-color: $primary-color-light;
+    }
+}
+
+.p-fluid .p-dialog-footer .p-button {
+    width: auto;
+    border-radius: 20px;
+}
+
+.pi-check:before{
+    color: #FFFFFF;
+}
+
+.p-selectbutton .p-button.p-highlight{
+    background: $primary-color;
+
+    &:hover{
+        background: $primary-color-light;
+    }
+}

@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stl-garv-ingress
+  namespace: stlgarvdevnamespace
+  labels:
+    app: stl-garv-ingress
+  annotations:
+    # Ingress Core Settings
+    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: subnet-030e73801514b869c,subnet-0aea42ed9228d4ff0
+    # Health Check Settings
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP 
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5'
+    alb.ingress.kubernetes.io/success-codes: '200'
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+
+    # ssl
+    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:817555535470:certificate/51a3fa44-70ed-4d7d-a54e-3d5d48f40a01
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /ecomm
+          pathType: Prefix
+          backend:
+            service:
+              name: stl-garv-ecomm-service
+              port: 
+                number: 80
+        - path: /entertain
+          pathType: Prefix
+          backend:
+            service:
+              name: stl-garv-entertain-service
+              port: 
+                number: 80
+        - path: /ui
+          pathType: Prefix
+          backend:
+            service:
+              name: stl-garv-frontend-service
+              port: 
+                number: 80

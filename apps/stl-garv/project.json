@@ -1,0 +1,87 @@
+{
+    "projectType": "application",
+    "sourceRoot": "apps/stl-garv/src",
+    "prefix": "stl-garv-frontend",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/stl-garv",
+                "index": "apps/stl-garv/src/index.html",
+                "main": "apps/stl-garv/src/main.ts",
+                "polyfills": "apps/stl-garv/src/polyfills.ts",
+                "tsConfig": "apps/stl-garv/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": ["apps/stl-garv/src/favicon.ico", "apps/stl-garv/src/assets"],
+                "styles": ["apps/stl-garv/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "2mb",
+                            "maximumError": "5mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "6kb",
+                            "maximumError": "10kb"
+                        }
+                    ],
+                    "fileReplacements": [
+                        {
+                            "replace": "environments/environment.ts",
+                            "with": "environments/environment.prod.ts"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "stl-garv:build:production"
+                },
+                "development": {
+                    "browserTarget": "stl-garv:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "stl-garv:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": ["apps/stl-garv/**/*.ts", "apps/stl-garv/**/*.html"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/apps/stl-garv"],
+            "options": {
+                "jestConfig": "apps/stl-garv/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

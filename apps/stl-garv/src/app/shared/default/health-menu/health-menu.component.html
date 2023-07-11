@@ -1,0 +1,18 @@
+<div class="health">
+    <div class="grid global">
+        <div *ngIf="!isAdmin" class="col-12 title-health">
+            E-Health
+        </div>
+
+        <div *ngIf="isAdmin " class="col-12 title-health" style="margin-top: 160px;">
+            Meta Data Management
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="tabmenu">
+                <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div>
+        </div>
+    </div>
+</div>

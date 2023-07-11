@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+
+<div class="health-tab" style="margin-top: -15px;">
+    <div class="grid global">
+        <div class="sm:col-4 md:col-4 lg:col-4 xl:col-4 ul-title">
+            {{panchayatName}}   
+        </div>
+        
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="modules" dataKey="user_id" [rowHover]="true" styleClass="p-datatable-gridlines" [loading]="loading"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"  responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" [globalFilterFields]="['module_id','module_name','count']">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8">
+                                                <p-calendar [(ngModel)]="date" view="month" placeholder="Monthwise Filter" dateFormat="mm/yy" showButtonBar="true" [readonlyInput]="true" (onSelect)="monthwiseData()" (onClearClick)="AllData()" inputId="monthpicker"></p-calendar>
+                                               </div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th id="module_id" pSortableColumn="module_id">Module Id<p-sortIcon field="module_id">
+                                                <p-columnFilter type="text" field="module_id" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="module_name" pSortableColumn="module_name">Module Name<p-sortIcon field="module_name">
+                                                <p-columnFilter type="text" field="module_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="count" pSortableColumn="count">Module Hits<p-sortIcon field="count"></p-sortIcon></th>
+                                            
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-module>
+                                        <tr>
+                                            <td>{{module.module.module_id}}</td>
+                                            <td>{{module.module.module_name}}</td>
+                                            <td>{{module.count}}</td>
+                                           
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No count found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>

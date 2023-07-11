@@ -1,0 +1,14 @@
+{
+    "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+    "version": 2,
+    "projects": {
+        "e-portal-api": "libs/e-portal-api",
+        "entertainment-api": "libs/entertainment-api",
+        "environment": "libs/environment",
+        "health-api": "libs/health-api",
+        "stl-garv": "apps/stl-garv",
+        "stl-garv-e2e": "apps/stl-garv-e2e",
+        "ui": "libs/ui",
+        "users": "libs/users"
+    }
+}

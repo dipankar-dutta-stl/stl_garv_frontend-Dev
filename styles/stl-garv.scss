@@ -1,0 +1,55 @@
+//---------Base Configuration-------------
+@import '~normalize.css/normalize.css';
+@import './stl-garv/base/colors.scss';
+@import './stl-garv/base/fonts.scss';
+@import './stl-garv/base/mixins.scss';
+
+
+//----------3rd Party Libraries----------------------
+//@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~primeicons/primeicons.css';
+//  @import '~primeng/resources/themes/saga-purple/theme.css'; previous theme
+@import '~primeng/resources/themes/md-light-indigo/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.css';
+
+//---------Base Configuration-------------contd
+@import './stl-garv/base/config.scss';
+
+//-----------Components------------------
+//@PAGES
+@import './stl-garv/app/pages/basic/home-page.scss';
+@import './stl-garv/app/pages/basic/change-password.scss';
+
+//health
+@import './stl-garv/app/pages/services/health/health.scss';
+@import './stl-garv/app/pages/services/health/health-dashboard.scss';
+@import './stl-garv/app/pages/services/health/health-user.scss';
+@import './stl-garv/app/pages/services/health/health-form.scss';
+@import './stl-garv/app/pages/services/health/case-form.scss';
+
+//entertain
+@import './stl-garv/app/pages/services/entertain/enter-home.scss';
+@import './stl-garv/app/pages/services/entertain/entertain-amara-chitra-katha.scss';
+@import './stl-garv/app/pages/services/entertain/amar-media-details.scss';
+
+//e-portal
+@import './stl-garv/app/pages/services/e-portal/product-details.scss';
+@import './stl-garv/app/pages/services/e-portal/e-portal-home.scss';
+@import './stl-garv/app/pages/services/e-portal/vle-order-list.scss';
+
+// e-governance
+@import './stl-garv/app/pages/services/e-governance/g2c-services.scss';
+@import './stl-garv/app/pages/services/e-governance/egov-home.scss';
+
+//@shared
+@import './stl-garv/app/shared/shell.scss';
+@import './stl-garv/app/shared/footer.scss';
+@import './stl-garv//app/shared/header.scss';
+@import './stl-garv//app/shared/bread-crumb.scss';
+
+
+
+//------------Library--------------------
+@import './stl-garv/libs/users/login-register.scss';

@@ -1,0 +1,332 @@
+.health-tab {
+    margin-top: 40px;
+    min-height: calc(100vh - 10px);
+    padding-bottom: 35px;
+    .create-btn{
+        text-align: right;
+        padding-right: 0px;
+    }
+
+    .ul-title{
+        text-align: left;
+        padding: 10px;
+        font-size: 32px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0px;
+        color: #1E2323;
+        opacity: 1;
+    }
+
+    // .p-button{
+    //     height: 40px;
+    //     background: $primary-color;
+
+    //     &:hover{
+    //         background: $primary-color-light;
+    //     }
+    // }
+    
+    .ul-table{
+        margin-top: 0px;
+
+        .p-card {
+            border-radius: 9px;
+            opacity: 0.8;
+
+        }
+
+        .product-img{
+            mix-blend-mode: luminosity;
+            border-radius: 10px;
+            opacity: 1;
+        }
+
+        .filter-button{
+            background-color: none;
+        }
+
+    }
+
+    .misc{
+        padding: 0px;
+    }
+
+    .p-calendar .p-datepicker {
+        min-width: 200%;
+    }
+
+    .p-calendar .p-inputtext {
+        flex: 1 1 auto;
+        width: 10%;
+        height: 40px;
+        border-radius: 10px;
+        background-color: #E0E0E0;
+    }
+
+    .p-card-body{
+        padding: 0px;
+    }
+
+    .p-card-content{
+        padding: 0px;
+
+        .user-image{
+            max-width: 45%;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: 34px;
+            margin-left: 27%;
+            
+            border-style: none;
+            -moz-box-shadow: 0px 6px 5px #827E7E;
+           -webkit-box-shadow: 0px 6px 5px #827E7E;
+            box-shadow: 0px 6px 5px #827E7E;
+
+        }
+        
+    }
+
+    .p-element.p-sortable-column {
+        background-color: $primary-color;
+        text-align: left;
+        font: normal normal 900 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+    
+    .p-datatable .p-sortable-column:not(.p-highlight):hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable .p-sortable-column.p-highlight:hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable-loading-icon.pi.pi-spin.pi-spinner{
+        color: $primary-color-light;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-down {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    // table images
+    .table_img{
+        height: 69px; 
+        width: 69px;    
+        box-shadow: 0px 6px 5px #827e7e;
+        border-radius: 50%;
+    }
+    .case-form{
+        padding: 20px;
+    }
+    
+    // .browse-button{
+    //     margin-left: 132%;   
+    // }
+
+    .p-button-sm{
+      text-align: center;  
+      width: 120px;
+      margin-top: 5px;
+    }
+
+    .profile{
+        padding: 17px;
+        background-color: #E6E9F47F;
+         .p-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .p-checkbox .p-checkbox-box.p-highlight {  
+            background: $primary-color;
+        }
+    }
+
+    .p-input-icon-left{
+
+        .p-inputtext.p-component.p-element{
+            background-color: #E0E0E0;
+            border-radius:10px;
+            width: 290px;
+            height: 39px;
+            margin-top: 5px;
+            margin-left: 4px;
+            padding-left: 9px;
+        }
+
+        em.pi.pi-search::before{
+            width: 25px;
+            font-size: 1.1em;
+            color: $primary-color;
+            margin-left: 260px;
+            display: none;
+        }
+    }
+
+    .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td{
+        text-align: left;
+        font: normal normal normal 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #000000CC;
+        opacity: 1;
+        font-weight: bolder;
+    }
+    
+    
+}
+
+   .p-button.p-button-text {
+     background-color: transparent;
+     color: $primary-color;
+     border-color: transparent;
+   }
+    .p-button.p-button-text:enabled:hover{
+      &:hover{
+        background-color: $hover-effect;
+      }
+    }
+
+    // .p-button{
+    //     background-color: $primary-color;
+      
+    // }
+
+
+    .p-button:enabled:hover{
+        background-color: $primary-color-light;
+    }
+
+    .p-dialog{
+        input[type='text']{
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .p-inputtext:enabled:focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: none;
+            border-bottom-color: #B5B5B5;
+          }
+
+        .p-dropdown {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .p-dropdown:not(.p-disabled).p-focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: none;
+            border-bottom-color: #B5B5B5;
+        }
+
+        input[type='file']{
+            border: none;
+            padding-left: 0px;
+        }
+
+        // textarea{
+        //     border-top: none;
+        //     border-left: none;
+        //     border-right: none;
+        // }  
+    }
+
+.p-dialog .p-dialog-footer .cancel-button{
+    background-color: transparent;
+    border: none;
+    .p-button-label{
+        color: $primary-color;
+    }
+    .pi-times:before{
+        color: $primary-color;
+    }
+    .pi-times::after{
+        &:hover{
+        background-color: $hover-effect;
+        }
+    }
+    &:hover {
+    background-color: $hover-effect;
+    }
+}
+
+.p-fluid .p-fileupload .p-button {
+    width: auto;
+    background-color: $primary-color;
+
+
+    &:hover{
+        background-color: $hover-effect;
+    }
+}
+
+.pi-check:before{
+    color: #FFFFFF;
+}
+
+.p-selectbutton .p-button.p-highlight{
+    background: $primary-color;
+
+    &:hover{
+        background: $hover-effect;
+    }
+}
+
+input::file-selector-button {
+        
+    background-color: $primary-color;
+    color: white;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+
+.p-fluid .p-button-icon-only {
+    width: 2.357rem;
+    background-color: $primary-color;
+    
+    &:hover{
+        background-color: $hover-effect;
+    }
+}
+
+// module selection in panchyat wise module mapping
+.select-module{
+    .p-checkbox .p-checkbox-box.p-highlight {
+        background: $primary-color;
+
+        &:hover{
+            background: $primary-color; 
+        }
+    }
+
+    .p-listbox .p-listbox-header .p-listbox-filter {
+        padding-right: 2rem;
+        background-color: rgb(239, 239, 239);
+        border-radius: 9px;
+    }
+}
+
+// module is redirection toggle button for admin side
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: $primary-color;
+}

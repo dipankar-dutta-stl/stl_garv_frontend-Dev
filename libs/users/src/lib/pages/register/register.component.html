@@ -1,0 +1,115 @@
+<p-toast></p-toast>
+<div class="login-background">
+    <div class="grid">
+        <div class="sm:col-4 md:col-3 lg:col-3 xl:col-2  login-img">
+            <img alt="Img" src="assets/logo/logo-login.png">
+        </div>
+        <div class="sm:col-4 md:col-6 lg:col-6 xl:col-8 title-login">
+            Hello,
+        </div>
+        <div class="sm:col-4 md:col-3 lg:col-3 xl:col-2 about-us">
+            <a href="https://www.stlgarv.com/">About Us</a>
+        </div>
+    </div>
+    <div class="login-desc text-center">
+        <p>Please enter the below mentioned credentials to make a step towards <br> Empowering Digital Transformation</p>
+    </div>
+    <div class="container-login">
+        <div class="card-register">
+            <form [formGroup]="registerFormGroup">
+
+                <div class="grid">
+                    <div class="sm:col-12 md:col-12 lg:col-6 xl:col-6 language">
+                        <p-dropdown class="language" [options]="states" formControlName="state_ID" optionValue="state_ID" optionLabel="state_NAME" placeholder="Choose State" (onClick)="stateselect(registerForm.state_ID.value)"></p-dropdown>
+                    </div>
+                    <div class="sm:col-12 md:col-12 lg:col-6 xl:col-6">
+                        <input type="text" class="log-mobile" placeholder="Mobile No." formControlName="unique_id" pInputText />
+                        <div>
+                            <small *ngIf="registerForm.unique_id.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="registerForm.unique_id.errors.required">Mobile number is required!</span>
+                                <span *ngIf="registerForm.unique_id.errors.unique_id">Mobile number is invalid!</span>
+                            </small> 
+                        </div> 
+                    </div>
+                </div>
+                  
+                <div class="grid">
+                    <div class="sm:col-12 md:col-12 lg:col-6 xl:col-6">
+                        <p-password type="password" class="log-pass" placeholder="Password" formControlName="password" pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,16}$'> 
+                            <ng-template pTemplate="header">
+                                <h4>Pick a password</h4>
+                            </ng-template>
+                            <ng-template pTemplate="footer">
+                                <p-divider></p-divider>
+                                <p class="mt-2">Suggestions</p>
+                                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                    <li>At least one lowercase</li>
+                                    <li>At least one uppercase</li>
+                                    <li>At least one numeric</li>
+                                    <li>Minimum 8 characters</li>
+                                </ul>
+                            </ng-template>
+                        </p-password>
+                        <div>
+                            <small *ngIf="registerForm.password.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="registerForm.password.errors.required">Password is required!</span>
+                                <span *ngIf="registerForm.password.errors.password">Password is invalid!</span>
+                                <span *ngIf="registerForm.password.errors?.['pattern']">Password should be greater than 8 characters with special characters !</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="sm:col-12 md:col-12 lg:col-6 xl:col-6">
+                        <p-password type="password" class="log-pass" placeholder="Confirm Password" formControlName="confirm_password" [feedback]="false" > </p-password>
+                        <div>
+                            <small *ngIf="registerForm.confirm_password.touched && registerForm.confirm_password.invalid" class="p-error">
+                                <span *ngIf="registerForm.confirm_password.errors.confirmedValidator">Password and Confirm Password must match.</span>
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="field-checkbox">
+                            <p-checkbox name="group1" value="Agreement"  inputId="y" [formControl]="registerFormGroup.controls['terms']"></p-checkbox>
+                            <label for="y">I agree to submit my personal information as part of user registration into STL Garv application.</label>
+                        </div>
+                        <small *ngIf="registerForm.terms.invalid && isSubmitted" class="p-error">
+                            <span *ngIf="registerForm.terms.errors.required">Kindly agree to the terms.</span>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-12" *ngIf="isSubmitted && authError">
+                        <small class="p-error">{{authErrorMessage}}</small>
+                    </div>
+                </div>
+                
+                <div class="grid">
+                    <div class="col-12 reg_button" >
+                        <p-button label="Register" styleClass="p-button-sm" (onClick)="onSubmit()"></p-button>     
+                    </div>
+                </div>
+
+            </form>
+            
+            <div class="grid">
+                <div class="col-12 no-acc">
+                    Already have an account? 
+                    <a routerLink="/login"> SIGN IN <em  class="pi pi-arrow-circle-right" style="font-size: small"></em>  </a>      
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer>
+    <div class="grid global">
+        <div class="col-4 col-offset-4 content">
+            © 2022-2023 Sterlite Technologies Limited
+        </div>
+    </div>
+</footer>
+

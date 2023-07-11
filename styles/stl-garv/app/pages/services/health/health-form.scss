@@ -1,0 +1,278 @@
+.health-form{
+    margin-top: 0px;
+    min-height: calc(100vh - 10px);
+    padding-bottom: 35px;
+    .create-btn{
+        text-align: right;
+        padding-right: 0px;
+    }
+
+    .ul-title{
+        text-align: left;
+        padding: 10px 10px 20px 10px;
+        font-size: 43px;
+        font-family: 'Harabara', sans-serif;
+        font-weight: 400;
+        letter-spacing: 1.23px;
+        color: #3C3C3C;
+        opacity: 1;
+    }
+
+    .p-button{
+        height: 40px;
+        background: $primary-color;
+
+        &:hover{
+            background: $primary-color-light;
+        }
+    }
+
+    .ul-table{
+        margin-top: 50px;
+    }
+
+    .misc{
+        padding: 0px;
+    }
+
+    .p-card-body{
+        padding: 0px;
+    }
+
+    .p-card-content{
+        padding: 0px;
+
+        .user-image{
+            max-width: 100%;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: 34px;
+            // margin-left: 27%;
+            
+            border-style: none;
+            -moz-box-shadow: 0px 6px 5px #13548d;
+           -webkit-box-shadow: 0px 6px 5px #13548d;
+            box-shadow: 0px 6px 5px #13548d;
+
+        }
+        
+    }
+
+    .p-element.p-sortable-column {
+        background-color: $primary-color;
+        text-align: left;
+        font: normal normal 900 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+    
+    .p-datatable .p-sortable-column:not(.p-highlight):hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable .p-sortable-column.p-highlight:hover {
+        background: $primary-color-light;
+        color: #FFFFFF;
+    }
+
+    .p-datatable-loading-icon.pi.pi-spin.pi-spinner{
+        color: $primary-color-light;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt {
+        color: #FFFFFF;
+        text-align: right;
+    }
+
+    .p-sortable-column-icon.pi.pi-fw.pi-sort-amount-down {
+        color: #FFFFFF;
+        text-align: right;
+    }
+    .case-form{
+        padding: 20px;
+        background: #B9DAF2;
+        opacity: 0.66;
+    }
+    
+    // .browse-button{
+    //     margin-left: 132%;   
+    // }
+
+    .p-button-sm{
+      text-align: center;  
+      width: 160px;
+      height: 50px;
+      margin-top: 5px;
+      border-radius: 9px;
+    }
+
+    .profile{
+        padding: 17px;
+        background-color: rgba(255, 255, 255, 0.8);;
+        color: rgb(0, 0, 0);
+        border-radius: 18px;
+         .p-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .p-checkbox .p-checkbox-box.p-highlight {  
+            background: $primary-color;
+        }
+
+        .bi{
+            color:$primary-color;
+        }
+
+        .p-listbox .p-listbox-header .p-listbox-filter {
+            padding-right: 2rem;
+            background-color: rgb(239, 239, 239);
+        }
+    }
+    .input-placeholder {
+        position: relative;
+      }
+      .input-placeholder input {
+        padding: 2px;
+      }
+      .input-placeholder input[required]:valid + .placeholder {
+        display: none;
+      }
+
+      .input-placeholder p-dropdown.ng-dirty.ng-valid + .placeholder  {
+        display: none;
+      }
+      
+      .placeholder {
+        position: absolute;
+        pointer-events: none;
+        top: 14px;
+        bottom: 2px;
+        left: 18px;
+        margin: auto;
+        color: #8f8a8a;
+      }
+      .placeholder span {
+        color: red;
+      }
+
+
+
+    input[type='text']{
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+    input[type='date']{
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+
+    .p-dropdown {
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+    textarea{
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.79);
+        margin: 0px 0px 3px 0px;
+        border-radius: 13px;
+        border: none;
+    }
+
+    .p-input-icon-left{
+        margin-left: 900px;
+
+        .p-inputtext.p-component.p-element{
+            // background-color: #E0E0E0;
+            border-radius:10px;
+            width: 290px;
+            height: 39px;
+            margin-top: 5px;
+            margin-left: 4px;
+            padding-left: 9px;
+        }
+
+        em.pi.pi-search::before{
+            width: 25px;
+            font-size: 1.1em;
+            color: $primary-color;
+            margin-left: 260px;
+            display: none;
+        }
+    }
+
+    .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td{
+        text-align: left;
+        font: normal normal normal 14px/24px 'Lato', sans-serif;
+        letter-spacing: 0px;
+        color: #000000CC;
+        opacity: 1;
+    }
+
+    input::file-selector-button {
+        
+        background-color: $primary-color;
+        color: white;
+        padding: 0.5em;
+        border: thin solid grey;
+        border-radius: 3px;
+    }
+
+    .p-fluid .p-button-icon-only {
+        width: 2.357rem;
+        background-color: $primary-color;
+        
+        &:hover{
+            background-color: $primary-color-light;
+        }
+    }
+    
+    
+}
+
+// .p-dialog .p-dialog-footer button {
+//     .p-button-label{
+//         color: #FFFFFF;
+//     }
+//     .pi-times:before{
+//         color: #FFFFFF;
+//     }
+//     .pi-times::after{
+//         &:hover{
+//         background-color: $primary-color-light;
+//         }
+//     }
+//     background-color: $primary-color;
+//     &:hover {
+//         background-color: $primary-color-light;
+// }
+// }
+
+// .pi-check:before{
+//     color: #FFFFFF;
+// }
+
+// .p-button.p-button-text:enabled:hover {
+//     background: $primary-color-light;
+// }
+
+
+p-inputtext:enabled:focus{
+    border-color: aqua;
+}

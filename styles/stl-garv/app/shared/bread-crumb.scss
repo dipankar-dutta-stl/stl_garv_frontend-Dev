@@ -1,0 +1,30 @@
+.bread-crumb-global{
+    margin-top: 50px;
+
+    .p-breadcrumb {
+      background: transparent;
+      border: none;
+      border-radius: 3px;
+      padding: 2rem 2rem 2rem 0;
+      
+  }
+}
+.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
+  color: $primary-color;
+  &:hover{
+    color: $primary-color-light;
+  }
+}
+
+.pi-chevron-right:before {
+  content: "\e901";
+  color: $primary-color;
+}
+
+.pi-home:before {
+  content: "\e925";
+  color: $primary-color;
+  &:hover{
+    color: $primary-color-light;
+  }
+}

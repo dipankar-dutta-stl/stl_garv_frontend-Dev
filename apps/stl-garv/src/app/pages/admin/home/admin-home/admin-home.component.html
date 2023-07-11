@@ -1,0 +1,88 @@
+<stl-garv-health-menu></stl-garv-health-menu>
+<div class="health-dash">
+    <!-- <div class="grid global">
+        <div class="col-3 title-analytics">
+            ANALYTICS
+        </div>
+    </div> -->
+    <div class="grid global">
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card styleClass="admin-dash-card">
+                <div class="grid">
+                    <div class="col-12 card-head">Products / Services</div>
+                    <div class="col count">{{totalProduct}}</div>
+                    <div class="col icon">
+                        <!-- <p-avatar icon="pi pi-users" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/productservice.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="product-management/product/list" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card styleClass="admin-dash-card">
+                <div class="grid">
+                    <div class="col-12 card-head">Users</div>
+                    <div class="col count">{{totalUsers}}</div>
+                    <div class="col icon">
+                        <!-- <p-avatar icon="pi pi-file" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/user_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="user-management/vle-mgmt" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card styleClass="admin-dash-card">
+                <div class="grid">
+                    <div class="col-12 card-head">Order Placed</div>
+                    <div class="col count">{{totalOrders}}</div>
+                    <div class="col icon">
+                        <!-- <p-avatar icon="pi pi-shopping-cart" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/orderplaced_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="order-management/orders" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card styleClass="admin-dash-card">
+                <div class="grid">
+                    <div class="col-12 card-head">Payment Done</div>
+                    <div class="col count">₹{{totalPayments}}</div>
+                    <div class="col icon">
+                        <!-- <p-avatar icon="pi pi-money-bill" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/paymentdone_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="payments" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+    </div>
+
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="chart">
+                <p-card>Latest Order List</p-card>
+            </div>
+        </div>
+    </div>
+</div>
+

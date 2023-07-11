@@ -1,0 +1,28 @@
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="enter-home">
+    <div class="grid global">
+        <div class="col-12 title-home">
+            <h2>Entertainment</h2>
+        </div>
+    </div>
+    <div class="grid global modules-list">
+        
+                <div class="sm:col-12 md:col-6 lg:col-4 xl:col-4" *ngFor="let source of sourceList">
+                       <p-card header="" (click)="navigateByUrl(source.source_url, source.isRedirection)">
+                          <ng-template pTemplate="header">
+                            <img  style="max-height: 160px" alt="Card" class="module-img" src="{{cloudFrontURL}}entertain/assets/img/{{source.source_image}}">
+                          </ng-template>
+
+                          <div>
+                            <div class="card-title">{{source.source_name}}</div>
+                            <p class="font"> 
+                                {{source.source_description}} 
+                            </p>
+                       </div>
+                        </p-card>
+                </div>            
+    </div>   
+</div>
+
+
+

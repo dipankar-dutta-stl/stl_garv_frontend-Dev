@@ -1,0 +1,97 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-tab">
+    <div class="grid global">
+        <div class="sm:col-6 md:col-4 lg:col-4 xl:col-2 ul-title" style="font-family: 'Harabara', sans-serif;">
+            Users    
+        </div>
+        <div class="sm:col-6 md:col-4 lg:col-4 xl:col-3 xl:col-offset-7 lg:col-offset-4 md:col-offset-4 create-btn">
+            <p-button label="Create New User" icon="pi pi-plus" routerLink="/user/vle/user-form"></p-button>
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="users" dataKey="user_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" sortField="created_date" [sortOrder]="-1" [globalFilterFields]="['reg_number','first_name', 'last_name' ,'aadhar_card_no','whatsapp_no','reg_number']">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template> 
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th pSortableColumn="reg_number" id="reg_number">Reg. No<p-sortIcon field="reg_number">
+                                                <p-columnFilter type="text" field="reg_number" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="user_image" id="user_image">Image<p-sortIcon field="user_image"></p-sortIcon></th>
+                                            <th pSortableColumn="first_name" id="first_name">Name<p-sortIcon field="first_name">
+                                                <p-columnFilter type="text" field="first_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="Age" id="Age">Age<p-sortIcon field="Age"></p-sortIcon></th>
+                                            <th pSortableColumn="Aadhar No." id="aadhar-no">Aadhar No.<p-sortIcon field="Aadhar No.">
+                                                <p-columnFilter type="text" field="aadhar_card_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="Mobile No." id="mobile-no">Mobile No.<p-sortIcon field="Mobile No.">
+                                                <p-columnFilter type="text" field="whatsapp_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="created_date" id="created_date">Register Date<p-sortIcon field="created_date"></p-sortIcon></th>
+                                            <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-user>
+                                        <tr>
+                                            <td>#{{user.reg_number}}</td>
+                                            <td *ngIf="user.user_image === null"><img class="table_img" src="{{cloudFrontURL}}assets/user_image/default_user_image.png" alt=""></td>
+                                            <td *ngIf="user.user_image !== null"><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{user.user_image}}" alt=""></td>
+                                            <td *ngIf="user.last_name === null">{{user.first_name}}</td> 
+                                            <td *ngIf="user.last_name !== null">{{user.first_name + ' '+ user.last_name}}</td>
+                                            <td>{{user.age}}</td>
+                                            <td>{{maskNumber(user.aadhar_card_no)}}</td>
+                                            <td>{{user.whatsapp_no}}</td>
+                                            <td>{{user.created_date | date: 'MM/dd/yyyy'}}</td>
+                                            <td style="text-align: left">
+                                                <!-- <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/vle/user-details/{{user.user_id}}"></button> -->
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/user/vle/user-form/{{user.user_id}}"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteUser(user.user_id)"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No users found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

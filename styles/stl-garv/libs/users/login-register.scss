@@ -1,0 +1,224 @@
+.login-background {
+    background: url('../../../../apps/stl-garv/src/assets/update-login-bg2.png') no-repeat center fixed;
+    background-size: cover;
+    min-height: calc(100vh - 1px);
+    opacity: 1;
+
+    .login-img{
+        padding: 23px 0px 0px 146px;
+        img{
+            width: 108px;
+            height: 63px;
+        }
+
+    }
+
+    .about-us{
+        padding: 32px 146px 0px 0px;
+
+        a{
+            font-size: large;
+            color: $primary-color;
+        }
+    }
+
+    .title-login {
+        padding-top: 30px;
+        justify-content: center;
+        text-align: center;
+        font-size: 50px;
+        font-family: 'Harabara', sans-serif;
+        font-weight: 500;
+        color: #3C3C3C;
+        letter-spacing: 1.98px;
+        opacity: 1;
+    }
+
+    .login-desc{
+        p{
+            color: #3C3C3C;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
+
+
+    .card-login {
+        width: 479px;
+
+    }
+
+    .card-register {
+        .language{
+            display: flex;
+            justify-content: center;
+        }
+        .log-mobile{
+            display: flex;
+            justify-content: center;
+        }
+    }
+    
+    .login-ttl {
+        text-align: left;
+        font: normal normal normal 24px/24px 'Roboto', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        padding-top: 16px;
+        padding-bottom: 15px;
+    }
+    
+    input[type='text'].log-email {
+        display: flex;
+        justify-content: center;
+        height: 45px;
+        background-color: rgba(239, 239, 239, 0.54);
+        margin: 0px 0px 3px 0px;
+        width: 479px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    input[type='text'].log-mobile {
+        display: flex;
+        justify-content: center;
+        height: 45px;
+        background-color: rgba(239, 239, 239, 0.54);
+        margin:0px 0px 3px 0px;
+        width: 479px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    p-password[type='password'].log-pass {
+            display: flex;
+            justify-content: center;
+        .p-inputtext {
+            height: 45px;
+            background-color: rgba(239, 239, 239, 0.54);
+            margin: 0px 0px 3px 0px;
+            width: 479px;
+            border-radius: 8px;
+            border: none;
+        }
+    }
+
+    .p-dropdown {
+            display: flex;
+            justify-content: center;
+            height: 45px;
+            background-color: rgba(239, 239, 239, 0.54);
+            margin: 0px 0px 3px 0px;
+            width: 479px;
+            border-radius: 8px;
+            border: none;
+
+        .p-dropdown-label.p-placeholder {
+            padding-top: 12px;
+        }
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
+
+    .log_button {
+        display: flex;
+        justify-content: center;
+        .p-button {
+            background-color: $primary-color;
+            margin-top: 10px;
+            width: 196px;
+            height: 45px;
+            text-align: center;
+            // font: normal normal medium 22px/19px 'Roboto', sans-serif;
+            font-size: 20px;
+            letter-spacing: 0.94px;
+            color: #ffffff;
+            border-radius: 40px;
+            opacity: 1;
+
+            &:hover {
+                background-color: $primary-color-light;
+            }
+        }
+    }
+
+    .reg_button {
+        display: flex;
+        justify-content: center;
+        .p-button {
+            background-color: $primary-color;
+            margin-top: 10px;
+            width: 196px;
+            height: 45px;
+            text-align: center;
+            // font: normal normal medium 22px/19px 'Roboto', sans-serif;
+            font-size: 20px;
+            letter-spacing: 0.94px;
+            color: #ffffff;
+            border-radius: 40px;
+            opacity: 1;
+
+            &:hover {
+                background-color: $primary-color-light;
+            }
+        }
+    }
+
+    .no-acc {
+        display: flex;
+        justify-content: center;
+        padding-top: 18px;
+        text-align: left;
+        font: normal normal normal 15px/24px 'Roboto', sans-serif;
+        letter-spacing: 0px;
+        color: #1e2323;
+        opacity: 1;
+
+        a {
+            color: $primary-color;
+            font-size: 13px;
+            font-weight: 600;
+            padding-left: 5px;
+        }
+    }
+
+    .guest-login {
+        display: flex;
+        justify-content: center;
+        a {
+            color: $primary-color;
+            font: normal normal normal 16px/24px 'Roboto', sans-serif;
+            letter-spacing: 0.14px;
+            font-weight: 600;
+            font-size: 15px;
+            padding-top: 3px;
+        }
+    }
+
+    .field-checkbox {
+        padding-top: 10px;
+        padding-left: 4px;
+        text-align: left;
+        font: normal normal normal 16px/24px 'Roboto', sans-serif;
+        letter-spacing: 0.14px;
+        color: #000000de;
+        opacity: 1;
+
+        .p-checkbox-icon {
+            background-color: $primary-color-light;
+        }
+    }
+}

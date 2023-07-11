@@ -1,0 +1,44 @@
+<header>
+    <div class="grid global">
+
+        <div class="sm:col-3 md:col-2 lg:col-1 xl:col-1">
+            <div class="logo">
+                <a routerLink="/">
+                    <img src="{{cloudFrontURL}}frontend/new-Homepage-icons/header-logo.png" alt="logo">
+                </a>  
+            </div>
+        </div>
+
+        <div class="sm:col-6 md:col-8 lg:col-10 xl:col-10 menu">
+            <stl-garv-nav></stl-garv-nav>
+        </div>
+
+        <div class="sm:col-3 md:col-2 lg:col-1 xl:col-1 profile" *ngIf="user_image">
+
+            <p-avatar 
+                
+                [image]='cloudFrontURL+"assets/user_image/"+user_image'
+                styleClass="mr-2" 
+                size="large" 
+                shape="circle"
+                (click)="menu.toggle($event)"
+            ></p-avatar>
+            <p-menu #menu [popup]="true" [model]="items" class="head-overlay">
+            </p-menu>
+        </div>
+
+        <div class="sm:col-3 md:col-2 lg:col-1 xl:col-1 profile" *ngIf="!user_image">
+
+            <p-avatar 
+                
+                icon="pi pi-user"
+                styleClass="mr-2" 
+                size="large" 
+                shape="circle"
+                (click)="menu.toggle($event)"
+            ></p-avatar>
+            <p-menu #menu [popup]="true" [model]="items" class="head-overlay">
+            </p-menu>
+        </div>
+    </div>
+</header>

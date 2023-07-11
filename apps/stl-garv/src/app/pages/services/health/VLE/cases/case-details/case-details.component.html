@@ -1,0 +1,259 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-form">
+    <div class="grid global">
+        <div  class="col-12 ul-title">
+            Case Details   
+        </div>
+        
+    </div>
+   <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-6 xl:col-3">
+            <div class="grid">
+                <div class="col-12">
+                    <p-card styleClass="profile text-center">
+                       
+                        <img class="user-image" style="height: 120px; width: 120px;" src="{{cloudFrontURL}}assets/user_image/{{fetchimage}}" alt="">
+                    
+                       <div class="field col-12 md:col-12 lg:col-12 text-center">
+                        <h3 class="profile-username">{{full_name}}</h3>   
+                         <h4>#{{reg_no}}</h4>
+                      </div>
+
+                    </p-card>
+                </div>
+                <div class="col-12">
+
+                    <p-card styleClass="profile" header="Patients Details">
+                       <div class="grid">
+                          <div class="col-2"><em  class="pi pi-id-card"></em>  </div>
+                          <div class="col-10"><strong>Aadhar No</strong></div>
+                       </div>
+                       <div class="grid">
+                        <div class="col-2"></div>
+                        <div class="col-10">{{aadhar}}</div>
+                     </div>
+                     <p-divider></p-divider>
+                     <div class="grid">
+                        <div class="col-2"><em  class="pi pi-phone"></em>  </div>
+                        <div class="col-10"><strong>Contact Details</strong></div>
+                     </div>
+                     <div class="grid">
+                      <div class="col-2"></div>
+                      <div class="col-10">{{contact}}</div>
+                   </div>
+                 <p-divider></p-divider>
+                 <div class="grid">
+                    <div class="col-2"><em  class="pi pi-shield"></em>  </div>
+                    <div class="col-10"><strong>Case Details</strong></div>
+                   </div>
+                 <div class="grid">
+                  <div class="col-2"><em  class="pi pi-calendar-plus"></em>   </div>
+                  <div class="col-10">{{caseDate}}</div>
+                 </div>
+                 <div class="grid">
+                    <div class="col-2"><em  class="pi pi-bolt"></em>   </div>
+                    <div class="col-10">{{caseStatus}}</div>
+                   </div>
+                   <div class="grid">
+                    <div class="col-2"><em  class="pi pi-clock"></em>   </div>
+                    <div class="col-10">{{age}} Yrs (Male)</div>
+                   </div>
+                    </p-card>
+
+                </div>
+            </div>
+        </div>
+        <div class="sm:col-12 md:col-12 lg:col-6 xl:col-9">
+              <div class="grid">
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        
+                        <ng-template pTemplate="header">
+                                <div class="grid">
+                                    <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                        <p-avatar icon="bi bi-thermometer-half"  size="xlarge" shape="circle"></p-avatar> 
+                                    </div>
+                                    
+                                    <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                            <h2>Thermometer</h2>
+                                    </div>    
+                                </div>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                             Body Temperature
+                            <p *ngIf="hd_temp">{{hd_temp}}</p>
+                            <p *ngIf="!hd_temp">--</p>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <div class="grid">
+                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                    <p-avatar icon="bi bi-speedometer" size="xlarge" shape="circle"></p-avatar> 
+                                </div>
+                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                    <h2>Weight Machine</h2>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                             Weight
+                            <p *ngIf="hd_weight">{{hd_weight}}</p>
+                            <p *ngIf="!hd_weight">--</p>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <div class="grid">
+                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                    <p-avatar icon="bi bi-speedometer2"  size="xlarge" shape="circle"></p-avatar> 
+                                </div>
+                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                    <h2>Gluco Meter</h2>
+                                </div>
+                            </div>
+                            
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                    Blood Glucose Level
+                                    <div *ngIf="hd_bg1"><p>{{hd_bgl}}</p></div>
+                                    <p *ngIf="!hd_bg1">--</p>
+                                </div>
+                                <div class="col">
+                                    Post Glucose Level
+                                    <p *ngIf="hd_pgl">{{hd_pgl}}</p>
+                                    <p *ngIf="!hd_pgl">--</p>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <div class="grid">
+                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                    <p-avatar icon="bi bi-heart-pulse"  size="xlarge" shape="circle"></p-avatar> 
+                                </div>
+                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                    <h2>Pulse OxiMeter</h2>
+                                </div>
+                            </div>
+                            
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                     Oxygen Level
+                                    <p *ngIf="hd_oxy">{{hd_oxy}} spo2</p>
+                                    <p *ngIf="!hd_oxy">--</p>
+                                </div>
+                                <div class="col">
+                                     Pulse
+                                    <p *ngIf="hd_pompulse">{{hd_pompulse}} pul/min</p>
+                                    <p *ngIf="!hd_pompulse">--</p>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <div class="grid">
+                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                    <p-avatar icon="bi bi-clipboard2-pulse"  size="xlarge" shape="circle"></p-avatar> 
+                                </div>
+                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                    <h2>BP Machine</h2>
+                                </div>
+                            </div>
+                            
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                     Systolic BP
+                                    <p *ngIf="hd_sysBp">{{hd_sysBp}} mmHg</p>
+                                    <p *ngIf="!hd_sysBp">--</p>
+                                </div>
+                                <div class="col">
+                                     Diastolic BP
+                                    <p *ngIf="hd_diasBp">{{hd_diasBp}} mmHg</p>
+                                    <p *ngIf="!hd_diasBp">--</p>
+                                </div>
+                            </div>
+
+                            <div class="grid">
+                                <div class="col">
+                                    MA Pressure
+                                   <p *ngIf="hd_map">{{hd_map}} mmHg</p>
+                                   <p *ngIf="!hd_map">--</p>
+                               </div>
+                               <div class="col">
+                                   Pulse
+                               <p *ngIf="hd_bppulse">{{hd_bppulse}} pul/min</p>
+                               <p *ngIf="!hd_bppulse">--</p>
+                              </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <div class="grid">
+                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
+                                    <p-avatar icon="bi bi-activity"  size="xlarge" shape="circle"></p-avatar> 
+                                </div>
+                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
+                                    <h2>Fitness Band</h2>
+                                </div>
+                            </div>
+                            
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                      Steps
+                                    <p *ngIf="hd_steps">{{hd_steps}}</p>
+                                    <p *ngIf="!hd_steps">--</p>
+                                </div>
+                                <div class="col">
+                                      Heart Rate
+                                    <p *ngIf="hd_heartrate">{{hd_heartrate}}</p>
+                                    <p *ngIf="!hd_heartrate">--</p>
+                                </div>
+                            </div>
+
+                            <div class="grid">
+                                <div class="col-6">
+                                     Calories
+                                   <p *ngIf="hd_cal">{{hd_cal}}</p>
+                                   <p *ngIf="!hd_cal">--</p>
+                               </div>
+                               <!-- <div class="col">
+                                   --
+                               <p>--</p>
+                              </div> -->
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+              </div>
+        </div>
+   </div>
+</div>

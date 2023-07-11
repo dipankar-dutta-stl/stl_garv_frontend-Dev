@@ -1,0 +1,48 @@
+.health {
+    padding-top: 0px;
+
+    .title-health {
+        text-align: left;
+        font: normal normal bold 34px/36px 'Harabara', sans-serif;
+        font-size: 40px;
+        letter-spacing: 1.23px;
+        font-weight: 400;
+        color: #3C3C3C;
+        opacity: 1;
+    }
+
+    .tabmenu {
+        margin-top: 30px;
+        opacity: 0.66;
+        * {
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        
+        .p-menuitem-text {
+            text-align: center;
+            font: normal normal medium 'Roboto', sans-serif;
+            font-size: 15px;
+            font-weight: bolder;
+            letter-spacing: 0px;
+            opacity: 1;
+            border-radius: 0px;
+    
+            &:hover {
+                color: $primary-color;
+                
+            }
+        }
+        .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link{
+            border-radius: 0px;
+
+        }
+        .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+            // background: #ffffff;
+            border-color: $primary-color;
+            color: $primary-color; 
+            border-radius: 0px;
+        }
+    
+    }
+}

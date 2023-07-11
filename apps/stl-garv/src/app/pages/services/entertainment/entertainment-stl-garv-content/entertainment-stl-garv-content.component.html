@@ -1,0 +1,51 @@
+<div class="amar-all-category">
+    
+    <div class="grid global">
+
+        <div class="sm:col-12 md:col-4 lg:col-4 xl:col-5 title-category">
+             STL GARV CONTENT 
+        </div>
+
+        <div class="sm:col-6 md:col-6 lg:col-6 xl:col-5">
+
+            <div class="media-search">
+                <em class="pi pi-search"></em> 
+                <input 
+                type="text"
+                [(ngModel)]="term"
+                class="searchTerm"
+                placeholder="Search Media"
+                />
+            </div>
+                
+        </div>
+
+        <div class="sm:col-6 md:col-2 lg:col-2 xl:col-2 category-list">
+            <button #btn type="button" pButton icon="pi pi-filter" label="Category" (click)="menu.toggle($event)"></button>
+            <p-tieredMenu #menu [model]="category_items" [popup]="true"></p-tieredMenu>
+        </div>
+
+        <div class="menu-bar">
+            <div class="col-12">
+                <div class="tabmenu">
+                    <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid global">
+        <div class="col-3" *ngFor="let mediacontent of varContents | filter: term">
+            <a [routerLink]='"/entertainment/"+mediacontent.source+"/media-details/"+mediacontent.title'>
+                <p-card >
+                    <ng-template pTemplate="header">
+                        <img src="{{cloudFrontURL}}entertain/stl_api/uploads/media_images/{{mediacontent.category_view_thumbnail}}" alt="">
+                    </ng-template>
+                </p-card>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+

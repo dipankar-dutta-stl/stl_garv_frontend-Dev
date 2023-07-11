@@ -1,0 +1,59 @@
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="product-details">
+
+    <div class="grid global" *ngFor="let product of productDetails">
+          <div class="col-12 md:col-12 lg:col-6">
+                <p-card styleClass="product-card">
+                    <ng-template pTemplate="header">
+                        <img alt="Card" class="product-image" src="{{cloudFrontURL}}new_ecomm/{{product.product_img1}}">
+                    </ng-template>
+                    <!-- <div>
+                        <div class="card-title">{{product.product_title}}</div>
+                   </div> -->
+                   
+                </p-card>
+          </div>
+
+          <div class="col-12 md:col-12 lg:col-6 product-description" style="padding-left: 20px;">
+            <h1>{{product.product_title}}</h1>
+            <p *ngIf="product.product_desc">
+                 {{product.product_desc}} 
+            </p>
+            <p *ngIf="!product.product_desc"> No description Found.</p>
+
+            <h3>Product Features</h3>
+            <p *ngIf="product.product_features">
+                 {{product.product_features}} 
+            </p>
+
+            <p *ngIf="!product.product_features">No Features Found.</p>
+            
+            <h1 style="margin-bottom: 0px;">₹ {{product.product_psp_price}}</h1>
+            <p style="margin-top: 8px; color: gray;"><s>₹ {{product.product_price}}</s></p>
+
+            <p> <p-inputNumber  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" 
+                :min="0" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+               </p-inputNumber></p>
+
+               <div class="grid">
+                <div class="col-2">
+                        <p-dropdown
+                            [disabled]="true" 
+                            [style]="{width:'100%'}" 
+                            [options]="qty" 
+                            optionLabel="name" 
+                            optionValue="code"
+                            placeholder="Qty"
+                            appendTo="body">
+                        </p-dropdown>
+                </div>
+            </div>
+           
+            <p-button label="Buy Now"  [style]="{'margin-top': '1.2em' }" disabled="true"></p-button>
+            
+          </div>
+
+
+    </div>
+    
+</div>

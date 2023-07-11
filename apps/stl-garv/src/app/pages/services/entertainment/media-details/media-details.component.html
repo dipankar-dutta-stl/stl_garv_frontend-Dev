@@ -1,0 +1,37 @@
+
+<div class="amar-media-details">
+    
+    <div class="grid global">
+        <div class="col-6 title-download">
+             MEDIA DETAILS 
+        </div>
+    </div>
+    
+    <div class="grid global">
+        <div class="col-12" *ngFor="let media of mediaDetails">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-6">
+                            <img src="{{cloudFrontURL}}entertain/stl_api/uploads/media_images/{{media.detail_view_thumbnail}}" alt="">
+                        </div>
+
+                        <div class="col-6">
+                            <h1 class="media-title">{{media.title}}</h1>
+                            <p class="media-description">{{media.description}}</p>
+                            <h4 class="media-category">CATEGORIES:</h4><span>English</span><span>, Best Sellers</span>
+                            
+                            <div class="action">
+                              <a [href]="media.file_url"><p-button label="Play Now" icon="pi pi-eye" styleClass="p-button-lg"></p-button></a>  
+                            </div>
+                            
+                        </div>
+                    </div>
+                </p-card>
+            
+            
+        </div>
+       
+        
+    </div>
+</div> 
+

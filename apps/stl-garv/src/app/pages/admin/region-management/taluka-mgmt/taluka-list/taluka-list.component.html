@@ -1,0 +1,192 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health">
+    <div class="grid global">
+        <div class="col-12 title-health">
+            Region Management
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="tabmenu">
+                <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="health-tab">
+    <div class="grid global">
+        <div class="sm:col-4 md:col-4 lg:col-4 xl:col-4 ul-title">
+            Taluka Management   
+        </div>
+        <div class="sm:col-8 md:col-4 lg:col-4 xl:col-3 xl:col-offset-5 lg:col-offset-4 md:col-offset-4 create-btn">
+            <p-button label="Add Taluka" icon="pi pi-plus" (click)="createRegion()"></p-button>
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="talukas" dataKey="taluka_id" [rowHover]="true" styleClass="p-datatable-gridlines" [loading]="loading"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"  responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" [globalFilterFields]="['taluka_id','taluka_name', 'belongs_to_district.district_name','belongs_to_district.belongs_to_state.state_name','status']">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th id="taluka_id" pSortableColumn="taluka_id">Taluka Id<p-sortIcon field="taluka_id">
+                                                <p-columnFilter type="text" field="taluka_id" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="taluka_name" pSortableColumn="taluka_name">Taluka Name<p-sortIcon field="taluka_name">
+                                                <p-columnFilter type="text" field="taluka_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="district_name" pSortableColumn="district_id">District Name<p-sortIcon field="district_id">
+                                                <p-columnFilter type="text" field="district_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="state_name" pSortableColumn="belongs_to_district.belongs_to_state.state_name">State Name<p-sortIcon field="belongs_to_district.belongs_to_state.state_name">
+                                                <p-columnFilter type="text" field="state_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="status" pSortableColumn="status">Status<p-sortIcon field="status"></p-sortIcon></th>
+                                            <th id="actions" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-region>
+                                        <tr>
+                                            <td>{{region.taluka_id}}</td>
+                                            <td>{{region.taluka_name}}</td>
+                                            <td>{{region.belongs_to_district.district_name}}</td>
+                                            <td>{{region.belongs_to_district.belongs_to_state.state_name}}</td>
+                                            <td>
+                                                <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
+                                                    {{region.status}}
+                                                </div>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.taluka_id)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.taluka_id)"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No Taluka found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="talukaDialog" [style]="{width: '500px'}" [modal]="true" styleClass="p-fluid">
+    <p-header *ngIf="!editmode">Add Taluka</p-header>
+    <p-header *ngIf="editmode">Edit Taluka</p-header>
+    <ng-template pTemplate="content" >
+
+        <form [formGroup]="region_form">
+            <div class="field">
+                <p-dropdown 
+                formControlName="state_id"  
+                [options]="states" 
+                optionLabel="state_name" 
+                optionValue="state_id" 
+                placeholder="State"
+                [showClear]="true"
+                [filter]="true"
+                fiterBy="state_name"
+                (onChange)="getDistbyStateId(createRegionForm.state_id.value)"
+                appendTo="body"
+                >
+                </p-dropdown>
+                <small *ngIf="createRegionForm.state_id.invalid && isSubmitted" class="p-error">
+                    State Name is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <p-dropdown 
+                formControlName="district_id"  
+                [options]="districts" 
+                optionLabel="district_name" 
+                optionValue="district_id" 
+                placeholder="District"
+                [showClear]="true"
+                [filter]="true"
+                fiterBy="district_name"
+                appendTo="body">
+                </p-dropdown>
+                <small *ngIf="createRegionForm.district_id.invalid && isSubmitted" class="p-error">
+                    District Name is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <input formControlName="taluka_name" placeholder="Taluka Name" type="text" pInputText id="name"  required autofocus />
+                <small *ngIf="createRegionForm.taluka_name.invalid && isSubmitted" class="p-error">
+                    Taluka Name is required!
+                </small>
+            </div>
+    
+            <div class="field">
+                <p-dropdown 
+                formControlName="status" 
+                [options]="status" 
+                optionLabel="status_name" 
+                optionValue="status_code" 
+                placeholder="Status"
+                [showClear]="true"
+                appendTo="body">
+                </p-dropdown>
+                <small *ngIf="createRegionForm.status.invalid && isSubmitted" class="p-error">
+                    Status is required!
+                </small>
+            </div>
+        </form>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="cancel-button" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button" (click)="saveRegion()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+
+
+
+
+
+
+

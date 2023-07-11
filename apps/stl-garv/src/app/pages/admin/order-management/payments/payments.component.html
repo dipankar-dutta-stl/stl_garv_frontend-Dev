@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="order">
+    <div class="grid global">
+        <div class="col-12 order-title">
+            Payments    
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card styleClass="order-manage-card">
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="paymentList" dataKey="case_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" [globalFilterFields]="['invoice_no', 'customer_name', 'payment_date', 'address', 'pincode', 'amount',]">
+                                    
+                                    <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                               <div class="sm:col-0 md:col-6 lg:col-7 xl:col-8"></div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-4">
+                                                    <div class="text-right">
+                                                        <span class="p-input-icon-left">
+                                                            <em class="pi pi-search"></em> 
+                                                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template> 
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th pSortableColumn="index_no" id="indeox_no">Index No<p-sortIcon field="index_no">
+                                                <p-columnFilter type="text" field="index_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="invoice_no" id="invoice_no">Invoice No<p-sortIcon field="invoice_no">
+                                                <p-columnFilter type="text" field="invoice_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="customer_name" id="customer_name">Customer Name<p-sortIcon field="customer_name">
+                                                <p-columnFilter type="text" field="customer_name" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="address" id="address">Address<p-sortIcon field="address">
+                                                <p-columnFilter type="text" field="address" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th> 
+                                            <th pSortableColumn="pincode" id="pincode">Pincode<p-sortIcon field="pincode">
+                                                <p-columnFilter type="text" field="pincode" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                             
+                                            <th pSortableColumn="payment_date" id="payment_date">Payment Date<p-sortIcon field="payment_date">
+                                                <p-columnFilter type="text" field="payment_date" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="amount" id="amount">Amount Paid<p-sortIcon field="amount">
+                                                <p-columnFilter type="text" field="amount" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th id="actions" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-payment let-rowIndex="rowIndex">
+                                        <tr>
+                                            <td>{{payment?.totalUnits }} {{rowIndex + 1}}</td>
+                                            <td>{{payment.invoice_no}}</td>                                    
+                                            <td>{{payment.customer_name}}</td>
+                                            <td>{{payment.address}}</td>
+                                            <td>{{payment.pincode}}</td>
+                                            <td>{{payment.payment_date | date: 'dd/MM/yyyy'}}</td>
+                                            <td>₹ {{payment.amount}}</td>
+                                            <td style="text-align: left">
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deletePayment(payment.payment_id)"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No Payment found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+
+
+

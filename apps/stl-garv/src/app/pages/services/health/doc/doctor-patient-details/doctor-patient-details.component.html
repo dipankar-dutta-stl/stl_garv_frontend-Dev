@@ -1,0 +1,219 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-form">
+    <div class="grid global">
+        <div  class="col-12 ul-title">
+            User Details   
+        </div>
+        
+    </div>
+   <div class="grid global">
+        <div class="col-12 md:col-6 lg:col-3 ">
+            <div class="grid">
+                <div class="col-12">
+                    <p-card styleClass="profile text-center">
+                       
+                        <img class="user-image" style="height: 120px; width: 120px;" src="{{cloudFrontURL}}assets/user_image/{{fetchimage}}" alt="">
+                    
+                       <div class="field col-12 md:col-12 lg:col-12 text-center">
+                        <h3 class="profile-username">{{full_name}}</h3>   
+                         <p>{{address}}</p>
+                      </div>
+
+                    </p-card>
+                </div>
+                <div class="col-12">
+
+                    <p-card styleClass="profile" header="About Me">
+                       <div class="grid">
+                          <div class="col-2"><em  class="pi pi-id-card"></em>  </div>
+                          <div class="col-10"><strong>Aadhar No</strong></div>
+                       </div>
+                       <div class="grid">
+                        <div class="col-2"></div>
+                        <div class="col-10">{{aadhar_card_no}}</div>
+                     </div>
+                     <p-divider></p-divider>
+                     <div class="grid">
+                        <div class="col-2"><em  class="pi pi-users"></em>  </div>
+                        <div class="col-10"><strong>Contact Details</strong></div>
+                     </div>
+                     <div class="grid">
+                      <div class="col-2"><em  class="pi pi-phone"></em>  </div>
+                      <div class="col-10">{{unique_id}}</div>
+                   </div>
+                   <div class="grid">
+                    <div class="col-2"><em  class="pi pi-whatsapp"></em>  </div>
+                    <div class="col-10">{{whatsapp_no}}</div>
+                 </div>
+                 <p-divider></p-divider>
+                 <div class="grid">
+                    <div class="col-2"><em  class="pi pi-shield"></em>  </div>
+                    <div class="col-10"><strong>Personal Details</strong></div>
+                   </div>
+                 <div class="grid">
+                  <div class="col-2"><em  class="pi pi-calendar"></em>   </div>
+                  <div class="col-10">{{date_of_birth}}</div>
+                 </div>
+                   <div class="grid">
+                    <div class="col-2"><em  class="pi pi-clock"></em>   </div>
+                    <div class="col-10">{{age}} Yrs ({{gender}})</div>
+                   </div>
+
+                   <p-divider></p-divider>
+                 <div class="grid">
+                    <div class="col-2"><em  class="pi pi-user"></em>  </div>
+                    <div class="col-10"><strong>Occupation</strong></div>
+                   </div>
+                   <div class="grid">
+                    <div class="col-2"></div>
+                    <div class="col-10">{{userOccupation}}</div>
+                   </div>
+
+                   <p-divider></p-divider>
+                   <div class="grid">
+                      <div class="col-2"><em  class="pi pi-chart-pie"></em>  </div>
+                      <div class="col-10"><strong>Selected Module</strong></div>
+                     </div>
+                     <div class="grid">
+                        <div class="col-2"></div>
+                        <div class="col-10">Health</div>
+                       </div>
+                </p-card>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-9">
+              <div class="grid">
+                  <div class="col-12 md:col-12 lg:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                             <h2>Thermometer</h2>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            Body Temperature
+                            <p>--</p>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="col-12 md:col-12 lg:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <h2>Weight Machine</h2>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                             Weight
+                            <p>--</p>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="col-12 md:col-12 lg:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <h2>Gluco Meter</h2>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                    Blood Glucose Level
+                                    <p>--</p>
+                                </div>
+                                <div class="col">
+                                    Post Glucose Level
+                                    <p>--</p>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+                  <div class="col-12 md:col-12 lg:col-6">
+                    <p-card styleClass="profile">
+                        <ng-template pTemplate="header">
+                            <h2>Pulse OxiMeter</h2>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="grid">
+                                <div class="col">
+                                     Oxygen Level
+                                    <p>--</p>
+                                </div>
+                                <div class="col">
+                                     Pulse
+                                    <p>--</p>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                  </div>
+
+
+                  <div class="col-12 md:col-12 lg:col-12">
+                    <p-card styleClass="profile" header="Case History">
+                        
+                        <div class="grid">
+                            <div class="col-12 misc">
+                                <p-table #dt [value]="cases" dataKey="case_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                                [rows]="2" [showCurrentPageReport]="true" [rowsPerPageOptions]="[2, 10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                                [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                [filterDelay]="0" [globalFilterFields]="['case_number','patient.details[0].first_name','patient.details[0].aadhar_card_no']">
+                            
+
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th pSortableColumn="reg_number" id="reg_number">Case No<p-sortIcon field="case_number">
+                                            <p-columnFilter type="text" field="case_number" display="menu"></p-columnFilter>
+                                        </p-sortIcon></th>
+                                        <th pSortableColumn="created_date" id="created_date">Case Date<p-sortIcon field="created_date"></p-sortIcon></th>
+                                        <th pSortableColumn="has_health_data" id="has_health_data">Health Data<p-sortIcon field="has_health_data"></p-sortIcon></th>
+                                        <th pSortableColumn="first_name" id="first_name">Doctor<p-sortIcon field="patient.details[0].first_name">
+                                            <p-columnFilter type="text" field="patient.details.first_name" display="menu"></p-columnFilter>
+                                        </p-sortIcon></th>
+                                        <th id="status" style="background-color: #1A5A91; color: #ffff;">Status<p-sortIcon field="patient.details[0].aadhar_card_no">
+                                            <p-columnFilter type="text" field="patient.details.aadhar_card_no" display="menu"></p-columnFilter>
+                                        </p-sortIcon></th>
+                                        <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-case>
+                                    <tr>
+                                        <td>#{{case.case_number}}</td>
+                                        <td>{{case.created_date | date: 'MM/dd/yyyy'}}</td>
+                                        <td>Body Temparature: {{case.has_health_data.bt_temperature}} °C <br>
+                                            Weight: {{case.has_health_data.wm_weight}} Kg <br>
+                                            Oxygen Level: {{case.has_health_data.pom_oxegen_level}} spo2 <br>
+                                            Pulse: {{case.has_health_data.bp_pulse}} pul/min <br>
+                                            Systolic BP: {{case.has_health_data.bp_systolic}} mmHg <br>
+                                            Diastolic BP: {{case.has_health_data.bp_diastolic}} mmHg <br>
+                                            MA Pressure: {{case.has_health_data.bp_ma_pressure}}  mmHg <br>
+                                            Heart Rates: {{case.has_health_data.fb_heart_rates}} bpm <br>
+                                        </td>
+                                        <td *ngIf="case.case">{{case.case.doctor.details[0].first_name+ ' '+ case.case.doctor.details[0].last_name}}</td>
+                                        <td *ngIf="!case.case"></td>
+                                        <td>{{case.case_status}}</td>
+                                        <td style="text-align: left">
+                                            <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" routerLink="/health/doctor/case-details/{{case.case_id}}"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="8"><strong>No cases found.</strong></td>
+                                    </tr>
+                                </ng-template>
+                        </p-table>
+                            </div>
+                        </div>
+                    </p-card>
+                  </div>
+
+              </div>
+        </div>
+   </div>
+</div>

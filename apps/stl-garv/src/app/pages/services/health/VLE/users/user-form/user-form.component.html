@@ -1,0 +1,285 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-form">
+    <div class="grid global">
+        <div *ngIf="!editmode" class="col-12 ul-title">
+            Create User   
+        </div>
+        <div *ngIf="editmode" class="col-12 ul-title">
+            Edit User   
+        </div> 
+    </div>
+   <div class="grid global">
+        <div class="col-12 md:col-12 lg:col-6 xl:col-3">
+            <div class="grid">
+                <div class="col-12">
+                    <form [formGroup]="form">
+                        <p-card styleClass="profile text-center">
+                       
+                            <img *ngIf="isUploaded" class="user-image" style="height: 120px; width: 120px;" [src]="imageDisplay" alt="">
+                            <img *ngIf="editmode && !isUploaded" class="user-image" style="height: 120px; width: 120px;" src="{{cloudFrontURL}}assets/user_image/{{fetchimage}}" alt="">
+                            <img *ngIf="!isUploaded && !editmode" class="user-image" style="height: 120px; width: 120px;" src="" alt="">
+
+                            <div class="field col-12 md:col-12 lg:col-12 text-center" >
+                                <p-button class="browse-button" label="Browse Image" styleClass="p-button-sm" onclick="document.getElementById('getFile').click()" ></p-button>
+                                <input id="getFile" type="file" style="display:none" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+                            </div>
+    
+                        </p-card>
+                    </form>
+                </div>
+                <div class="col-12">
+
+                    <p-card styleClass="profile" header="Select Module">
+
+                        <p-listbox 
+                            [options]="modules" 
+                            [(ngModel)]="selectedModules" 
+                            [metaKeySelection]="false" 
+                            [checkbox]="true" 
+                            [filter]="true" 
+                            [multiple]="true" 
+                            optionLabel="module_name" 
+                            optionValue="module_id" 
+                            [listStyle]="{'max-height':'260px'}" 
+                            [style]="{'width':'100%'}"
+                            (ngModelChange)="onChange($event)"
+                        >
+                            <ng-template let-module pTemplate="item">
+                                <div class="country-item">
+                                    <div>{{module.module_name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-listbox>
+                        
+                    </p-card>
+
+                </div>
+            </div>
+        </div>
+        <div class="sm:col-12 md:col-12 lg:col-6 xl:col-9">
+            <form [formGroup]="form">
+                <div class="card">
+                    <div class="formgrid grid">
+
+                        <div class="field col-12 md:col-4 input-placeholder">
+                            <input id="first_name" formControlName="first_name" required="required" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <div class="placeholder">
+                                First Name <span>*</span>
+                             </div>
+                            <small *ngIf="createUserForm.first_name.invalid && isSubmitted" class="p-error">
+                            First Name is required!
+                            </small>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <input id="middle_name" formControlName="middle_name" placeholder="Middle Name" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                        </div>
+                       
+                        <div class="field col-12 md:col-4">
+                            <input id="last_name" formControlName="last_name" placeholder="Last Name" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            
+                        </div>
+    
+                        <div class="field col-12 md:col-4 input-placeholder" *ngIf="editmode">
+                            <input id="unique_id" formControlName="unique_id" required="required" placeholder="Mobile No. *" type="text" disabled class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="createUserForm.unique_id.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="createUserForm.unique_id.errors.required">Mobile No. is required!</span>
+                            </small>
+                        </div>
+
+                        <div class="field col-12 md:col-4 input-placeholder" *ngIf="!editmode">
+                            <input id="unique_id" formControlName="unique_id" required="required" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <div class="placeholder">
+                                Mobile No. <span>*</span>
+                             </div>
+                            <small *ngIf="createUserForm.unique_id.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="createUserForm.unique_id.errors.required">Mobile No. is required!</span>
+                            </small>
+                        </div>
+
+
+                        <div class="field col-12 md:col-4">
+                            <input id="whatsapp_no" formControlName="whatsapp_no" placeholder="Whatsapp No." maxlength="10" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="createUserForm.whatsapp_no.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="createUserForm.whatsapp_no.errors.pattern">Please enter valid whatsapp number!</span>
+                            </small>
+                        </div>
+                       
+                        <div class="field col-12 md:col-4">
+                            <input id="email" formControlName="email" placeholder="Email" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            <small *ngIf="createUserForm.email.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="createUserForm.email.errors.email">Please enter valid Email address!</span>
+                            </small>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <input id="aadhar_card_no" formControlName="aadhar_card_no" placeholder="Aadhar No." maxlength="12" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            
+                        </div>
+    
+                        <div class="field col-12 md:col-4">
+                            <input id="date_of_birth"  type="date" [max]="formattedDate" formControlName="date_of_birth" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full" (change)="getAge(createUserForm.date_of_birth.value)">
+                            
+                        </div>
+    
+                        <div class="field col-12 md:col-4">
+                            <input id="age" formControlName="age" placeholder="Age" type="text" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full">
+                            
+                        </div>
+                        
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="state_id"
+                                    [options]="states"
+                                    optionLabel="state_name"
+                                    optionValue="state_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="state_name"
+                                    [showClear]="true"
+                                    placeholder="State"
+                                   (onChange)="getDistbyStateId(createUserForm.state_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="district_id"
+                                    [options]="districts"
+                                    optionLabel="district_name"
+                                    optionValue="district_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="district_name"
+                                    [showClear]="true"
+                                    placeholder="District"
+                                    (onChange)="getTalukabyDistrictId(createUserForm.district_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="taluka_id"
+                                    [options]="talukas"
+                                    optionLabel="taluka_name"
+                                    optionValue="taluka_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="taluka_name"
+                                    [showClear]="true"
+                                    placeholder="Taluka"
+                                    (onChange)="getVillagebyTalukaId(createUserForm.taluka_id.value)"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="village_id"
+                                    [options]="villages"
+                                    optionLabel="village_name"
+                                    optionValue="village_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="village_name"
+                                    [showClear]="true"
+                                    placeholder="Village"
+                                >
+                                    ></p-dropdown>
+                        </div>
+
+                        <div class="field col-12 md:col-4 input-placeholder">
+                            <p-dropdown
+                                    formControlName="panchayatfield"
+                                    [options]="panchayat"
+                                    optionLabel="panchayat_name"
+                                    optionValue="panchayat_id"
+                                    [style]="{ width: '100%' }"
+                                    [filter]="true"
+                                    filterBy="panchayat_name"
+                                    [showClear]="true"
+                                    placeholder="Panchayat *"
+                                    [disabled]="isDisabled"
+                                    (onChange)="getAllDataByPanchayt(createUserForm.panchayatfield.value)"
+                                >
+                                    ></p-dropdown>  
+                                    <!-- <div class="placeholder">
+                                        Panchayat <span>*</span>
+                                     </div> -->                 
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <textarea id="address" formControlName="address" placeholder="Landmark/ House No." type="text" rows="1" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full"></textarea>
+                            
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="gender"
+                                    [options]="gender"
+                                    optionLabel="gender_name"
+                                    optionValue="gender_code"
+                                    [style]="{ width: '100%' }"
+                                    [showClear]="true"
+                                    placeholder="Gender"
+                                >
+                                    ></p-dropdown>
+                                    
+                        </div>
+                       
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="blood_grp"
+                                    [options]="bloodgrp"
+                                    optionLabel="bg_name"
+                                    optionValue="bg_code"
+                                    [style]="{ width: '100%' }"
+                                    [showClear]="true"
+                                    placeholder="Blood Group"
+                                >
+                                    ></p-dropdown>
+                                    
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="occupation"
+                                    [options]="userOccupation"
+                                    optionLabel="occ_name"
+                                    optionValue="occ_code"
+                                    [style]="{ width: '100%' }"
+                                    [showClear]="true"
+                                    placeholder="Occupation"
+                                >
+                                    ></p-dropdown>
+                                    
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p-dropdown
+                                    formControlName="referral"
+                                    [options]="referredBy"
+                                    optionLabel="ref_name"
+                                    optionValue="ref_code"
+                                    [style]="{ width: '100%' }"
+                                    [showClear]="true"
+                                    placeholder="Referred By"
+                                >
+                                    ></p-dropdown>
+                                    
+                        </div>
+                           
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col-2 md:col-2 log_button" >
+                            <p-button [style]="{'margin-top':'20px'}" label="SUBMIT" styleClass="p-button-sm" (onClick)="onSubmit()" [disabled]='isSubmitted'></p-button>     
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+   </div>
+</div>

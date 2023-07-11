@@ -1,0 +1,55 @@
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<stl-garv-health-menu></stl-garv-health-menu>
+
+<div class="health-dash">
+    <div class="grid global">
+        <div class="col-3 title-analytics">
+            ANALYTICS
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card>
+                <div class="grid">
+                    <div class="col-12 card-head">Total Patients</div>
+                    <div class="col count">10</div>
+                    <div class="col icon">
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/user_icon.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="/health/doctor/patients-list" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="sm:col-12 md:col-6 lg:col-4 xl:col-3">
+            <p-card>
+                <div class="grid">
+                    <div class="col-12 card-head">Today's Cases</div>
+                    <div class="col count">04</div>
+                    <div class="col icon">
+                        <img style="height: 70px;" src="{{cloudFrontURL}}frontend/new_Dashboard_icons/total_cases.png" alt="">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col more">
+                        <a routerLink="/health/doctor/cases-list" class="more">More Info <em  class="pi pi-arrow-circle-right"></em>  </a>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+       
+
+    </div>
+
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="chart">
+                <p-card>Month Wise Cases</p-card>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+{
+    "projectType": "library",
+    "sourceRoot": "libs/entertainment-api/src",
+    "prefix": "stl-garv-frontend",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["{workspaceRoot}/dist/libs/entertainment-api"],
+            "options": {
+                "project": "libs/entertainment-api/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/entertainment-api/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/entertainment-api/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/libs/entertainment-api"],
+            "options": {
+                "jestConfig": "libs/entertainment-api/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/entertainment-api/**/*.ts",
+                    "libs/entertainment-api/**/*.html"
+                ]
+            }
+        }
+    },
+    "tags": []
+}

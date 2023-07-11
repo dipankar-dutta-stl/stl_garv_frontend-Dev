@@ -1,0 +1,164 @@
+<p-toast position="top-center"></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="order">
+    <div class="grid global">
+        <div class="col-12 order-title">
+            My Orders    
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="col ul-table">
+                <p-card>
+                    <div class="grid">
+                        <div class="col-12 misc">
+                            <p-table #dt [value]="userOrder" dataKey="case_id" [rowHover]="true" styleClass="p-datatable-gridlines"
+                                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
+                                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [filterDelay]="0" [globalFilterFields]="['invoice_no', 'qty', 'has_prod.product_title', 'order_status', 'created_date', 'has_cust_ord.due_amount']">
+                                    
+                                     <ng-template pTemplate="caption">
+                                        <div class="table-header">
+                                            <div class="grid">
+                                                <div class="sm:col-12 md:col-6 lg:col-7 xl:col-9" style="margin-top: 5px;">
+                                                    <p-selectButton class="filter" [options]="status" [(ngModel)]="selectedStatus" optionLabel="name" optionValue="code" (onChange)="formChange()"></p-selectButton>
+                                                </div>
+                                                <div class="sm:col-12 md:col-6 lg:col-5 xl:col-3">
+                                                    <span class="p-input-icon-left">
+                                                        <em class="pi pi-search"></em> 
+                                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template> 
+    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th pSortableColumn="index_no" id="index_no">Index No<p-sortIcon field="index_no">
+                                                <p-columnFilter type="text" field="index_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="due_amount" id="due_amount">Amount<p-sortIcon field="has_cust_ord.due_amount">
+                                                <p-columnFilter type="text" field="has_cust_ord.due_amount" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="invoice_no" id="invoice_no">Invoice No<p-sortIcon field="invoice_no">
+                                                <p-columnFilter type="text" field="invoice_no" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="qty" id="qty">Qty<p-sortIcon field="qty">
+                                                <p-columnFilter type="text" field="qty" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="product_title" id="product_title">Services<p-sortIcon field="has_prod.product_title">
+                                                <p-columnFilter type="text" field="has_prod.product_title" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>  
+                                            <th pSortableColumn="created_date" id="created_date">Order Date<p-sortIcon field="created_date">
+                                                <p-columnFilter type="text" field="created_date" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="order_status" id="order_status">Paid/Unpaid<p-sortIcon field="order_status"></p-sortIcon></th>
+                                            <th id="action" style="background-color: #1A5A91; color: #ffff;"></th>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
+                                        <tr>
+                                            <td>{{ order?.totalUnits }} {{rowIndex + 1}}</td>
+                                            <td>{{order.has_cust_ord.due_amount}}</td>                                    
+                                            <td>{{order.invoice_no}}</td>
+                                            <td>{{order.qty}}</td>
+                                            <td>{{order.has_prod.product_title}}</td>
+                                            <td>{{order.order_date | date: 'dd/MM/yyyy'}}</td>
+                                            <td>
+                                                <div [ngClass]="{'active': order.order_status === 'Complete' , 'inactive': order.order_status !== 'Complete'}">
+                                                    {{order.order_status}}
+                                                </div>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <button pButton [disabled]="disabled" type="button" class="p-button-info p-button-rounded p-button-text" label="Process" (click)="confirmPayment(order.order_id)"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+    
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="8"><strong>No orders found.</strong></td>
+                                        </tr>
+                                    </ng-template>
+    
+                            </p-table>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="paymentDialog" [style]="{width: '800px'}" [modal]="true" styleClass="p-fluid">
+    <p-header>Payment Confirmation</p-header>
+    <ng-template pTemplate="content" >
+
+        <form [formGroup]="form">
+
+            <div class="field">
+                <label for="order_status">Order Status</label>
+                <input formControlName="order_status" type="text" pInputText id="order_status"  />
+                <small *ngIf="createPaymentForm.order_status.invalid && isSubmitted" class="p-error">
+                    Order Status is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="invoice_no">Invoice No</label>
+                <input formControlName="invoice_no" type="text" pInputText id="invoice_no"  />
+                <small *ngIf="createPaymentForm.invoice_no.invalid && isSubmitted" class="p-error">
+                    Invoice No. is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="invoice_service">Invoiced Services</label>
+                <input formControlName="invoice_service" type="text" pInputText id="invoice_service" />
+                <small *ngIf="createPaymentForm.invoice_service.invalid && isSubmitted" class="p-error">
+                    Invoiced Service is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="amount">Amount</label>
+                <input formControlName="amount" type="text" pInputText id="amount"  />
+                <small *ngIf="createPaymentForm.amount.invalid && isSubmitted" class="p-error">
+                    Amount is required!
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="customer_name">Customer Name</label>
+                <input formControlName="customer_name" type="text" pInputText id="customer_name" autofocus  />
+                <small *ngIf="createPaymentForm.customer_name.invalid && isSubmitted" class="p-error">
+                    Customer Name is required!
+                </small>
+            </div>
+            
+            <div class="field">
+                
+                <label for="payment_date">Payment Date</label>
+                <input formControlName="payment_date" type="date" pInputText id="payment_date"/>
+                <small *ngIf="createPaymentForm.payment_date.invalid && isSubmitted" class="p-error">
+                    Payment Date is required!
+                </small>
+            </div>
+        </form>
+        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="cancel-button" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button" (click)="savePayment()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

@@ -1,0 +1,174 @@
+<p-toast position="top-center"></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="product-details">
+    
+    <div class="grid global" *ngFor="let product of productDetails">
+          <div class="col-12 md:col-12 lg:col-6">
+                <p-card styleClass="product-card">
+                    <ng-template pTemplate="header">
+                        <img alt="Card" class="product-image" src="{{cloudFrontURL}}new_ecomm/{{product.product_img1}}">
+                    </ng-template>
+                    <!-- <div>
+                        <div class="card-title">{{product.product_title}}</div>
+                   </div> -->
+                </p-card>
+          </div>
+
+          <div class="col-12 md:col-12 lg:col-6 product-description" style="padding-left: 20px;">
+            <h1>{{product.product_title}}</h1>
+            <p *ngIf="product.product_desc">
+                 {{product.product_desc}} 
+            </p>
+            <p *ngIf="!product.product_desc"> No description Found.</p>
+
+            <h3>Product Features</h3>
+            <p *ngIf="product.product_features">
+                 {{product.product_features}} 
+            </p>
+
+            <p *ngIf="!product.product_features">No Features Found.</p>
+            
+            <h1 style="margin-bottom: 0px;">₹ {{product.product_psp_price}}</h1>
+            <p style="margin-top: 8px; color: gray;"><s>₹ {{product.product_price}}</s></p>
+
+            <div class="grid">
+                <div class="col-2">
+                    <form [formGroup]="form">
+                        <p-dropdown 
+                            StyleClass="qty-dropdown"
+                            [style]="{width:'100%'}"
+                            formControlName="quantity"  
+                            [options]="qty" 
+                            optionLabel="name" 
+                            optionValue="code" 
+                            placeholder="Qty"
+                            (onChange)="getQuantityandTotal(createUserForm.quantity.value)"
+                            appendTo="body">
+                        </p-dropdown>
+                        <small *ngIf="createUserForm.quantity.invalid && isSubmitted" class="p-error">
+                            <span *ngIf="createUserForm.quantity.errors.required">Required!</span>
+                        </small>
+                    </form>
+                </div>
+            </div>
+
+            <p-button icon="pi pi-shopping-cart" label="Buy Now"  [style]="{'margin-top': '1.2em' }" (onClick)="buyNow()"></p-button>
+            
+          </div>
+
+
+    </div>
+    
+</div>
+
+<p-dialog [(visible)]="orderDialog" [style]="{width: '700px'}" [modal]="true" styleClass="p-fluid">
+    <p-header>Order Summary</p-header>
+    <ng-template pTemplate="content">
+
+        <p-card styleClass="dialog-card">
+            <div class="grid" *ngFor="let product of productDetails">
+                <div class="col-5">
+                    <img alt="Card" style="height:120px; margin-right: 40px;" src="{{cloudFrontURL}}new_ecomm/{{product.product_img1}}"> 
+                </div>
+        
+                <div class="col-7">
+                      <div style="font-weight:bold; font-size:18px; margin-top:10px">{{product.product_title}}</div>
+                      <h1 style="margin-bottom: 0px;">₹ {{product.product_psp_price}}</h1>
+                      <p style="margin-top: 8px; color: gray;"><s>₹ {{product.product_price}}</s></p>
+
+                      <div class="grid">
+                        <div class="col-4">
+                          <form [formGroup]="form">
+                              <p-dropdown 
+                                  [style]="{width:'100%'}"
+                                  formControlName="quantity"  
+                                  [options]="qty" 
+                                  optionLabel="name" 
+                                  optionValue="code" 
+                                  placeholder="Qty"
+                                  (onChange)="getQuantityandTotal(createUserForm.quantity.value)"
+                                  appendTo="body">
+                              </p-dropdown>
+                              <small *ngIf="createUserForm.quantity.invalid && isSubmitted" class="p-error">
+                                  <span *ngIf="createUserForm.quantity.errors.required">Required!</span>
+                              </small>
+                          </form> 
+                      </div>
+                      </div>
+
+
+                </div> 
+        </div>
+        </p-card>   
+
+        <p-card [style]="{'margin-top': '10px'}" styleClass="dialog-card">
+            <div class="grid">
+                <div class="col-12">
+                    <p style="margin: 0px; color: #626262;">Shopping and additional costs are calculated based on the values you have entered.</p> 
+                </div>
+        
+                <div class="col-12" style="margin-top:25px">
+                      <div class="grid">
+                        <div class="col-10">
+                            <div style="font-weight:bold; color: #626262;">Order Subtotal</div>
+                          </div>
+                          <div class="col-2">
+                            <div class="text-left" style="margin-right: 20px; color:#1E2323; font-weight: bold;">₹ {{sub_total}}</div>
+                          </div>
+                      </div>
+                      <p-divider></p-divider>
+                      <div class="grid">
+                        <div class="col-10">
+                            <div style="font-weight:bold; color: #626262;">Shipping and handling</div>
+                          </div>
+                          <div class="col-2">
+                            <div class="text-left" style="margin-right: 20px; color:#1E2323; font-weight: bold;">₹ 00.00</div>
+                          </div>
+                      </div>
+                      <p-divider></p-divider>
+                      <div class="grid">
+                        <div class="col-10">
+                            <div style="font-weight:bold; color: #626262;">Tax</div>
+                          </div>
+                          <div class="col-2">
+                            <div class="text-left" style="margin-right: 20px; color:#1E2323; font-weight: bold;">₹ 00.00</div>
+                          </div>
+                      </div>
+                      <p-divider></p-divider>
+
+                      <div class="grid">
+                        <div class="col-9">
+
+                        </div>
+                        <div class="col-1">
+                            <div class="text-left" style="margin-right: 20px; color:#1E2323; font-weight: bold;">Total:</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="text-left" style="margin-right: 20px; color:#1E2323; font-weight: bold;">₹ {{total}}</div>
+                        </div>
+                      </div>
+                </div> 
+        </div>
+        </p-card>
+        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <div class="grid">
+            <div class="col-2"></div>
+            <div class="col-8">
+               
+                    <button [style]="{'width':'100%' }" pButton pRipple label="Confirm Order " class="p-button" (click)="confirmOrder()" ></button>
+                
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </ng-template>
+
+</p-dialog>
+<p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+

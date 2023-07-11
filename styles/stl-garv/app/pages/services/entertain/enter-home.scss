@@ -1,0 +1,79 @@
+.enter-home{
+    padding-top: 0px;
+    min-height: calc(100vh - 10px);
+    .title-home{
+        // text-align: left;
+        // font: normal normal medium 34px/36px 'Lato', sans-serif;
+        // letter-spacing: 0px;
+        // color: #1E2323;
+        // opacity: 1;
+        // margin-bottom: 48px;
+
+            text-align: left;
+            font-size: 30px;
+            font-family: 'Harabara', sans-serif;
+            letter-spacing:  1.23px;
+            color: #3C3C3C;
+            opacity: 1;
+
+            h2 {
+                display: block;
+                font-size: 1.5em;
+                margin-block-start: 0.0em;
+                margin-block-end: 0.0em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                font-weight: bold;
+            }
+    }
+    
+    .modules-list{
+        margin-top: 48px;
+
+        .module-img{
+            max-height: 160px;
+            border-top-right-radius: 27px;
+            border-top-left-radius: 27px;
+        }
+    }
+    
+    .p-card{
+        cursor: pointer;
+        margin-bottom: 45px;
+        min-height: 280px;
+        max-height: 320px;
+        border-radius: 27px;
+        border: 2px solid #00A5E8;
+
+        .card-title{
+            text-align: left;
+            margin-top: 20px;
+            font: normal normal normal 16px/21px 'Roboto', sans-serif;
+            letter-spacing: 0.14px;
+            color: #000000;
+            opacity: 1;
+        }
+        .font {
+            text-align: left;
+            font: normal normal normal 14px/20px 'Roboto', sans-serif;
+            letter-spacing: 0.1px;
+            color: #626262;
+            opacity: 1;
+        }
+
+        &:hover {
+            background-color: $hover-effect;
+        }
+    }
+   
+    .p-card-body {
+        padding: 0px 16px 0px 16px ;
+    }
+
+    .p-card-content {
+        padding: 0px 0px 10px 0px;
+    }
+
+    
+     
+}

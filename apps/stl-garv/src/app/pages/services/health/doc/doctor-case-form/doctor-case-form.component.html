@@ -1,0 +1,196 @@
+<p-toast></p-toast>
+<stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
+<div class="health-form">
+    <div class="grid global">
+        <div *ngIf="!editmode" class="col-4 ul-title">
+            Create Case  
+        </div>
+        <div *ngIf="editmode" class="col-4 ul-title">
+            Edit Case   
+        </div>
+    </div>
+    <div class="grid global">
+        <div class="sm:col-12 md-col-12 lg:col-12">
+            <form [formGroup]="caseForm">
+                <p-card styleClass="case-form">
+                    <div class="formgrid grid">
+
+                      <div class="field col-12 md:col-6">
+                        <label for="panchayat">Select User</label>
+                        <p-dropdown
+                                formControlName="user"
+                                [options]="users"
+                                optionLabel="first_name"
+                                optionValue="user_id"
+                                [style]="{ width: '100%' }"
+                                [filter]="true"
+                                filterBy="first_name"
+                                [showClear]="true"
+                                placeholder="Select User"
+                            >
+                                ></p-dropdown>
+                                <small *ngIf="createCaseForm.user.invalid && isSubmitted" class="p-error">
+                                    <span *ngIf="createCaseForm.user.errors.required">User is required!</span>
+                                </small>
+                          
+                      </div>
+          
+                      <div class="field col-12 md:col-6">
+                        <label for="panchayat">Select Doctor</label>
+                        <p-dropdown
+                                formControlName="doctor"
+                                [options]="doctors"
+                                optionLabel="first_name"
+                                optionValue="user_id"
+                                [style]="{ width: '100%' }"
+                                [filter]="true"
+                                filterBy="first_name"
+                                [showClear]="true"
+                                placeholder="Select Doctor"
+                                (onChange)="formChange(1)"
+                            >
+                                ></p-dropdown>
+                          
+                      </div>
+                      
+                      <div class="field col-12 md:col-6">
+                        <label for="wm_weight">Weight</label>
+                        <div class="p-inputgroup">
+                          <input id="wm_weight" formControlName="wm_weight" type="text" (change)="formChange(2)" pInputText>   
+                          <span class="p-inputgroup-addon">Kg</span>      
+                        </div>                     
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bt_temperature">Temperature</label>
+                          <div class="p-inputgroup">
+                            <input id="bt_temperature" formControlName="bt_temperature" type="text" (change)="formChange(2)" pInputText>   
+                            <span class="p-inputgroup-addon">°C</span>      
+                          </div>                    
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bg_glucose_level">Pre Glucose Level</label>
+                        <div class="p-inputgroup">
+                          <input id="bg_glucose_level" formControlName="bg_glucose_level" type="text" (change)="formChange(2)" pInputText>   
+                          <span class="p-inputgroup-addon">mg/dl</span>      
+                        </div>                    
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bg_post_glucose_level">Post Glucose Level</label>
+                        <div class="p-inputgroup">
+                          <input id="bg_post_glucose_level" formControlName="bg_post_glucose_level" type="text" (change)="formChange(2)" pInputText>   
+                          <span class="p-inputgroup-addon">mg/dl</span>      
+                        </div>                     
+                      </div>
+      
+                      <div class="field col-12 md:col-6">
+                          <label for="pom_oxegen_level">Oxygen Level</label>
+                          <div class="p-inputgroup">
+                            <input id="pom_oxegen_level" formControlName="pom_oxegen_level" type="text" (change)="formChange(2)" pInputText>   
+                            <span class="p-inputgroup-addon">spo2</span>      
+                          </div>                     
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                          <label for="pom_pulse">Pulse OxiMeter</label>
+                          <div class="p-inputgroup">
+                            <input id="pom_pulse" formControlName="pom_pulse" type="text" (change)="formChange(2)" pInputText>   
+                            <span class="p-inputgroup-addon">pul/min</span>      
+                          </div>                    
+                      </div>
+      
+                      <div class="field col-12 md:col-6">
+                          <label for="bp_systolic">Systolic Pressure</label>
+                          <div class="p-inputgroup">
+                            <input id="bp_systolic" formControlName="bp_systolic" type="text" (change)="formChange(2)" pInputText>   
+                            <span class="p-inputgroup-addon">mmHg</span>      
+                          </div>
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bp_diastolic">Diastolic Pressure</label>
+                        <div class="p-inputgroup">
+                            <input id="bp_diastolic" formControlName="bp_diastolic" type="text" (change)="formChange(2)" pInputText>   
+                            <span class="p-inputgroup-addon">mmHg</span>      
+                        </div>
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bp_ma_pressure">Mean Arterial Pressure</label>
+                        <div class="p-inputgroup">
+                          <input id="bp_ma_pressure" formControlName="bp_ma_pressure" type="text" (change)="formChange(2)" pInputText>
+                          <span class="p-inputgroup-addon">mmHg</span>   
+                        </div>
+                      </div>
+
+                      <div class="field col-12 md:col-6">
+                        <label for="bp_pulse">Pulse</label>
+                        <div class="p-inputgroup">
+                          <input id="bp_pulse" formControlName="bp_pulse" type="text" (change)="formChange(2)" pInputText>  
+                          <span class="p-inputgroup-addon">pul/min</span>      
+                        </div>
+                      </div>
+
+                      <div class="field col-12 md:col-4">
+                          <label for="fb_heart_rates">Heart Rate</label>
+                          <div class="p-inputgroup">
+                            <input id="fb_heart_rates" formControlName="fb_heart_rates" type="text" (change)="formChange(2)" pInputText>  
+                            <span class="p-inputgroup-addon">bpm</span>      
+                          </div>
+                      </div>
+
+                      <div class="field col-12 md:col-4">
+                          <label for="fb_calories">Calories</label>
+                          <div class="p-inputgroup">
+                              <input id="fb_calories" formControlName="fb_calories" type="text" (change)="formChange(2)" pInputText>   
+                              <span class="p-inputgroup-addon">cal</span>      
+                          </div>
+                      </div>
+
+                      <div class="field col-12 md:col-4">
+                          <label for="fb_steps">Steps</label>
+                          <div class="p-inputgroup">
+                            <input id="fb_steps" formControlName="fb_steps" type="text" (change)="formChange(2)" pInputText>   
+                          </div>
+                      </div>
+
+                      <div class="field col-12 md:col-12">
+                          <label for="vle_note">Note</label>
+                          <textarea id="vle_note" formControlName="vle_note" type="text" rows="2" (change)="formChange(3)" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                          <small *ngIf="createCaseForm.vle_note.invalid && isSubmitted" class="p-error">
+                            <span *ngIf="createCaseForm.vle_note.errors.required">Note is required!</span>
+                          </small>
+                      </div>
+
+                      <div class="field col-12 md:col-12">
+                          <label for="description">Injury/Reference Description</label>
+                          <textarea id="description" formControlName="description" type="text" rows="4" (change)="formChange(3)" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                      </div>
+
+                      <div class="field col-12 md:col-12"> 
+
+                        <label for="image">Prescription Image</label>
+                        <input type="file" [style]="{ width: '100%'}" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+                        <div *ngIf="isUploaded" class="p-col-2 p-mt-2 p-pl-0">
+                            <img [src]="imageDisplay" alt=""/>
+                        </div>
+                        <div *ngIf="!isUploaded && editmode && hasPresc" class="p-col-2 p-mt-2 p-pl-0">
+                            <img src="{{cloudFrontURL}}assets/prescription_image/{{imageDisplay}}" alt=""/>
+                        </div>
+                        
+                    </div>
+                    </div>
+      
+                    <div class="formgrid grid">
+                      <div class="field col-12 md:col-12 log_button text-center" >
+                          <p-button label="Submit" styleClass="p-button-sm" (onClick)="onSubmit()" [disabled]='!hasChange'></p-button>     
+                      </div>
+                  </div>
+
+                </p-card>
+            </form>
+        </div>
+    </div>
+</div>    

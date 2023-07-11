@@ -1,0 +1,43 @@
+
+@font-face {
+    font-family: Harabara;
+    src: url(../../../apps/stl-garv/src/assets/fonts/Harabara-700.ttf) format('truetype');
+}
+@font-face {
+    font-family: Gotham;
+    src: url(../../../apps/stl-garv/src/assets/fonts/GothamLight.ttf) format('truetype');
+}
+
+.Harabara{
+    font-family: 'Harabara', sans-serif;
+}
+
+.Gotham{
+    font-family: 'Gotham', sans-serif;
+}
+body, 
+.p-component {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+// input{
+//     background-color: rgba(239, 239, 239, 0.54);
+// }
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: rgba(239, 239, 239, 0.54) !important;
+    color: fieldtext !important;
+}
+
+
+ul {
+    @include reset-list;
+}

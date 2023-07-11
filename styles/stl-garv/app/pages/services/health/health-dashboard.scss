@@ -1,0 +1,92 @@
+.health-dash {
+    margin-top: 40px;
+    min-height: calc(100vh - 10px);
+    padding-bottom: 35px;
+    .title-analytics {
+        text-align: left;
+        font: normal normal medium 34px/36px 'Lato', sans-serif;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        color: #1E2323;
+        opacity: 1;
+    }
+    
+    .p-card {
+        margin-top: 0px;
+        height: 176px;
+
+        border-radius: 10px;
+        border: $primary-color 2px solid;
+        opacity: 0.79;
+
+        a {
+            color: $primary-color;
+            font-weight: 600;
+        }
+        .card-head{
+            padding-bottom: 0px;
+        }
+
+        &:hover {
+            background-color: $hover-effect;
+        }
+        
+        .count{
+            text-align: left;
+            letter-spacing: 0.12px;
+            color: #131523;
+            opacity: 1;
+            padding-top: 23px;
+            font-size: 34px;
+            font-weight: 500;
+        }
+
+        .icon{
+            text-align: right;
+            color: $primary-color;
+        }
+
+        .more{
+            padding-top: 21px;
+            font-weight: 100px;
+
+            .pi{
+                padding-left: 8px;
+                display:inline-block;
+            }
+
+            &:hover{
+                color: $primary-color-light;
+            }
+
+             
+        }
+    }
+
+    .p-card-content {
+        padding: 0px;
+    }
+
+    .chart{
+        margin-top: 60px;
+        .p-card {
+            height: 685px;
+            opacity: 0.66;
+            border-radius: 9px;
+
+        }
+
+        .p-card-body {
+            padding: 0;
+        }
+        .p-card-content {
+                text-align: left;
+                font: normal normal 600 26px/39px 'Lato', sans-serif;
+                letter-spacing: 0.16px;
+                color: #131523;
+                opacity: 1;
+                padding: 38px 0px 0px 46px;
+        }
+    }
+}
