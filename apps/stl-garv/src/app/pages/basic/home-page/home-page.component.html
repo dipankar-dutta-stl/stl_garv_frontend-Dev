@@ -7,39 +7,40 @@
             <h1>Our Services</h1>
         </div>
 
-        <!-- <div class="col-4 state-filter">
+        <div class="col-4 state-filter">
             <form [formGroup]="registerFormGroup">
-                <p-dropdown *ngIf="isGuest" class="state-dropdown" [options]="states" formControlName="state_id"
-                    optionValue="state_id" optionLabel="state_name" placeholder="Choose State"
+                <p-dropdown *ngIf="isGuest" class="state-dropdown" [options]="states" formControlName="state_ID"
+                    optionValue="state_ID" optionLabel="state_NAME" placeholder="Choose State"
                     (onChange)="stateSelect(registerForm.state_id.value)"></p-dropdown>
             </form>
-        </div> -->
+        </div>
     </div>
-    <!-- <div class="grid global home-grid">
+    <div class="grid global home-grid">
         <div class="sm:col-12 md:col-6 lg:col-6 xl:col-4 card-space" *ngFor="let module of modules">
 
-            <p-card header="" (click)="navigateByUrl(module.module_id, module.module_url, module.isRedirection)">
-                <!-- <ng-template pTemplate="header">
-                                <img style="max-height: 160px" alt="Card" src="{{cloudFrontURL}}frontend/Home/{{module.module_image}}">
-                            </ng-template> -->
+            <p-card header="" (click)="navigateByUrl(module.module_ID, module.module_URL, module.is_REDIRECTION)">
+                <ng-template pTemplate="header">
+                    <img style="max-height: 160px" alt="Card"
+                        src="{{cloudFrontURL}}frontend/Home/{{module.module_IMAGE}}">
+                </ng-template>
                 <div class=" grid card-content">
                     <div class="col-8">
-                        <!-- <div class="card-title">{{module.module_name}}</div> -->
+                        <div class="card-title">{{module.module_NAME}}</div>
                         <p class="font">
-                            <!-- {{module.description}} -->
+                            {{module.description}}
                         </p>
                     </div>
                     <div class="col-4">
-                        <!-- <img class="home-img" src="{{cloudFrontURL}}frontend/new-Homepage-icons/{{module.module_image}}" -->
+                        <img class="home-img" src="{{cloudFrontURL}}frontend/new-Homepage-icons/{{module.module_IMAGE}}"
                             alt="Icon">
                     </div>
                 </div>
-            <!-- </p-card> -->
+            </p-card>
         </div>
 
-    <!-- </div> -->
+    </div>
     <div style="padding-bottom: 50px;">
 
-    </div> -->
-<!-- 
-</div> -->
+    </div>
+
+</div>

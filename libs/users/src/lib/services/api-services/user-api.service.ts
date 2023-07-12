@@ -179,7 +179,7 @@ export class UserApiService {
   }
 
   getAllModules(): Observable<any>{
-    return this.http.get<any>(`${this.apiURLUser}/view_module`)
+    return this.http.get<any>(`${this.apiURLUser}/view_modules`)
   }
 
   createModule(formData: any): Observable<any>{

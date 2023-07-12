@@ -29,8 +29,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     
 
     ngOnInit(): void {
-        // this._headerMenu();   
-        this._getUserDetails(); 
+        
+        this._getUserDetails();
+        this._headerMenu();   
     }
 
     //end subscriptions to avoid memory leak
@@ -52,11 +53,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.userService.getUserDetailbyuid(this.uid).pipe(takeUntil(this.endSubs$)).subscribe(
                 (res)=>{
                     console.log(res);
-                    this.panchayatId=res[0].details[0].panchayat_id;
-                    this.f_name=res[0].details[0].first_name;
-                    this.user_image=res[0].details[0].user_image;
+                    this.panchayatId=res.panchayat_ID;
+                    this.f_name=res.first_NAME;
+                    this.user_image=res.user_IMAGE;
              //     this.panchayatId=user[0].details[0].panchayat_id;
-                    this._getModules(this.uid, this.panchayatId);
+                    // this._getModules(this.uid, this.panchayatId);
                 })
         }
         else{
