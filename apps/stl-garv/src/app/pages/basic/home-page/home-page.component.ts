@@ -86,7 +86,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             this.userService.getUserDetailbyuid(this.userId).pipe(takeUntil(this.endSubs$)).subscribe(
                 (res) => {
                     this.panchayatId = res.panchayat_ID;
-                    this._getModules(this.userId, this.panchayatId);
+                    // this._getModules(this.userId, this.panchayatId);
                 })
         }
         else {

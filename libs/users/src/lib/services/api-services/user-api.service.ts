@@ -59,96 +59,96 @@ export class UserApiService {
   };
 
   getStateDetailbyId(stateId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_state/${stateId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_state/${stateId}`)
   };
 
   createState(stateData:any): Observable<any> {
     
-    return this.http.post<any>(`${this.apiURLUser}/add_state`, stateData)
+    return this.http.post<any>(`${this.apiURLAdmin}/add_state`, stateData)
   };
 
   updateState(stateData:any, stateId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLUser}/edit_state/${stateId}`, stateData)
+    return this.http.put<any>(`${this.apiURLAdmin}/edit_state/${stateId}`, stateData)
   };
 
   deleteState(stateId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLUser}/delete_state/${stateId}`)
+    return this.http.delete<any>(`${this.apiURLAdmin}/delete_state/${stateId}`)
   };
 
   getDistricts(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_district`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_district`)
   };
 
   getDistrictbyStateId(stateId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_state_district/${stateId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_state_district/${stateId}`)
   }
 
   getDstrictDetailbyId(distId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_district/${distId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_district/${distId}`)
   };
 
   createDistrict(data: any): Observable<any>{
-  return this.http.post<any>(`${this.apiURLUser}/add_district`, data)
+  return this.http.post<any>(`${this.apiURLAdmin}/add_district`, data)
   };
 
   updateDistrict(distData:any, distId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLUser}/edit_district/${distId}`, distData)
+    return this.http.put<any>(`${this.apiURLAdmin}/edit_district/${distId}`, distData)
   };
 
   deleteDistrict(distId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLUser}/delete_district/${distId}`)
+    return this.http.delete<any>(`${this.apiURLAdmin}/delete_district/${distId}`)
   };
 
   getTalukas(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_talukas`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_taluka`)
   };
  
   getTalukabyDistrictId(districtId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/showTaluka/${districtId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/showTaluka/${districtId}`)
   }
 
   getTalukaDetailbyId(talId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_talukas/${talId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_talukas/${talId}`)
   };
 
   createTaluka(data: any): Observable<any>{
-    return this.http.post<any>(`${this.apiURLUser}/add_talukas`, data)
+    return this.http.post<any>(`${this.apiURLAdmin}/add_talukas`, data)
   };
 
   updateTaluka(talData:any, talId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLUser}/edit_talukas/${talId}`, talData)
+    return this.http.put<any>(`${this.apiURLAdmin}/edit_talukas/${talId}`, talData)
   };
 
   deleteTaluka(talId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLUser}/delete_talukas/${talId}`)
+    return this.http.delete<any>(`${this.apiURLAdmin}/delete_talukas/${talId}`)
   };
 
   getVillages(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_village`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_village`)
   };
 
   getVillagebyTalukaId(talukaId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_taluka_village/${talukaId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_taluka_village/${talukaId}`)
   }
 
   getVillageDetailbyId(villageId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_village/${villageId}`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_village/${villageId}`)
   };
    
   createVillage(data: any): Observable<any>{
-    return this.http.post<any>(`${this.apiURLUser}/add_village`, data)
+    return this.http.post<any>(`${this.apiURLAdmin}/add_village`, data)
   };
   
   updateVillage(villageData:any, villageId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLUser}/edit_village/${villageId}`, villageData)
+    return this.http.put<any>(`${this.apiURLAdmin}/edit_village/${villageId}`, villageData)
   };
 
   deleteVillage(villageId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLUser}/delete_village/${villageId}`)
+    return this.http.delete<any>(`${this.apiURLAdmin}/delete_village/${villageId}`)
   };
 
   getPanchayat(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_gp`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_gp`)
   };
 
   getPanchayatDetailbyId(panchayatId: number): Observable<any> {

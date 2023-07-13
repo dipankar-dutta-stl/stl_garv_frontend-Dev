@@ -87,7 +87,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
         const registerData = {
             unique_ID: this.registerForm.unique_id.value,
-            password: this.registerForm.password.value
+            password: this.registerForm.password.value,
+            user_STATUS:"active"
         }
         //User registration
         this.userservice.register(registerData).pipe(takeUntil(this.endSubs$)).subscribe(
@@ -98,13 +99,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
             },
             (error: HttpErrorResponse) => {
                 if (error) {
-                    this.authError = true;
-                    this.authErrorMessage = error.error.message;
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Registration Failed!'
-                    });
+                    // this.authError = true;
+                    // this.authErrorMessage = error.error.message;
+                    // this.messageService.add({
+                    //     severity: 'error',
+                    //     summary: 'Error',
+                    //     detail: 'Registration Failed!'
+                    // });
                 }
             }
         );
@@ -115,7 +116,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         const body = {
             user_ID: this.u_id,
             role_ID: 4,
-            panchayat_ID: this.panchayatId
+            panchayat_ID: this.panchayatId,
+            first_NAME:'0',
+            state_ID:this.stateId,
+            user_STATUS:"active"
         }
         console.log(body)
         this.userservice.registerintoUserDetail(body).pipe(takeUntil(this.endSubs$)).subscribe(
@@ -130,11 +134,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     if (this.u_id) {
                         // this.userservice.deleteUser(this.u_id).pipe(takeUntil(this.endSubs$)).subscribe();
                     }
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Registration Failed!'
-                    });
+                    // this.messageService.add({
+                    //     severity: 'error',
+                    //     summary: 'Error',
+                    //     detail: 'Registration Failed!'
+                    // });
                 }
             }
         );

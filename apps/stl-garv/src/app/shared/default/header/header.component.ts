@@ -129,7 +129,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 // console.log(this.eportalAssign);
             if (this.role=='User' || this.role=='Doctor' || this.role=='Admin' ){
                 this.items = [{
-                    label: 'Hi '+ this.f_name +'!',
+                    label: 'Hi '+'!',
                     items: [{
                         label: 'Edit Profile',
                         icon: 'pi pi-user-edit',
@@ -160,7 +160,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             
             else if (this.role=='VLE' && this.eportalAssign){
                 this.items = [{
-                    label: 'Hi '+ this.f_name +'!',
+                    label: 'Hi '+'!',
                     items: [{
                         label: 'Edit Profile',
                         icon: 'pi pi-user-edit',

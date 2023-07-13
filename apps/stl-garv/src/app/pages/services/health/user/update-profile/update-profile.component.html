@@ -111,13 +111,13 @@
                         </div>
                         <div class="field col-12 md:col-4">
                             <p-dropdown
-                                    formControlName="state_id"
+                                    formControlName="state_ID"
                                     [options]="states"
-                                    optionLabel="state_name"
-                                    optionValue="state_id"
+                                    optionLabel="state_NAME"
+                                    optionValue="state_ID"
                                     [style]="{ width: '100%' }"
                                     [filter]="true"
-                                    filterBy="state_name"
+                                    filterBy="state_NAME"
                                     [showClear]="true"
                                     placeholder="State"
                                    (onChange)="getDistbyStateId(updateProfileForm.state_id.value)"
@@ -127,13 +127,13 @@
 
                         <div class="field col-12 md:col-4">
                             <p-dropdown
-                                    formControlName="district_id"
+                                    formControlName="district_ID"
                                     [options]="districts"
-                                    optionLabel="district_name"
-                                    optionValue="district_id"
+                                    optionLabel="district_NAME"
+                                    optionValue="district_ID"
                                     [style]="{ width: '100%' }"
                                     [filter]="true"
-                                    filterBy="district_name"
+                                    filterBy="district_NAME"
                                     [showClear]="true"
                                     placeholder="District"
                                     (onChange)="getTalukabyDistrictId(updateProfileForm.district_id.value)"
@@ -143,13 +143,13 @@
 
                         <div class="field col-12 md:col-4">
                             <p-dropdown
-                                    formControlName="taluka_id"
+                                    formControlName="taluka_ID"
                                     [options]="talukas"
-                                    optionLabel="taluka_name"
-                                    optionValue="taluka_id"
+                                    optionLabel="taluka_NAME"
+                                    optionValue="taluka_ID"
                                     [style]="{ width: '100%' }"
                                     [filter]="true"
-                                    filterBy="taluka_name"
+                                    filterBy="taluka_NAME"
                                     [showClear]="true"
                                     placeholder="Taluka"
                                     (onChange)="getVillagebyTalukaId(updateProfileForm.taluka_id.value)"
@@ -159,13 +159,13 @@
 
                         <div class="field col-12 md:col-4">
                             <p-dropdown
-                                    formControlName="village_id"
+                                    formControlName="village_ID"
                                     [options]="villages"
-                                    optionLabel="village_name"
-                                    optionValue="village_id"
+                                    optionLabel="village_NAME"
+                                    optionValue="village_ID"
                                     [style]="{ width: '100%' }"
                                     [filter]="true"
-                                    filterBy="village_name"
+                                    filterBy="village_NAME"
                                     [showClear]="true"
                                     placeholder="Village"
                                     (onChange)="getPanchaytbyVillageId(updateProfileForm.village_id.value)"
@@ -177,11 +177,11 @@
                             <p-dropdown
                                     formControlName="panchayatfield"
                                     [options]="panchayat"
-                                    optionLabel="panchayat_name"
-                                    optionValue="panchayat_id"
+                                    optionLabel="panchayat_NAME"
+                                    optionValue="panchayat_ID"
                                     [style]="{ width: '100%' }"
                                     [filter]="true"
-                                    filterBy="panchayat_name"
+                                    filterBy="panchayat_NAME"
                                     [showClear]="true"
                                     placeholder="Panchayat *"
                                     (onChange)="getAllDataByPanchayt(updateProfileForm.panchayatfield.value)"
