@@ -66,16 +66,16 @@
     
                                     <ng-template pTemplate="body" let-region>
                                         <tr>
-                                            <td>{{region.state_id}}</td>
-                                            <td>{{region.state_name}}</td>
+                                            <td>{{region.state_ID}}</td>
+                                            <td>{{region.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                     {{region.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.state_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.state_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.state_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.state_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>

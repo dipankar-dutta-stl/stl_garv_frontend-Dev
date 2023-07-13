@@ -54,12 +54,12 @@
     
                                     <ng-template pTemplate="body" let-module>
                                         <tr>
-                                            <td> #{{module.module_id}}</td>
-                                            <td><img class="table_img" style="width: 120px;" class="module-img" src="{{cloudFrontURL}}frontend/new-Homepage-icons/{{module.module_image}}" alt=""></td>
-                                            <td>{{module.module_name}}</td>
+                                            <td> #{{module.module_ID}}</td>
+                                            <td><img class="table_img" style="width: 120px;" class="module-img" src="{{cloudFrontURL}}frontend/new-Homepage-icons/{{module.module_IMAGE}}" alt=""></td>
+                                            <td>{{module.module_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': module.module_status === 'active', 'inactive': module.module_status !== 'active'}">
-                                                    {{module.module_status}}
+                                                    {{module.module_STATUS}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">

@@ -93,6 +93,7 @@ export class StateListComponent implements OnInit, OnDestroy {
 
     private _getAllStates(){
         this.userService.getStates().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
+            console.log(res)
             this.states=res;
             this.loading=false;
         })
