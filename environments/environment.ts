@@ -7,6 +7,7 @@ import { Environment } from "../libs/environment/src";
 export const environment: Environment = {
   production: true,
   apiURL: 'http://localhost:8001',
+  apiURL_Ecomm: 'http://localhost:8084',
   cloudFrontURL: 'https://d1ppcfmkludwal.cloudfront.net/'
 };
 

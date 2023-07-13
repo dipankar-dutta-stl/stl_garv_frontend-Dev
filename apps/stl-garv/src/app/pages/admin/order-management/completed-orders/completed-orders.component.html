@@ -65,7 +65,7 @@
                                     <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
                                         <tr>
                                             <td>{{order?.totalUnits }} {{rowIndex + 1}}</td>
-                                            <td>{{order.belongs_to_customer.email}}</td>                                    
+                                            <td>{{order?.belongs_to_customer?.email}}</td>                                    
                                             <td>{{order.invoice_no}}</td>
                                             <td>{{order.has_prod.product_title}}</td>
                                             <td>{{order.qty}}</td>

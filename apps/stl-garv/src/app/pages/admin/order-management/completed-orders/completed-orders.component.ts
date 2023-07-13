@@ -49,6 +49,8 @@ export class CompletedOrdersComponent implements OnInit, OnDestroy {
                 this.allOrders = orders.filter(element=>element.order_status == 'Complete');
                 this.loading = false;
             })    
+            //13-07-23
+            console.log("orders= ",this.allOrders)
     }
 
     deleteOrder(order_id: number){
