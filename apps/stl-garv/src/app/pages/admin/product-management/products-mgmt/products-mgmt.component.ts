@@ -126,15 +126,15 @@ export class ProductsMgmtComponent implements OnInit , OnDestroy{
             this.eportalService.getProductDetailsById(product_id).pipe(takeUntil(this.endSubs$)).subscribe(
                 (data)=>
                 {
-                    this.createProductForm.product_title.setValue(data[0].product_title);
-                    this.createProductForm.f_manufacturers.setValue(data[0].manufacturer_id);
-                    this.createProductForm.f_categories.setValue(data[0].p_cat_id);
-                    this.createProductForm.product_price.setValue(data[0].product_price);
-                    this.createProductForm.product_psp_price.setValue(data[0].product_psp_price);
-                    this.createProductForm.product_desc.setValue(data[0].product_desc);
-                    this.createProductForm.product_features.setValue(data[0].product_features);
-                    this.createProductForm.product_video.setValue(data[0].product_video);
-                    this.imageDisplay=data[0].product_img1;
+                    this.createProductForm.product_title.setValue(data[0]?.product_title);
+                    this.createProductForm.f_manufacturers.setValue(data[0]?.manufacturer_id);
+                    this.createProductForm.f_categories.setValue(data[0]?.p_cat_id);
+                    this.createProductForm.product_price.setValue(data[0]?.product_price);
+                    this.createProductForm.product_psp_price.setValue(data[0]?.product_psp_price);
+                    this.createProductForm.product_desc.setValue(data[0]?.product_desc);
+                    this.createProductForm.product_features.setValue(data[0]?.product_features);
+                    this.createProductForm.product_video.setValue(data[0]?.product_video);
+                    this.imageDisplay=data[0]?.product_img1;
                     this.createProductForm.image.setValidators([]);
                     this.createProductForm.image.updateValueAndValidity()
                 }
