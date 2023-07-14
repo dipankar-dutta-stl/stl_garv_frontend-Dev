@@ -43,7 +43,7 @@ export class UserApiService {
   };
 
   updateUserDetail(userDetailId:any, userDetail:any) : Observable<any> {
-    return this.http.put<any>(`${this.apiURLUser}/edit_usr_details/${userDetailId}`, userDetail)
+    return this.http.put<any>(`${this.apiURLUser}/edit_user`, userDetail)
   };
 
   updateUserPassword(userId:number, password:any): Observable<any> {
@@ -148,7 +148,7 @@ export class UserApiService {
   };
 
   getPanchayat(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/view_gp`)
+    return this.http.get<any>(`${this.apiURLAdmin}/view_grampanchayat`)
   };
 
   getPanchayatDetailbyId(panchayatId: number): Observable<any> {

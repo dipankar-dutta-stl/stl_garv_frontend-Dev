@@ -114,7 +114,7 @@ export class StateListComponent implements OnInit, OnDestroy {
             this.stateId=state_id;
             this.userService.getStateDetailbyId(state_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
             {
-                this.createRegionForm.state_name.setValue(data.state_name);
+                this.createRegionForm.state_name.setValue(data.state_NAME);
                 this.createRegionForm.status.setValue(data.status)
             })
         }
@@ -153,7 +153,7 @@ export class StateListComponent implements OnInit, OnDestroy {
         else
         {
             const state_Body = {
-                state_name: this.createRegionForm.state_name.value,
+                state_NAME: this.createRegionForm.state_name.value,
                 status: this.createRegionForm.status.value
             }
             this.userService.createState(state_Body).pipe(takeUntil(this.endSubs$)).subscribe(

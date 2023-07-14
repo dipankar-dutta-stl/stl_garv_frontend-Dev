@@ -179,6 +179,7 @@ export class PanchayatListComponent implements OnInit, OnDestroy  {
     }
     private _getAllPanchayats(){
         this.userService.getPanchayat().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
+            console.log(res);
             this.panchayats=res;
             this.loading=false;
         })

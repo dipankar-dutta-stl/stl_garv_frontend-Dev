@@ -47,7 +47,7 @@ export class TalukaListComponent implements OnInit , OnDestroy {
     activeItem: MenuItem;
     talukaDialog: boolean;
     status: Status[];
-    talukas: Taluka[]=[];
+    talukas:any;
     districts: District[]=[];
     dist_filter: District[]=[];
     states: State[]=[];
@@ -131,7 +131,9 @@ export class TalukaListComponent implements OnInit , OnDestroy {
 
     private _getAllTalukas(){
         this.userService.getTalukas().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
+            
             this.talukas=res;
+            console.log(this.talukas);
             this.loading=false;
         })
     }

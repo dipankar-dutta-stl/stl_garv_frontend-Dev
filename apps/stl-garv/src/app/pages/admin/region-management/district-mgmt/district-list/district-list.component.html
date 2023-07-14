@@ -69,9 +69,9 @@
     
                                     <ng-template pTemplate="body" let-region>
                                         <tr>
-                                            <td>{{region.district_id}}</td>
-                                            <td>{{region.district_name}}</td>
-                                            <td>{{region.belongs_to_state.state_name}}</td>
+                                            <td>{{region.district_ID}}</td>
+                                            <td>{{region.district_NAME}}</td>
+                                            <td>{{region.state_ID}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                 {{region.status}}
@@ -115,14 +115,14 @@
 
             <div class="field">
                 <p-dropdown 
-                formControlName="state_id"  
+                formControlName="state_ID"  
                 [options]="states" 
-                optionLabel="state_name" 
-                optionValue="state_id" 
+                optionLabel="state_NAME" 
+                optionValue="state_ID" 
                 placeholder="State"
                 [showClear]="true"
                 [filter]="true"
-                fiterBy="state_name"
+                fiterBy="state_NAME"
                 appendTo="body">
                 </p-dropdown>
                 <small *ngIf="createRegionForm.state_id.invalid && isSubmitted" class="p-error">

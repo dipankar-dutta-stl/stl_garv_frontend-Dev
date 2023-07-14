@@ -70,20 +70,20 @@
                                         </tr>
                                     </ng-template>
     
-                                    <ng-template pTemplate="body" let-region>
+                                    <ng-template pTemplate="body" let-talukas >
                                         <tr>
-                                            <td>{{region.taluka_id}}</td>
-                                            <td>{{region.taluka_name}}</td>
-                                            <td>{{region.belongs_to_district.district_name}}</td>
-                                            <td>{{region.belongs_to_district.belongs_to_state.state_name}}</td>
+                                            <td>{{talukas.taluka_ID}}</td>
+                                            <td>{{talukas.taluka_NAME}}</td>
+                                            <td>{{talukas.district_ID}}</td>
+                                            <td>{{talukas.state_ID}}</td>
                                             <td>
-                                                <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
-                                                    {{region.status}}
+                                                <div [ngClass]="{'active': talukas.status === 'active', 'inactive': talukas.status !== 'active'}">
+                                                    {{talukas.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.taluka_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.taluka_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(talukas.taluka_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(talukas.taluka_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
