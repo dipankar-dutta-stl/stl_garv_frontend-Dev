@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class AdminEportalProductComponent implements OnInit, OnDestroy {
     cloudFrontURL= environment.cloudFrontURL;
     id: number;
-    productDetails: any;
+    product: any;
 
     endSubs$ : Subject<any> = new Subject();
 
@@ -48,7 +48,8 @@ export class AdminEportalProductComponent implements OnInit, OnDestroy {
 
     private _getProductDetailById() {
         this.portalService.getProductDetailsById(this.id).pipe(takeUntil(this.endSubs$)).subscribe(details=>{
-            this.productDetails= details;
+            this.product= details;
+            console.log("product Details= ",this.product)
         })
     }
 }
