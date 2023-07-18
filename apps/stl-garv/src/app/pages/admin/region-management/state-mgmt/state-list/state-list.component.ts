@@ -12,11 +12,11 @@ interface Status {
 }
 
 export interface State {
-    state_id?: number,
-    state_name?: string,
+    state_ID?: number,
+    state_NAME?: string,
     status?: string,
-    created_date?: string,
-    updated_date?: string
+    created_DATE?: string,
+    updated_DATE?: string
 }
 
 @Component({

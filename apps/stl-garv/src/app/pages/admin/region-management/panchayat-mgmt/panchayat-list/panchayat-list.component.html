@@ -83,12 +83,12 @@
                                     <td>{{region.panchayat_UNIQUE_ID}}</td>
                                     <td>{{region.panchayat_NAME}}</td>
                                     <td>{{region.pincode}}</td>
-                                    <td>{{region.village_ID}}</td>
-                                    <td>{{region.taluka_ID}}</td>
-                                    <td>{{region.district_ID}}</td>
-                                    <td>{{region.state_ID}}</td>
+                                    <td>{{region.belongs_TO_VILLAGE.village_NAME}}</td>
+                                    <td>{{region.belongs_TO_TALUKA.taluka_NAME}}</td>
+                                    <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                    <td>{{region.belongs_TO_STATE.state_NAME}}</td>
                                     <td style="text-align: left">
-                                        <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="bi bi-grid" pTooltip="Assign Modules" tooltipPosition="bottom" style="margin-right:10px" (click)="selectModule(region.panchayat_ID)"></button>
+                                        <!-- <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="bi bi-grid" pTooltip="Assign Modules" tooltipPosition="bottom" style="margin-right:10px" (click)="selectModule(region.panchayat_ID)"></button> -->
                                         <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.panchayat_ID)"></button>
                                         <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.panchayat_ID)"></button>
                                         <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-chart-pie" pTooltip="Module Count" tooltipPosition="bottom" style="margin-right:10px"  routerLink="/admin/metadata/region-management/panchayat/list/module-count/{{region.panchayat_id}}"></button>
@@ -246,14 +246,14 @@
                 [checkbox]="true" 
                 [filter]="true"
                 [multiple]="true" 
-                optionLabel="module_name" 
-                optionValue="module_id" 
+                optionLabel="module_NAME" 
+                optionValue="module_ID" 
                 [style]="{'width':'20rem', 'border':'none'}"
                 (ngModelChange)="onChange($event)"
             >
                 <ng-template let-module pTemplate="item">
                     <div class="country-item">
-                        <div>{{module.module_name}}</div>
+                        <div>{{module.module_NAME}}</div>
                     </div>
                 </ng-template>
             </p-listbox>

@@ -77,9 +77,9 @@
                                         <tr>
                                             <td>{{region.village_ID}}</td>
                                             <td>{{region.village_NAME}}</td>
-                                            <td>{{region.taluka_ID}}</td>
-                                            <td>{{region.district_ID}}</td>
-                                            <td>{{region.state_NAME}}</td>
+                                            <td>{{region.belongs_TO_TALUKA.taluka_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                            <td>{{region.belongs_TO_STATE.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                     {{region.status}}

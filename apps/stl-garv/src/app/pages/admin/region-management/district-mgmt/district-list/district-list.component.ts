@@ -12,11 +12,11 @@ interface Status {
 }
 
 export interface District {
-    district_id?: number,
-    state_id?: number,
-    district_name?: string,
+    district_ID?: number,
+    state_ID?: number,
+    district_NAME?: string,
     status?: string,
-    belongs_to_state?: State
+    belongs_TO_STATE?: State
 }
 
 @Component({
@@ -43,8 +43,8 @@ export class DistrictListComponent implements OnInit , OnDestroy {
     activeItem: MenuItem;
     districtDialog: boolean;
     status: Status[];
-    districts: District[]=[];
-    states: State[]=[];
+    districts:District[]=[];
+    states:any=[];
     region_form: FormGroup;
     districtId: number;
     editmode=false;
@@ -95,6 +95,7 @@ export class DistrictListComponent implements OnInit , OnDestroy {
     private _getAllStates(){
         this.userService.getStates().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.states=res;
+            
         })
     };
 
@@ -102,7 +103,11 @@ export class DistrictListComponent implements OnInit , OnDestroy {
         this.userService.getDistricts().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.districts=res;
             this.loading=false;
+           
+            this._mergeStateWithDistrict();
         })
+        
+      
     }
 
     createRegion(){
@@ -251,6 +256,17 @@ export class DistrictListComponent implements OnInit , OnDestroy {
 
     get createRegionForm() {
         return this.region_form.controls;
+    }
+
+    private _mergeStateWithDistrict(){
+       for(let x=0;x<this.districts.length;x++){
+        for(let y=0;y<this.states.length;y++){
+            if(this.districts[x].state_ID==this.states[y].state_ID){
+                this.districts[x].belongs_TO_STATE=this.states[y];
+            }
+        }
+       }
+
     }
 
 }

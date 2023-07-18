@@ -71,7 +71,7 @@
                                         <tr>
                                             <td>{{region.district_ID}}</td>
                                             <td>{{region.district_NAME}}</td>
-                                            <td>{{region.state_ID}}</td>
+                                            <td>{{region.belongs_TO_STATE.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                 {{region.status}}

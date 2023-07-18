@@ -15,14 +15,15 @@ interface Status {
 }
 
 export interface Village {
-    village_id?: number,
-    taluka_id?: number,
-    village_name?: string,
+    village_ID?: number,
+    taluka_ID?: number,
+    village_NAME?: string,
     status?: string,
-    created_date?: string,
-    updated_date?: string,
-    belongs_to_taluka?: Taluka
-    // belongs_to_district?: District
+    created_DATE?: string,
+    updated_DATE?: string,
+    belongs_TO_TALUKA?: Taluka,
+    belongs_TO_DISTRICT?: District,
+    belongs_TO_STATE?:State
 }
 
 @Component({
@@ -146,6 +147,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
     private _getAllTalukas(){
         this.userService.getTalukas().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.talukas=res;
+            
         })
     }
 
@@ -153,6 +155,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         this.userService.getVillages().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.villages=res;
             this.loading=false;
+            this._mergeAllTheDetails();
         })
     }
 
@@ -303,5 +306,32 @@ export class VillageListComponent implements OnInit, OnDestroy {
 
     get createRegionForm() {
         return this.region_form.controls;
+    }
+
+
+    _mergeAllTheDetails(){
+        for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.talukas.length;y++){
+                if(this.villages[x].taluka_ID==this.talukas[y].taluka_ID){
+                    this.villages[x].belongs_TO_TALUKA=this.talukas[y];
+                }
+            }
+           }
+        
+           for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.districts.length;y++){
+                if(this.villages[x].belongs_TO_TALUKA.district_ID==this.districts[y].district_ID){
+                    this.villages[x].belongs_TO_DISTRICT=this.districts[y];
+                }
+            }
+           }
+
+           for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.states.length;y++){
+                if(this.villages[x].belongs_TO_DISTRICT.state_ID==this.states[y].state_ID){
+                    this.villages[x].belongs_TO_STATE=this.states[y];
+                }
+            }
+           }
     }
 }

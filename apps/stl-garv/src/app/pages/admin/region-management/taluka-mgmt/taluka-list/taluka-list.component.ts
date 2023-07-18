@@ -14,13 +14,13 @@ interface Status {
 }
 
 export interface Taluka {
-    taluka_id?: number,
-    district_id?: number,
-    taluka_name?: string,
+    taluka_ID?: number,
+    district_ID?: number,
+    taluka_NAME?: string,
     status?: string,
-    created_date?: string,
-    updated_date?: string,
-    belongs_to_district?: District
+    created_DATE?: string,
+    updated_DATE?: string,
+    belongs_TO_DISTRICT?: District
 }
 
 @Component({
@@ -50,7 +50,7 @@ export class TalukaListComponent implements OnInit , OnDestroy {
     talukas:any;
     districts: District[]=[];
     dist_filter: District[]=[];
-    states: State[]=[];
+    states:any=[];
     region_form: FormGroup;
     talukaId: number;
     stateId: number;
@@ -133,8 +133,8 @@ export class TalukaListComponent implements OnInit , OnDestroy {
         this.userService.getTalukas().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             
             this.talukas=res;
-            console.log(this.talukas);
             this.loading=false;
+            this._mergeStateAndDistrict();
         })
     }
 
@@ -284,5 +284,23 @@ export class TalukaListComponent implements OnInit , OnDestroy {
 
     get createRegionForm() {
         return this.region_form.controls;
+    }
+
+    private _mergeStateAndDistrict(){
+        for(let x=0;x<this.talukas.length;x++){
+            for(let y=0;y<this.districts.length;y++){
+                if(this.talukas[x].district_ID==this.districts[y].district_ID){
+                    this.talukas[x].belongs_TO_DISTRICT=this.districts[y];
+                }
+            }
+        }
+
+        for(let x=0;x<this.talukas.length;x++){
+            for(let y=0;y<this.states.length;y++){
+                if(this.talukas[x].belongs_TO_DISTRICT.state_ID==this.states[y].state_ID){
+                    this.talukas[x].belongs_TO_DISTRICT.belongs_TO_STATE=this.states[y];
+                }
+            }
+        }
     }
 }

@@ -70,15 +70,15 @@
                                         </tr>
                                     </ng-template>
     
-                                    <ng-template pTemplate="body" let-talukas >
+                                    <ng-template pTemplate="body" let-region >
                                         <tr>
-                                            <td>{{talukas.taluka_ID}}</td>
-                                            <td>{{talukas.taluka_NAME}}</td>
-                                            <td>{{talukas.district_ID}}</td>
-                                            <td>{{talukas.state_ID}}</td>
+                                            <td>{{region.taluka_ID}}</td>
+                                            <td>{{region.taluka_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.belongs_TO_STATE.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': talukas.status === 'active', 'inactive': talukas.status !== 'active'}">
-                                                    {{talukas.status}}
+                                                    {{region.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
