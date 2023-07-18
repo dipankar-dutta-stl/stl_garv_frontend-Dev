@@ -92,8 +92,8 @@ export class ServiceProviderMgmtComponent implements OnInit , OnDestroy{
             this.eportalService.getManufacturerById(manufacturer_id).pipe(takeUntil(this.endSubs$)).subscribe(
                 (data)=>
                 {
-                    this.createProductForm.manufacturer_title.setValue(data[0].manufacturer_title);
-                    this.createProductForm.manufacturer_top.setValue(data[0].manufacturer_top);
+                    this.createProductForm.manufacturer_title.setValue(data?.manufacturer_title);
+                    this.createProductForm.manufacturer_top.setValue(data?.manufacturer_top);
                 }
             )
         }

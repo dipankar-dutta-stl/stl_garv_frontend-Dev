@@ -92,8 +92,8 @@ export class CategoryMgmtComponent implements OnInit , OnDestroy{
             this.eportalService.getCategorieById(cat_id).pipe(takeUntil(this.endSubs$)).subscribe(
                 (data)=>
                 {
-                    this.createProductForm.p_cat_title.setValue(data[0].p_cat_title);
-                    this.createProductForm.p_cat_top.setValue(data[0].p_cat_top);
+                    this.createProductForm.p_cat_title.setValue(data.p_cat_title);
+                    this.createProductForm.p_cat_top.setValue(data.p_cat_top);
                 }
             )
         }
