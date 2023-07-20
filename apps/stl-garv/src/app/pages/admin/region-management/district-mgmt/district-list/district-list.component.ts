@@ -86,6 +86,7 @@ export class DistrictListComponent implements OnInit , OnDestroy {
 
     private _initForm(){
         this.region_form = this.formBuilder.group({
+            district_id:[''],
             district_name: ['', Validators.required],
             state_id: ['', Validators.required],
             status: ['', Validators.required]
@@ -125,9 +126,10 @@ export class DistrictListComponent implements OnInit , OnDestroy {
             this.districtId=dist_id;
             this.userService.getDstrictDetailbyId(dist_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
             {   
-                this.createRegionForm.district_name.setValue(data[0].district_name);
-                this.createRegionForm.state_id.setValue(data[0].state_id);
-                this.createRegionForm.status.setValue(data[0].status)
+                this.createRegionForm.district_id.setValue(data.district_ID);
+                this.createRegionForm.district_name.setValue(data.district_NAME);
+                this.createRegionForm.state_id.setValue(data.state_ID);
+                this.createRegionForm.status.setValue(data.status)
             })
         }
     }
@@ -139,11 +141,13 @@ export class DistrictListComponent implements OnInit , OnDestroy {
 
         if(this.editmode){
             const update_dist_Body = {
-                district_name: this.createRegionForm.district_name.value,
-                state_id: this.createRegionForm.state_id.value,
+                district_ID:this.createRegionForm.district_id.value,
+                district_NAME: this.createRegionForm.district_name.value,
+                state_ID: this.createRegionForm.state_id.value,
                 status: this.createRegionForm.status.value
             }
-            this.userService.updateDistrict(update_dist_Body, this.districtId).pipe(takeUntil(this.endSubs$)).subscribe(
+            console.log(update_dist_Body)
+            this.userService.updateDistrict(update_dist_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
                     this._getAllDistricts();
                     this.messageService.add({
@@ -166,8 +170,8 @@ export class DistrictListComponent implements OnInit , OnDestroy {
         else
         {
             const dist_Body = {
-                district_name: this.createRegionForm.district_name.value,
-                state_id: this.createRegionForm.state_id.value,
+                district_NAME: this.createRegionForm.district_name.value,
+                state_ID: this.createRegionForm.state_id.value,
                 status: this.createRegionForm.status.value
             }
             this.userService.createDistrict(dist_Body).pipe(takeUntil(this.endSubs$)).subscribe(

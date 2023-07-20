@@ -78,8 +78,8 @@
                                                </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.district_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.district_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.district_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.district_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -107,15 +107,18 @@
         <form [formGroup]="region_form">
 
             <div class="field">
+                <input formControlName="district_id"  type="text" pInputText id="name"  required autofocus />
+            </div>
+            <div class="field">
                 <input formControlName="district_name" placeholder="District Name" type="text" pInputText id="name"  required autofocus />
                 <small *ngIf="createRegionForm.district_name.invalid && isSubmitted" class="p-error">
                     District Name is required!
                 </small>
             </div>
 
-            <div class="field">
+             <div class="field">
                 <p-dropdown 
-                formControlName="state_ID"  
+                formControlName="state_id"  
                 [options]="states" 
                 optionLabel="state_NAME" 
                 optionValue="state_ID" 
@@ -128,7 +131,7 @@
                 <small *ngIf="createRegionForm.state_id.invalid && isSubmitted" class="p-error">
                     State Name is required!
                 </small>
-            </div>
+            </div> 
     
             <div class="field">
                 <p-dropdown 

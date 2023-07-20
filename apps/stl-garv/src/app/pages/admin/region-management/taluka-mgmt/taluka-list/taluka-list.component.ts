@@ -116,7 +116,7 @@ export class TalukaListComponent implements OnInit , OnDestroy {
         if(this.stateId){
             this.userService.getDistrictbyStateId(this.stateId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
             {
-                this.districts=res[0].has_district;
+                this.districts=res;
             });
         }
     }
@@ -153,10 +153,9 @@ export class TalukaListComponent implements OnInit , OnDestroy {
             this.talukaId=tal_id;
             this.userService.getTalukaDetailbyId(tal_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
             {   
-                this.createRegionForm.taluka_name.setValue(data[0].taluka_name);
-                this.createRegionForm.state_id.setValue(data[0].belongs_to_district.belongs_to_state.state_id);
-                this.createRegionForm.district_id.setValue(data[0].belongs_to_district.district_id);
-                this.createRegionForm.status.setValue(data[0].status)
+                this.createRegionForm.taluka_name.setValue(data.taluka_NAME);
+                this.createRegionForm.district_id.setValue(data.district_ID);
+                this.createRegionForm.status.setValue(data.status)
             })
         }
     }
@@ -164,15 +163,17 @@ export class TalukaListComponent implements OnInit , OnDestroy {
     saveRegion() {
         this.isSubmitted=true;
 
-        if(this.region_form.invalid) return;
+        // if(this.region_form.invalid) return;
 
         if(this.editmode){
             const update_tal_Body = {
-                taluka_name: this.createRegionForm.taluka_name.value,
-                district_id: this.createRegionForm.district_id.value,
+                taluka_ID:this.talukaId,
+                taluka_NAME: this.createRegionForm.taluka_name.value,
+                district_ID: this.createRegionForm.district_id.value,
                 status: this.createRegionForm.status.value
             }
-            this.userService.updateTaluka(update_tal_Body, this.talukaId).pipe(takeUntil(this.endSubs$)).subscribe(
+            
+            this.userService.updateTaluka(update_tal_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
                     this._getAllTalukas();
                     this.messageService.add({
@@ -195,10 +196,11 @@ export class TalukaListComponent implements OnInit , OnDestroy {
         else
         {
             const tal_Body = {
-                taluka_name: this.createRegionForm.taluka_name.value,
-                district_id: this.createRegionForm.district_id.value,
+                taluka_NAME: this.createRegionForm.taluka_name.value,
+                district_ID: this.createRegionForm.district_id.value,
                 status: this.createRegionForm.status.value
             }
+            console.log(tal_Body)
             this.userService.createTaluka(tal_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
                     this._getAllTalukas();

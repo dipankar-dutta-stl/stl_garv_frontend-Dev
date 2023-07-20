@@ -102,7 +102,11 @@
     <ng-template pTemplate="content" >
         <form [formGroup]="region_form">
             <div class="field">
-                <input formControlName="state_NAME" placeholder="State Name" type="text" pInputText id="name"  required autofocus />
+                <input formControlName="state_id" type="text" pInputText id="name"  required autofocus disabled />
+            </div>
+
+            <div class="field">
+                <input formControlName="state_name" placeholder="State Name" type="text" pInputText id="name"  required autofocus />
                 <small *ngIf="createRegionForm.state_name.invalid && isSubmitted" class="p-error">
                     State Name is required!
                 </small>
@@ -121,6 +125,10 @@
                 <small *ngIf="createRegionForm.status.invalid && isSubmitted" class="p-error">
                     Status is required!
                 </small>
+            </div>
+
+            <div class="field">
+                <input formControlName="created_date" placeholder="" type="text" pInputText id="name"  required autofocus disabled />
             </div>
         </form>
         </ng-template>

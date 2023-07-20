@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ENVIRONMENT, Environment } from '@stl-garv-frontend/environment';
 import { Observable } from 'rxjs';
@@ -64,15 +64,17 @@ export class UserApiService {
 
   createState(stateData:any): Observable<any> {
     
-    return this.http.post<any>(`${this.apiURLAdmin}/add_state`, stateData)
+    return this.http.post(`${this.apiURLAdmin}/add_state`, stateData,{responseType:'text'})
   };
 
-  updateState(stateData:any, stateId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLAdmin}/edit_state/${stateId}`, stateData)
+  updateState(stateData:any): Observable<any> {
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.put(`${this.apiURLAdmin}/edit_state`, stateData,{headers:headers,responseType:'text'})
   };
 
   deleteState(stateId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLAdmin}/delete_state/${stateId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.delete(`${this.apiURLAdmin}/delete_state/${stateId}`,{headers:headers,responseType:'text'})
   };
 
   getDistricts(): Observable<any> {
@@ -80,23 +82,28 @@ export class UserApiService {
   };
 
   getDistrictbyStateId(stateId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/view_state_district/${stateId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLAdmin}/view_district_by_state/${stateId}`,{headers:headers})
   }
 
   getDstrictDetailbyId(distId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/view_district/${distId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLAdmin}/view_district/${distId}`,{headers:headers})
   };
 
   createDistrict(data: any): Observable<any>{
-  return this.http.post<any>(`${this.apiURLAdmin}/add_district`, data)
+  const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+  return this.http.post(`${this.apiURLAdmin}/add_district`, data,{headers:headers,responseType:'text'})
   };
 
-  updateDistrict(distData:any, distId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLAdmin}/edit_district/${distId}`, distData)
+  updateDistrict(distData:any): Observable<any> {
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.put(`${this.apiURLAdmin}/edit_district`, distData,{headers:headers})
   };
 
   deleteDistrict(distId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLAdmin}/delete_district/${distId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.delete(`${this.apiURLAdmin}/delete_district/${distId}`,{headers:headers,responseType:'text'})
   };
 
   getTalukas(): Observable<any> {
@@ -108,19 +115,23 @@ export class UserApiService {
   }
 
   getTalukaDetailbyId(talId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/view_talukas/${talId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLAdmin}/view_talukas/${talId}`,{headers:headers})
   };
 
   createTaluka(data: any): Observable<any>{
-    return this.http.post<any>(`${this.apiURLAdmin}/add_talukas`, data)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.post(`${this.apiURLAdmin}/add_talukas`, data,{headers:headers,responseType:'text'})
   };
 
-  updateTaluka(talData:any, talId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLAdmin}/edit_talukas/${talId}`, talData)
+  updateTaluka(talData:any): Observable<any> {
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.put<any>(`${this.apiURLAdmin}/edit_talukas`, talData,{headers:headers})
   };
 
   deleteTaluka(talId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLAdmin}/delete_talukas/${talId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.delete(`${this.apiURLAdmin}/delete_talukas/${talId}`,{headers:headers,responseType:'text'})
   };
 
   getVillages(): Observable<any> {
