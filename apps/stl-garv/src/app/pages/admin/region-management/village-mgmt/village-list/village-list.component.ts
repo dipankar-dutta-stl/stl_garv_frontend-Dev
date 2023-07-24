@@ -56,6 +56,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
     states: State[]=[];
     region_form: FormGroup;
     villageId: number;
+    creatdDate: any;
     distId: number;
     talukaId: number;
     stateId: number;
@@ -121,7 +122,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(this.stateId){
             this.userService.getDistrictbyStateId(this.stateId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
             {
-                this.districts=res[0].has_district;
+                this.districts=res;
             });
         }
     }
@@ -138,7 +139,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(this.distId){
             this.userService.getTalukabyDistrictId(this.distId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
             {
-                this.talukas=res[0].has_taluka;  
+                this.talukas=res;  
             });
         }
     }
@@ -172,14 +173,17 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(village_id){
             this.editmode=true;
             this.villageId=village_id;
-            this.userService.getVillageDetailbyId(village_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
-            {   
-                this.createRegionForm.village_name.setValue(data[0].village_name);
-                this.createRegionForm.state_id.setValue(data[0].belongs_to_taluka.belongs_to_district.belongs_to_state.state_id);
-                this.createRegionForm.district_id.setValue(data[0].belongs_to_taluka.belongs_to_district.district_id);
-                this.createRegionForm.taluka_id.setValue(data[0].belongs_to_taluka.taluka_id);
-                this.createRegionForm.status.setValue(data[0].status)
-            })
+            for(let v of this.villages){
+                if(v.village_ID==village_id){
+                    console.log(v);
+                    this.createRegionForm.village_name.setValue(v.village_NAME);
+                    this.createRegionForm.state_id.setValue(v.belongs_TO_STATE.state_ID);
+                    this.createRegionForm.district_id.setValue(v.belongs_TO_DISTRICT.district_ID);
+                    this.createRegionForm.taluka_id.setValue(v.belongs_TO_TALUKA.taluka_ID);
+                    this.createRegionForm.status.setValue(v.status);
+                    this.creatdDate = v.created_DATE;
+                }
+            }
         }
     }
 
@@ -190,13 +194,16 @@ export class VillageListComponent implements OnInit, OnDestroy {
 
         if(this.editmode){
             const update_village_Body = {
-                village_name: this.createRegionForm.village_name.value,
-                taluka_id: this.createRegionForm.taluka_id.value,
-                status: this.createRegionForm.status.value
+                village_ID: this.villageId,
+                village_NAME: this.createRegionForm.village_name.value,
+                taluka_ID: this.createRegionForm.taluka_id.value,
+                status: this.createRegionForm.status.value,
+                created_DATE: this.creatdDate
             }
-            this.userService.updateVillage(update_village_Body, this.villageId).pipe(takeUntil(this.endSubs$)).subscribe(
+            // console.log(update_village_Body);
+            this.userService.updateVillage(update_village_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
-                    this._getAllVillages();
+                    this.ngOnInit()
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -217,13 +224,14 @@ export class VillageListComponent implements OnInit, OnDestroy {
         else
         {
             const village_Body = {
-                village_name: this.createRegionForm.village_name.value,
-                taluka_id: this.createRegionForm.taluka_id.value,
+                village_NAME: this.createRegionForm.village_name.value,
+                taluka_ID: this.createRegionForm.taluka_id.value,
                 status: this.createRegionForm.status.value
             }
+            console.log(village_Body)
             this.userService.createVillage(village_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
-                    this._getAllVillages();
+                    this.ngOnInit();
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',

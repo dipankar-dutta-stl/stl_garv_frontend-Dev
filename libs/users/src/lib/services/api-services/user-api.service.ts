@@ -111,7 +111,8 @@ export class UserApiService {
   };
  
   getTalukabyDistrictId(districtId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/showTaluka/${districtId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLAdmin}/view_taluka_by_district/${districtId}`,{headers:headers})
   }
 
   getTalukaDetailbyId(talId: number): Observable<any> {
@@ -143,19 +144,23 @@ export class UserApiService {
   }
 
   getVillageDetailbyId(villageId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLAdmin}/view_village/${villageId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLAdmin}/view_village/${villageId}`,{headers:headers})
   };
    
   createVillage(data: any): Observable<any>{
-    return this.http.post<any>(`${this.apiURLAdmin}/add_village`, data)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.post(`${this.apiURLAdmin}/add_village`, data,{headers:headers,responseType:'text'})
   };
   
-  updateVillage(villageData:any, villageId: number): Observable<any> {
-    return this.http.put<any>(`${this.apiURLAdmin}/edit_village/${villageId}`, villageData)
+  updateVillage(villageData:any): Observable<any> {
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.put(`${this.apiURLAdmin}/edit_village`, villageData, {headers: headers, responseType:'text'})
   };
 
   deleteVillage(villageId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLAdmin}/delete_village/${villageId}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.delete(`${this.apiURLAdmin}/delete_village/${villageId}`,{headers:headers,responseType:'text'})
   };
 
   getPanchayat(): Observable<any> {
