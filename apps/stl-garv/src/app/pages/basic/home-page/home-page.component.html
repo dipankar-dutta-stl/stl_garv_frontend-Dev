@@ -19,10 +19,10 @@
         <div class="sm:col-12 md:col-6 lg:col-6 xl:col-4 card-space" *ngFor="let module of modules">
 
             <p-card header="" (click)="navigateByUrl(module.module_ID, module.module_URL, module.is_REDIRECTION)">
-                <ng-template pTemplate="header">
+                <!-- <ng-template pTemplate="header">
                     <img style="max-height: 160px" alt="Card"
-                        src="{{cloudFrontURL}}frontend/Home/{{module.module_IMAGE}}">
-                </ng-template>
+                        src="assets/Home/{{module.module_IMAGE}}">
+                </ng-template> -->
                 <div class=" grid card-content">
                     <div class="col-8">
                         <div class="card-title">{{module.module_NAME}}</div>

@@ -8,6 +8,7 @@ export const environment: Environment = {
   production: true,
   apiURL: 'http://localhost:8001',
   apiURL_Ecomm: 'http://localhost:8084',
+  apiURLEntertain:'http://localhost:8081',
   cloudFrontURL: 'https://d1ppcfmkludwal.cloudfront.net/'
 };
 
