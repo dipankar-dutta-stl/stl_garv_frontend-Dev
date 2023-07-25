@@ -11,7 +11,7 @@ export class MediaService {
 
   constructor(private http: HttpClient, @Inject(ENVIRONMENT) private env: Environment) { }
 
-  apiURLEntertain = this.env.apiURL + 'entertain';
+  apiURLEntertain = this.env.apiURLEntertain + '/entertain';
 
   getMediaContent(): Observable<Media[]> {
     return this.http.get<Media[]>(`${this.apiURLEntertain}/get_all_Media`) 
