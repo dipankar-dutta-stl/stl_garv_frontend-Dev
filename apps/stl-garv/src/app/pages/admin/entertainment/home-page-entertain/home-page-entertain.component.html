@@ -10,7 +10,7 @@
                 <div class="sm:col-12 md:col-6 lg:col-4 xl:col-4" *ngFor="let source of sourceList">
                        <p-card header="" (click)="navigateByUrl(source.source_url, source.isRedirection)">
                           <ng-template pTemplate="header">
-                            <img  style="max-height: 160px" alt="Card" class="module-img" src="{{cloudFrontURL}}entertain/assets/img/{{source.source_image}}">
+                            <img  style="max-height: 160px" alt="Card" class="module-img" src="{{cloudFrontURL}}/{{source.source_image}}">
                           </ng-template>
 
                           <div>

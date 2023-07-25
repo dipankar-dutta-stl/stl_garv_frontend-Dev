@@ -5,8 +5,10 @@
 import { Environment } from "../libs/environment/src";
 
 export const environment: Environment = {
-  production: true,
+  production: false,
   apiURL: 'http://localhost:8001',
+  apiURLEntertain: 'http://localhost:8081',
+  // cloudFrontURL: '/assets'
   cloudFrontURL: 'https://d1ppcfmkludwal.cloudfront.net/'
 };
 

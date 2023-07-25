@@ -44,6 +44,7 @@ export class HomePageEntertainComponent implements OnInit, OnDestroy{
     private _getAllSource(){
         this.sourceService.getAllSources().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.sourceList=res;
+            console.log(this.sourceList);
            
         })
     }

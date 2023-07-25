@@ -157,6 +157,7 @@ export class AmarChitraKathaComponent implements OnInit , OnDestroy {
             icon:'pi pi-comments',
             items:[
                 {
+                    
                     label:'English',
                     icon:'pi pi-hashtag',
                     command: () => {this._categoryFilter(this.mediaType, 'English')}
