@@ -71,11 +71,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.loginFormGroup.invalid) return;
 
         const loginData = {
-            unique_id: this.loginForm.unique_id.value,
+            unique_ID: this.loginForm.unique_id.value,
             password: this.loginForm.password.value
         }
 
-        this.auth.login(loginData.unique_id, loginData.password).subscribe((user)=> {
+        this.auth.login(loginData.unique_ID, loginData.password).subscribe((user)=> {
 
             console.log(user);
             this.authError=false;
