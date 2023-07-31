@@ -212,7 +212,8 @@ export class UserApiService {
   }
 
   getModulebyId(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURLUser}/view_module/${id}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.get<any>(`${this.apiURLUser}/view_modules/${id}`,{headers:headers})
   }
 
   updateModule(moduleId: number, formData:any): Observable<any> {
@@ -220,7 +221,8 @@ export class UserApiService {
   }
 
   deleteModule(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLUser}/delete_module/${id}`)
+    const headers=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem('Token')})
+    return this.http.delete(`${this.apiURLUser}/delete_modules/${id}`,{headers:headers,responseType:'text'})
   }
 
   assignModuleToUser(id: number, data:any):Observable<any>{

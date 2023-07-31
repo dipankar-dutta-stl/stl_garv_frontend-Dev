@@ -145,9 +145,9 @@ export class SourceMgmtComponent implements OnInit, OnDestroy {
                 () => (error: HttpErrorResponse) => {
                     if(error){
                         this.messageService.add({
-                            severity: 'error',
-                            summary: 'Error',
-                            detail: 'Source Image could not be added!'
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Source  added!'
                         });
                     }
                 })
@@ -156,10 +156,12 @@ export class SourceMgmtComponent implements OnInit, OnDestroy {
             this._getAllSource();
         },
         () => {
+            this.sourceDialog = false;
+            this._getAllSource();
             this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Source could not be created!'
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Source created!'
             }); 
         })
     }

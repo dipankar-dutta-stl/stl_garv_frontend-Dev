@@ -110,19 +110,18 @@ export class ModuleManagementComponent implements OnInit, OnDestroy {
         this.moduleDialog = true;
         this.isUploaded=false;
         this._initForm();
-            
         if(module_id){
             this.editmode=true;
             this.moduleId=module_id;
             this.userService.getModulebyId(module_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
             {   
-                this.createModuleForm.module_name.setValue(data.module_name);
+                this.createModuleForm.module_name.setValue(data.module_NAME);
                 this.createModuleForm.description.setValue(data.description);
-                this.createModuleForm.module_url.setValue(data.module_url);
-                this.createModuleForm.module_status.setValue(data.module_status);
+                this.createModuleForm.module_url.setValue(data.module_URL);
+                this.createModuleForm.module_status.setValue(data.module_STATUS);
                 this.createModuleForm.description.setValue(data.description);
                 this.createModuleForm.isRedirection.setValue(data.isRedirection);
-                this.imageDisplay = data.module_image;
+                this.imageDisplay = data.module_IMAGE;
                 this.createModuleForm.image.setValidators([]);
                 this.createModuleForm.image.updateValueAndValidity();
                 
@@ -237,7 +236,8 @@ export class ModuleManagementComponent implements OnInit, OnDestroy {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 //subscribe to service delete user
-                this.userService.deleteModule(id).pipe(takeUntil(this.endSubs$)).subscribe(() => {
+                this.userService.deleteModule(id).pipe(takeUntil(this.endSubs$)).subscribe((data) => {
+                    console.log(data)
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
