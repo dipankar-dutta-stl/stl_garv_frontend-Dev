@@ -46,16 +46,16 @@ export class HealthMenuComponent implements OnInit {
 
     private _tabMenu() {
         this.items = [
-            {label: 'Dashboard',routerLink: '/health/vle/dashboard', visible:this.isVle},
-            {label: 'User Management',routerLink: '/health/vle/users-list', visible:this.isVle},
+            // {label: 'Dashboard',routerLink: '/health/vle/dashboard', visible:this.isVle},
+            // {label: 'User Management',routerLink: '/health/vle/users-list', visible:this.isVle},
             {label: 'Case Management',routerLink: '/health/vle/cases-list', visible:this.isVle},
-            {label: 'Dynamic Field', visible:this.isVle},
+            // {label: 'Dynamic Field', visible:this.isVle},
 
-            {label: 'Dashboard',routerLink: '/health/doctor/dashboard', visible:this.isDoctor},
+            // {label: 'Dashboard',routerLink: '/health/doctor/dashboard', visible:this.isDoctor},
             {label: 'My Cases',routerLink: '/health/doctor/cases-list', visible:this.isDoctor},
-            {label: 'My Patients',routerLink: '/health/doctor/patients-list', visible:this.isDoctor},
+            // {label: 'My Patients',routerLink: '/health/doctor/patients-list', visible:this.isDoctor},
 
-            {label: 'Dashboard',routerLink: '/health/user/dashboard', visible:this.isUser},
+            // {label: 'Dashboard',routerLink: '/health/user/dashboard', visible:this.isUser},
             {label: 'My Cases',routerLink: '/health/user/cases-list', visible:this.isUser},
 
             {label: 'Dashboard',routerLink: '/admin/metadata', visible:this.isAdmin},

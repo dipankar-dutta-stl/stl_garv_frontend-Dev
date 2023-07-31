@@ -36,12 +36,19 @@ export class DoctorCaseDetailsComponent implements OnInit , OnDestroy {
     hd_cal: any;
 
     fetchimage: any;
+    case_id: any;
+    rejected_by_id: any;
+    approved_by_id: any;
+    created_date: any;
+    updated_date: any;
+    mapping_status: any;
+    assigned_by_id: any;
 
     constructor(private route: ActivatedRoute, private healthService: CaseService, private breadcrumb: BreadcrumbService) {}
 
     ngOnInit(): void {
         this._getCaseDetails();
-        this._getUserDetails();
+        // this._getUserDetails();
         setTimeout(() =>
             this.breadcrumb.setCrumbs([
             {
@@ -50,7 +57,7 @@ export class DoctorCaseDetailsComponent implements OnInit , OnDestroy {
             },
             {
                 label: 'Case Management',
-                routerLink: '/health/doctor/cases-list'
+                routerLink: '/health/doctor/cases-list/id'
             },
             {
                 label: 'Case Details'
@@ -65,45 +72,36 @@ export class DoctorCaseDetailsComponent implements OnInit , OnDestroy {
         this.endSubs$.complete();
     }
 
-    private _getUserDetails(){
-        this.route.params.subscribe((params) => {
-            if(params.id){
-                this.caseId=params.id;
-                this.healthService.getCaseDetailbyId(this.caseId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
-                {
+    // private _getUserDetails(){
+    //     this.route.params.subscribe((params) => {
+    //         if(params.id){
+    //             this.caseId=params.id;
+    //             this.healthService.getCaseDetailbyId(this.caseId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
+    //             {
             
-                    this.full_name= res[0].patient.details[0].first_name + ' '+ res[0].patient.details[0].last_name;
-                    this.reg_no= res[0].patient.details[0].reg_number;
-                    this.aadhar=res[0].patient.details[0].aadhar_card_no;
-                    this.contact=res[0].patient.details[0].whatsapp_no;
-                    this.age=res[0].patient.details[0].age;
-                    this.fetchimage=res[0].patient.details[0].user_image
-                })
-            }
-        })
-    }
+    //                 this.full_name= res[0].patient.details[0].first_name + ' '+ res[0].patient.details[0].last_name;
+    //                 this.reg_no= res[0].patient.details[0].reg_number;
+    //                 this.aadhar=res[0].patient.details[0].aadhar_card_no;
+    //                 this.contact=res[0].patient.details[0].whatsapp_no;
+    //                 this.age=res[0].patient.details[0].age;
+    //                 this.fetchimage=res[0].patient.details[0].user_image
+    //             })
+    //         }
+    //     })
+    // }
     private _getCaseDetails(){
         this.route.params.subscribe((params) => {
             if(params.id){
-                this.caseId=params.id;
-                this.healthService.getCaseDetailbyId(this.caseId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
+                this.case_id=params.id;
+                this.healthService.getcaseBycaseId(this.case_id).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
                 {
-        
-                    this.caseDate=res[0].case_date;
-                    this.caseStatus=res[0].case_status;
-                    this.hd_temp=res[0].has_health_data.bt_temperature;
-                    this.hd_weight=res[0].has_health_data.wm_weight;
-                    this.hd_bgl=res[0].has_health_data.bg_glucose_level;
-                    this.hd_pgl=res[0].has_health_data.bg_post_glucose_level;
-                    this.hd_oxy=res[0].has_health_data.pom_oxegen_level;
-                    this.hd_pompulse=res[0].has_health_data.pom_pulse;
-                    this.hd_sysBp=res[0].has_health_data.bp_systolic;
-                    this.hd_diasBp=res[0].has_health_data.bp_diastolic;
-                    this.hd_map=res[0].has_health_data.bp_ma_pressure;
-                    this.hd_bppulse=res[0].has_health_data.bp_pulse;
-                    this.hd_steps=res[0].has_health_data.fb_steps;
-                    this.hd_heartrate=res[0].has_health_data.fb_heart_rates;
-                    this.hd_cal=res[0].has_health_data.fb_calories;
+                    
+                    this.rejected_by_id= res.rejected_by_id;
+                    this.approved_by_id=res.approved_by_id;
+                    this.created_date=res.created_date;
+                    this.updated_date=res.updated_date;
+                    this.assigned_by_id=res.assigned_by_id;
+                    this.mapping_status=res.mapping_status
 
                 })
             }

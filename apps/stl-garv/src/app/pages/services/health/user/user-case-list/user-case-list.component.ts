@@ -40,6 +40,9 @@ export class UserCaseListComponent implements OnInit , OnDestroy {
     panchayatId: number;
     token = this.jwtDecode.tokenDecode();
     usrId:number;
+    patient_id: any;
+    Patient_id: any;
+    user_id: any;
 
 
     constructor(
@@ -82,13 +85,14 @@ export class UserCaseListComponent implements OnInit , OnDestroy {
     // }
 
     private _getUserCases(){
-        if(this.token){
-            this.usrId = this.token.user_id;
+         if(this.token){
+             this.Patient_id = this.token.user_id;
         }
 
-        this.caseService.getCaseByUserId(this.usrId).pipe(takeUntil(this.endSubs$)).subscribe((cases)=>{
-            this.cases=cases;
+        
+        this.caseService.getcaseByPatientId(18).pipe(takeUntil(this.endSubs$)).subscribe((cases)=>{
             console.log(cases);
+            this.cases=cases; 
             this.loading=false;
         })
     }

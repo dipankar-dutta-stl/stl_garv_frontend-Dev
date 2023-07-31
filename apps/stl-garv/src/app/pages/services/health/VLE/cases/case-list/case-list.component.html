@@ -6,9 +6,9 @@
         <div class="sm:col-6 md:col-4 lg:col-4 xl:col-2 ul-title">
             Case List    
         </div>
-        <div class="sm:col-6 md:col-4 lg:col-4 xl:col-3 xl:col-offset-7 lg:col-offset-4 md:col-offset-4 create-btn">
+        <!-- <div class="sm:col-6 md:col-4 lg:col-4 xl:col-3 xl:col-offset-7 lg:col-offset-4 md:col-offset-4 create-btn">
             <p-button label="Create New Case" icon="pi pi-plus" routerLink="/health/vle/cases-form"></p-button>
-        </div>
+        </div> -->
     </div>
     <div class="grid global">
         <div class="col ul-table">
@@ -41,14 +41,19 @@
                                         <th pSortableColumn="reg_number" id="reg_number">Case No<p-sortIcon field="case_number">
                                             <p-columnFilter type="text" field="case_number" display="menu"></p-columnFilter>
                                         </p-sortIcon></th>
-                                        <th pSortableColumn="user_image" id="user_image">Image<p-sortIcon field="patient.details[0].user_image"></p-sortIcon></th>
-                                        <th pSortableColumn="first_name" id="first_name">Patient Name<p-sortIcon field="patient.details[0].first_name">
-                                            <p-columnFilter type="text" field="patient.details.first_name" display="menu"></p-columnFilter>
+                                        <!-- <th pSortableColumn="user_image" id="user_image">Image<p-sortIcon field="user_image"></p-sortIcon></th> -->
+                                        <th pSortableColumn="Case_Id" id="Case_Id">Case Id<p-sortIcon field="case_id">
+                                            <p-columnFilter type="text" field="Case_Id" display="menu"></p-columnFilter>
                                         </p-sortIcon></th>
-                                        <th pSortableColumn="Aadhar No." id="aadhar-no">Aadhar No.<p-sortIcon field="patient.details[0].aadhar_card_no">
-                                            <p-columnFilter type="text" field="patient.details.aadhar_card_no" display="menu"></p-columnFilter>
+                                        <th pSortableColumn="PatientId" id="PatientId">Patient Id<p-sortIcon field="patient_id">
+                                            <p-columnFilter type="text" field="PatientId" display="menu"></p-columnFilter>
                                         </p-sortIcon></th>
-                                        <th pSortableColumn="created_date" id="created_date">Case Date<p-sortIcon field="created_date"></p-sortIcon></th>
+                                        <th pSortableColumn="panchayatId" id="panchayatId">Panchayat Id<p-sortIcon field="panchayat_id">
+                                            <p-columnFilter type="text" field="panchayatId" display="menu"></p-columnFilter>
+                                        </p-sortIcon></th>
+                                        <th pSortableColumn="created_date" id="created_date">created_date<p-sortIcon field="created_date">
+                                        </p-sortIcon></th>
+                                        <th pSortableColumn="updated_date" id="updated_date">Updated Date<p-sortIcon field="updated_date"></p-sortIcon></th>
                                         <th pSortableColumn="case_status" id="case_status">Status<p-sortIcon field="case_status"></p-sortIcon></th>
                                         <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
                                     </tr>
@@ -57,10 +62,12 @@
                                 <ng-template pTemplate="body" let-case>
                                     <tr>
                                         <td>#{{case.case_number}}</td>
-                                        <td><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{case.patient.details[0].user_image}}" alt=""></td>
-                                        <td>{{case.patient.details[0].first_name + ' '+ case.patient.details[0].last_name}}</td>
-                                        <td>{{maskNumber(case.patient.details[0].aadhar_card_no)}}</td>
+                                        <!-- <td><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{case.user_image}}" alt=""></td> -->
+                                        <td>{{case.case_id}}</td>
+                                        <td>{{case.patient_id}}</td>
+                                        <td>{{case.panchayat_id}}</td>
                                         <td>{{case.created_date | date: 'MM/dd/yyyy'}}</td>
+                                        <td>{{case.updated_date | date: 'MM/dd/yyyy'}}</td>
                                         <td>
                                             <div [ngClass]="{'active': case.case_status === 'active', 'inactive': case.case_status !== 'active' , 'treated': case.case_status === 'treated'}">
                                                 {{case.case_status}}
@@ -68,7 +75,7 @@
                                         </td>
                                         <td style="text-align: left">
                                             <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/vle/case-details/{{case.case_id}}"></button>
-                                            <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/health/vle/cases-form/{{case.case_id}}"></button>
+                                            <!-- <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/health/vle/cases-form/{{case.case_id}}"></button> -->
                                             <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteCase(case.case_id)"></button>
                                         </td>
                                     </tr>

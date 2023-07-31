@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
 import { Case, CaseService } from '@stl-garv-frontend/health-api';
 import { BreadcrumbService } from '@stl-garv-frontend/ui';
@@ -40,9 +41,19 @@ export class CaseListComponent implements OnInit , OnDestroy {
     panchayatId: number;
     token = this.jwtDecode.tokenDecode();
     usrId:number;
+    Case_Id: any;
+    PatientId: any;
+    patient_id: any;
+    panchayat_id: any;
+    created_date: any;
+    updated_date: any;
+    case_status: any;
+    user_image: any;
+    case_id: any;
 
 
     constructor(
+        private route:ActivatedRoute,
         private caseService: CaseService, 
         private confirmationService: ConfirmationService,
         private jwtDecode: JwtTokenDecodeService,  
@@ -73,12 +84,31 @@ export class CaseListComponent implements OnInit , OnDestroy {
     }
 
     private  _getVleCases(){
-        this.caseService.getCasesByVle().pipe(takeUntil(this.endSubs$)).subscribe((res)=>
+        this.caseService.getCaseList().pipe(takeUntil(this.endSubs$)).subscribe((res)=>
         {
             this.cases= res;
             this.loading= false;
         })
     }
+    
+    // private _getVleCaseDetails(){
+    //     this.route.params.subscribe((params) => {
+    //         if(params.id){
+    //             this.case_id=params.id;
+    //             console.log(this.case_id)
+    //             this.caseService.getCaseDetailbyId(this.case_id).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
+    //             {
+    //                 console.log(res)
+    //                 this.patient_id= res[0].patient_id;
+    //                 this.panchayat_id= res[0].panchayat_id;
+    //                 this.created_date=res[0].created_date;
+    //                 this.updated_date=res[0].updated_date;
+    //                 this.case_status=res[0].case_status;
+                
+    //             })
+    //         }
+    //     })
+    // }
     // private _getPanchayatid(){
     //     if(this.token){
     //         this.usrId = this.token.user_id;

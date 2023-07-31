@@ -10,17 +10,22 @@ export class CaseService {
 
   constructor(private http: HttpClient, @Inject(ENVIRONMENT) private env: Environment) { }
 
-  apiURLCase = this.env.apiURL + 'health';
-
-
+  apiURLCase = this.env.apiURLhealth;
   getCaseList(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLCase}/view_cases`)
+    return this.http.get<any>(`${this.apiURLCase}/view_casedetails`)
   };
 
-  getCaseDetailbyId(caseId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiURLCase}/view_cases/${caseId}`)
+  getCaseDetailbyId(case_id: any): Observable<any> {
+    return this.http.get<any>(`${this.apiURLCase}/view_casedetails/${case_id}`)
   };
-
+  getCaseDetailbycaseId(case_id: any): Observable<any> {
+    return this.http.get<any>(`${this.apiURLCase}/view_healthData/${case_id}`)
+  };
+  getcaseBycaseId(case_id:any): Observable<any>{
+    return this.http.get<any>(`${this.apiURLCase}/view_doctormapBycaseid/${case_id}`)
+  }
+  getcaseByPatientId(patient_id:any):Observable<any>{
+    return this.http.get<any>(`${this.apiURLCase}/view_BypatientId/${patient_id}`)}
   getCaseByUserId(userId: any): Observable<any> {
     return this.http.get<any>(`${this.apiURLCase}/view_cases_by_user/${userId}`)
   }
@@ -29,19 +34,21 @@ export class CaseService {
     return this.http.get<any>(`${this.apiURLCase}/view_cases_by_vle`)
   }
   getCasesByDoctor(): Observable<any> {
-    return this.http.get<any>(`${this.apiURLCase}/view_cases_by_doctor`)
+    return this.http.get<any>(`${this.apiURLCase}/view_doctormap`)
   }
-
+getCasesByDoctorId(doctor_id: any):Observable<any>{
+  return this.http.get<any>(`${this.apiURLCase}/view_ByDoctorId/${doctor_id}`)
+}
   createCase(caseData: any) : Observable<any> {
     return this.http.post<any>(`${this.apiURLCase}/add_cases`, caseData);
   };
 
   updateCase(caseID:any, caseData: any) : Observable<any> {
-    return this.http.put<any>(`${this.apiURLCase}/edit_cases/${caseID}`, caseData)
+    return this.http.put<any>(`${this.apiURLCase}/edit_casedetails/${caseID}`, caseData)
   };
 
-  deleteCase(caseId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiURLCase}/delete_cases/${caseId}`)
+  deleteCase(case_id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiURLCase}/delete_casedetails/${case_id}`)
   }
 
   getDoctorMap() : Observable<any> {
@@ -92,5 +99,8 @@ export class CaseService {
 
   getVleDashboard(): Observable<any> {
     return this.http.get<any>(`${this.apiURLCase}/view_vle_dash`)
+  }
+  countCasedetails(): Observable<any>{
+    return this.http.get<any>(`${this.apiURLCase}/count_casedetails`)
   }
 }

@@ -63,7 +63,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         }
         this.userService.getUserDetailbyuid(this.usrId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
         {
-            this.panchayatId=res[0].details[0].panchayat_id;
+            this.panchayatId=res[0].details[0].panchayatId;
             this._getAllUsers(this.panchayatId);
         })
     }

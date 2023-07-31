@@ -12,10 +12,10 @@
     <div class="grid global">
         <div class="sm:col-12 md-col-12 lg:col-12">
             <form [formGroup]="caseForm">
-                <p-card styleClass="case-form">
+                <p-card styleClass="case-form" [style]="{width:'60%' }">
                     <div class="formgrid grid">
 
-                      <div class="field col-12 md:col-6">
+                      <!-- <div class="field col-12 md:col-6">
                         <p-dropdown
                                 formControlName="user"
                                 [options]="users"
@@ -32,12 +32,12 @@
                                     <span *ngIf="createCaseForm.user.errors.required">User is required!</span>
                                 </small>
                           
-                      </div>
+                      </div> 
           
                       <div class="field col-12 md:col-6">
                         <p-dropdown
                                 formControlName="doctor"
-                                [options]="doctors"
+                                [options]="doctors" 
                                 optionLabel="first_name"
                                 optionValue="user_id"
                                 [style]="{ width: '100%' }"
@@ -49,110 +49,43 @@
                             >
                                 ></p-dropdown>
                           
-                      </div>
+                      </div> -->
                       
-                      <div class="field col-12 md:col-6">
+                      <div class="field col-12">
                         <div class="p-inputgroup">
-                          <input id="wm_weight" placeholder="Weight" formControlName="wm_weight" type="text" (change)="formChange(2)" pInputText>   
-                          <span class="p-inputgroup-addon">Kg</span>      
+                          <input id="patient_id" placeholder="Patient Id" formControlName="patient_id" type="text" (change)="formChange(2)" pInputText>   
+                      
                         </div>                     
                       </div>
 
-                      <div class="field col-12 md:col-6">
+                      <div class="field col-12">
                           <div class="p-inputgroup">
-                            <input id="bt_temperature" placeholder="Temperature" formControlName="bt_temperature" type="text" (change)="formChange(2)" pInputText>   
-                            <span class="p-inputgroup-addon">°C</span>      
+                            <input id="panchayat_id" placeholder="PanchayatId" formControlName="panchayat_id" type="text" (change)="formChange(2)" pInputText>     
                           </div>                    
                       </div>
 
-                      <div class="field col-12 md:col-6">
+                      <div class="field col-12">
                         <div class="p-inputgroup">
-                          <input id="bg_glucose_level" placeholder="Pre Glucose Level" formControlName="bg_glucose_level" type="text" (change)="formChange(2)" pInputText>   
-                          <span class="p-inputgroup-addon">mg/dl</span>      
+                          <input id="case_status" placeholder="Case status" formControlName="case_status" type="text" (change)="formChange(2)" pInputText>   
+                               
                         </div>                    
                       </div>
 
-                      <div class="field col-12 md:col-6">
+                      <div class="field col-12">
                         <div class="p-inputgroup">
-                          <input id="bg_post_glucose_level" placeholder="Post Glucose Level" formControlName="bg_post_glucose_level" type="text" (change)="formChange(2)" pInputText>   
-                          <span class="p-inputgroup-addon">mg/dl</span>      
+                          <input id="created_date" placeholder="Created Date" formControlName="created_date" type="text" (change)="formChange(2)" pInputText>   
+                              
                         </div>                     
                       </div>
       
-                      <div class="field col-12 md:col-6">
+                      <div class="field col-12">
                           <div class="p-inputgroup">
-                            <input id="pom_oxegen_level" placeholder="Oxygen Level" formControlName="pom_oxegen_level" type="text" (change)="formChange(2)" pInputText>   
-                            <span class="p-inputgroup-addon">spo2</span>      
+                            <input id="updated_date" placeholder="Updated date" formControlName="updated_date" type="text" (change)="formChange(2)" pInputText>   
+                              
                           </div>                     
                       </div>
 
-                      <div class="field col-12 md:col-6">
-                          <div class="p-inputgroup">
-                            <input id="pom_pulse" placeholder="Pulse OxiMeter" formControlName="pom_pulse" type="text" (change)="formChange(2)" pInputText>   
-                            <span class="p-inputgroup-addon">pul/min</span>      
-                          </div>                    
-                      </div>
-      
-                      <div class="field col-12 md:col-6">
-                          <div class="p-inputgroup">
-                            <input id="bp_systolic" placeholder="Systolic Pressure" formControlName="bp_systolic" type="text" (change)="formChange(2)" pInputText>   
-                            <span class="p-inputgroup-addon">mmHg</span>      
-                          </div>
-                      </div>
-
-                      <div class="field col-12 md:col-6">
-                        <div class="p-inputgroup">
-                            <input id="bp_diastolic" placeholder="Diastolic Pressure" formControlName="bp_diastolic" type="text" (change)="formChange(2)" pInputText>   
-                            <span class="p-inputgroup-addon">mmHg</span>      
-                        </div>
-                      </div>
-
-                      <div class="field col-12 md:col-6">
-                        <div class="p-inputgroup">
-                          <input id="bp_ma_pressure" placeholder="Mean Arterial Pressure" formControlName="bp_ma_pressure" type="text" (change)="formChange(2)" pInputText>
-                          <span class="p-inputgroup-addon">mmHg</span>   
-                        </div>
-                      </div>
-
-                      <div class="field col-12 md:col-6">
-                        <div class="p-inputgroup">
-                          <input id="bp_pulse" placeholder="Pulse" formControlName="bp_pulse" type="text" (change)="formChange(2)" pInputText>  
-                          <span class="p-inputgroup-addon">pul/min</span>      
-                        </div>
-                      </div>
-
-                      <div class="field col-12 md:col-4">
-                          <div class="p-inputgroup">
-                            <input id="fb_heart_rates" placeholder="Heart Rate" formControlName="fb_heart_rates" type="text" (change)="formChange(2)" pInputText>  
-                            <span class="p-inputgroup-addon">bpm</span>      
-                          </div>
-                      </div>
-
-                      <div class="field col-12 md:col-4">
-                          <div class="p-inputgroup">
-                              <input id="fb_calories" placeholder="Calories" formControlName="fb_calories" type="text" (change)="formChange(2)" pInputText>   
-                              <span class="p-inputgroup-addon">cal</span>      
-                          </div>
-                      </div>
-
-                      <div class="field col-12 md:col-4">
-                          <div class="p-inputgroup">
-                            <input id="fb_steps" placeholder="Steps" style="border-radius: 13px;" formControlName="fb_steps" type="text" (change)="formChange(2)" pInputText>   
-                          </div>
-                      </div>
-
-                      <div class="field col-12 md:col-12">
-                          <textarea id="vle_note" placeholder="Note *" formControlName="vle_note" type="text" rows="2" (change)="formChange(3)" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full"></textarea>
-                          <small *ngIf="createCaseForm.vle_note.invalid && isSubmitted" class="p-error">
-                            <span *ngIf="createCaseForm.vle_note.errors.required">Note is required!</span>
-                          </small>
-                      </div>
-
-                      <div class="field col-12 md:col-12">
-                          <textarea id="description" placeholder="Injury/Reference Description" formControlName="description" type="text" rows="3" (change)="formChange(3)" class="text-base text-color p-2 border-1 border-solid surface-border appearance-none outline-none focus:border-primary w-full"></textarea>
-                      </div>
-
-                      <div class="field col-12 md:col-12"> 
+                      <!-- <div class="field col-12 md:col-12"> 
 
                         <label for="image">Prescription Image</label>
                         <input #fileInput type="file" [style]="{ width: '100%'}" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
@@ -169,10 +102,10 @@
                             <div class="text-center" *ngIf="isUploaded && imageDisplay">
                               <p-button  pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (onClick)="removeImage(fileInput)"></p-button>
                              </div>
-                        </div>
+                        </div> -->
                         
                     </div>
-                    </div>
+                   
       
                     <div class="formgrid grid">
                       <div class="field col-12 md:col-12 log_button text-center" >

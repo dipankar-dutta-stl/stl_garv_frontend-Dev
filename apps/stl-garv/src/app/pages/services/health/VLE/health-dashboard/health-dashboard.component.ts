@@ -45,13 +45,19 @@ export class HealthDashboardComponent implements OnInit, OnDestroy {
   }
 
   private _getDashboardData(){
-     this.caseService.getVleDashboard().pipe(takeUntil(this.endSubs$)).subscribe(
-      (res)=>{
-          this.vle_users=res.vle_users;
-          this.total_cases= res.total_cases;
-          this.current_month_cases= res.current_month_cases;
-          this.payments= res.payments;
-      })
+    this.caseService.countCasedetails().pipe(takeUntil(this.endSubs$)).subscribe(
+      (res)=>
+      {
+        console.log(res)
+        this.total_cases=res.total_cases;
+      }
+    )
+  //    this.caseService.getVleDashboard().pipe(takeUntil(this.endSubs$)).subscribe(
+  //     (res)=>{
+  //         this.vle_users=res.vle_users;
+  //         this.current_month_cases= res.current_month_cases;
+  //         this.payments= res.payments;
+  //     })
   }
  
 

@@ -5,242 +5,70 @@
         <div  class="col-12 ul-title">
             Case Details   
         </div>
-        
+       
     </div>
-   <div class="grid global">
-        <div class="sm:col-12 md:col-12 lg:col-6 xl:col-3">
-            <div class="grid">
-                <div class="col-12">
-                    <p-card styleClass="profile text-center">
-                       
-                        <img class="user-image" style="height: 120px; width: 120px;" src="{{cloudFrontURL}}assets/user_image/{{fetchimage}}" alt="">
-                    
-                       <div class="field col-12 md:col-12 lg:col-12 text-center">
-                        <h3 class="profile-username">{{full_name}}</h3>   
-                         <h4>#{{reg_no}}</h4>
-                      </div>
-
-                    </p-card>
+    <style>
+        .container{
+            display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+        
+    </style>
+    <div class="container">
+        <div class="card col-12" style="width: 30%; background-color: white; height:fit-content;">
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;"><strong>CaseId</strong></div>
                 </div>
-                <div class="col-12">
-
-                    <p-card styleClass="profile" header="Patients Details">
-                       <div class="grid">
-                          <div class="col-2"><em  class="pi pi-id-card"></em>  </div>
-                          <div class="col-10"><strong>Aadhar No</strong></div>
-                       </div>
-                       <div class="grid">
-                        <div class="col-2"></div>
-                        <div class="col-10">{{aadhar}}</div>
-                     </div>
-                     <p-divider></p-divider>
-                     <div class="grid">
-                        <div class="col-2"><em  class="pi pi-phone"></em>  </div>
-                        <div class="col-10"><strong>Contact Details</strong></div>
-                     </div>
-                     <div class="grid">
-                      <div class="col-2"></div>
-                      <div class="col-10">{{contact}}</div>
-                   </div>
-                 <p-divider></p-divider>
-                 <div class="grid">
-                    <div class="col-2"><em  class="pi pi-shield"></em>  </div>
-                    <div class="col-10"><strong>Case Details</strong></div>
-                   </div>
-                 <div class="grid">
-                  <div class="col-2"><em  class="pi pi-calendar-plus"></em>   </div>
-                  <div class="col-10">{{caseDate}}</div>
-                 </div>
-                 <div class="grid">
-                    <div class="col-2"><em  class="pi pi-bolt"></em>   </div>
-                    <div class="col-10">{{caseStatus}}</div>
-                   </div>
-                   <div class="grid">
-                    <div class="col-2"><em  class="pi pi-clock"></em>   </div>
-                    <div class="col-10">{{age}} Yrs (Male)</div>
-                   </div>
-                    </p-card>
-
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{case_id}}</div>
                 </div>
-            </div>
+                <!-- <p-divider></p-divider> -->
+                <div class="grid">
+
+                    <div class="col-12" style="text-align: center;"><strong>rejected_by_id</strong></div>
+                </div>
+                <div class="grid">
+
+                    <div class="col-12" style="text-align: center;">{{rejected_by_id}}</div>
+                </div>
+                <!-- <p-divider></p-divider> -->
+                <div class="grid">
+
+                    <div class="col-12" style="text-align: center;"><strong>approved_by_id</strong></div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{approved_by_id}}</div>
+                </div>
+                <div class="grid">
+
+                    <div class="col-12" style="text-align: center;"><strong>Mapping Status</strong></div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{mapping_status}}</div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;"><strong>Created Date</strong></div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{created_date}}</div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;"><strong>Updated Date</strong></div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{updated_date}}</div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;"><strong>Assigned By</strong></div>
+                </div>
+                <div class="grid">
+                    <div class="col-12" style="text-align: center;">{{assigned_by_id}}</div>
+                </div>
+            
+          
         </div>
-        <div class="sm:col-12 md:col-12 lg:col-6 xl:col-9">
-              <div class="grid">
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-thermometer-half" size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>Thermometer</h2>
-                                </div>
-                            </div>
-                             
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            Body Temperature
-                            <p>{{hd_temp}}</p>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-speedometer" size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>Weight Machine</h2>
-                                </div>
-                            </div>
-                            
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                             Weight
-                            <p>{{hd_weight}}</p>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-speedometer2"  size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>Gluco Meter</h2>
-                                </div>
-                            </div>
-                            
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <div class="grid">
-                                <div class="col">
-                                    Blood Glucose Level
-                                    <p>{{hd_bgl}}</p>
-                                </div>
-                                <div class="col">
-                                    Post Glucose Level
-                                    <p>{{hd_pgl}}</p>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-heart-pulse"  size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>Pulse OxiMeter</h2>
-                                </div>
-                            </div>
-                            
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <div class="grid">
-                                <div class="col">
-                                     Oxygen Level
-                                    <p>{{hd_oxy}} spo2</p>
-                                </div>
-                                <div class="col">
-                                     Pulse
-                                    <p>{{hd_pompulse}} pul/min</p>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-clipboard2-pulse"  size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>BP Machine</h2>
-                                </div>
-                            </div>
-                            
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <div class="grid">
-                                <div class="col">
-                                     Systolic BP
-                                    <p>{{hd_sysBp}} mmHg</p>
-                                </div>
-                                <div class="col">
-                                     Diastolic BP
-                                    <p>{{hd_diasBp}} mmHg</p>
-                                </div>
-                            </div>
-
-                            <div class="grid">
-                                <div class="col">
-                                    MA Pressure
-                                   <p>{{hd_map}} mmHg</p>
-                               </div>
-                               <div class="col">
-                                   Pulse
-                               <p>{{hd_bppulse}} pul/min</p>
-                              </div>
-                            </div>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-                  <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-                    <p-card styleClass="profile">
-                        <ng-template pTemplate="header">
-                            <div class="grid">
-                                <div class="sm:col-2 md:col-2 lg:col-2 xl:col-2">
-                                    <p-avatar icon="bi bi-activity"  size="xlarge" shape="circle"></p-avatar> 
-                                </div>
-                                <div class="sm:col-10 md:col-10 lg:col-10 xl:col-10">
-                                    <h2>Fitness Band</h2>
-                                </div>
-                            </div>
-                            
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <div class="grid">
-                                <div class="col">
-                                      Steps
-                                    <p>{{hd_steps}}</p>
-                                </div>
-                                <div class="col">
-                                      Heart Rate
-                                    <p>{{hd_heartrate}}</p>
-                                </div>
-                            </div>
-
-                            <div class="grid">
-                                <div class="col">
-                                     Calories
-                                   <p>{{hd_cal}}</p>
-                               </div>
-                               <div class="col">
-                                   --
-                               <p>--</p>
-                              </div>
-                            </div>
-                        </ng-template>
-                    </p-card>
-                  </div>
-
-              </div>
+      
         </div>
-   </div>
+      
 </div>

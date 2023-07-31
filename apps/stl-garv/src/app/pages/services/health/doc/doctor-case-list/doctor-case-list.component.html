@@ -35,7 +35,7 @@
                                     </ng-template>
     
                                     <ng-template pTemplate="header">
-                                        <tr>
+                                        <!-- <tr>
                                             <th pSortableColumn="reg_number" id="reg_number">Case No<p-sortIcon field="case_number">
                                                 <p-columnFilter type="text" field="case_number" display="menu"></p-columnFilter>
                                             </p-sortIcon></th>
@@ -49,12 +49,30 @@
                                             <th pSortableColumn="created_date" id="created_date">Case Date<p-sortIcon field="created_date"></p-sortIcon></th>
                                             <th pSortableColumn="case_status" id="case_status">Status<p-sortIcon field="case_status"></p-sortIcon></th>
                                             <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                        </tr> -->
+                                        <tr>
+                                            <!-- <th pSortableColumn="user_image" id="user_image">Image<p-sortIcon field="user_image"></p-sortIcon></th> -->
+                                            <th pSortableColumn="Case_Id" id="Case_Id">Case Id<p-sortIcon field="case_id">
+                                                <p-columnFilter type="text" field="Case_Id" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="rejected_by_id" id="rejected_by_id">rejected_by_id <p-sortIcon field="rejected_by_id">
+                                                <p-columnFilter type="text" field="PatientId" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="approved_by_id" id="approved_by_id">approved_by_id<p-sortIcon field="approved_by_id">
+                                                <p-columnFilter type="text" field="panchayatId" display="menu"></p-columnFilter>
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="created_date" id="created_date">created_date<p-sortIcon field="created_date">
+                                            </p-sortIcon></th>
+                                            <th pSortableColumn="updated_date" id="updated_date">updated_Date<p-sortIcon field="updated_date"></p-sortIcon></th>
+                                            <th pSortableColumn="assigned_by_id" id="assigned_by_id">assigned_by_id<p-sortIcon field="assigned_by_id"></p-sortIcon></th>
+                                            <th pSortableColumn="mappping_status" id="mapping_status">mapping_status<p-sortIcon field="mappingStatus"></p-sortIcon></th>
+                                            <th id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
                                         </tr>
                                     </ng-template>
     
                                     <ng-template pTemplate="body" let-case>
                                         <tr>
-                                            <td>#{{case.case.case_number}}</td>
+                                            <!-- <td>#{{case.case.case_number}}</td>
                                             <td><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{case.case.patient.details[0].user_image}}" alt=""></td>
                                             <td>{{case.case.patient.details[0].first_name + ' '+ case.case.patient.details[0].last_name}}</td>
                                             <td>{{maskNumber(case.case.patient.details[0].aadhar_card_no)}}</td>
@@ -63,10 +81,23 @@
                                                 <div [ngClass]="{'active': case.case.case_status === 'active' , 'inactive': case.case.case_status !== 'active', 'treated': case.case.case_status === 'treated'}">
                                                     {{case.case.case_status}}
                                                 </div>
+                                            </td> -->
+                                            
+                                            <!-- <td><img class="table_img" src="{{cloudFrontURL}}assets/user_image/{{case.user_image}}" alt=""></td> -->
+                                            <td>{{case.case_id}}</td>
+                                            <td>{{case.rejected_by_id}}</td>
+                                            <td>{{case.approved_by_id}}</td>
+                                            <td>{{case.created_date | date: 'MM/dd/yyyy'}}</td>
+                                            <td>{{case.updated_date | date: 'MM/dd/yyyy'}}</td>
+                                            <td>{{case.assigned_by_id}}</td>
+                                            <td>
+                                                <div [ngClass]="{'assigned': case.mappingStatus === 'assigned', 'notassigned': case.mappingStatus !== 'assigned'}">
+                                                    {{case.mappingStatus}}
+                                                </div>
                                             </td>
                                             <td style="text-align: left">
                                                 <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/doctor/case-details/{{case.case_id}}"></button>
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/health/doctor/cases-form/{{case.case_id}}"></button>
+                                                <!-- <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" routerLink="/health/doctor/cases-form/{{case.case_id}}"></button> -->
                                             </td>
                                         </tr>
                                     </ng-template>

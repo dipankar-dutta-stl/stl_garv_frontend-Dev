@@ -11,7 +11,7 @@
                             <p-table #dt [value]="cases" dataKey="case_id" [rowHover]="true" styleClass="p-datatable-gridlines"
                                     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
                                     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                                    [filterDelay]="0" sortField="created_date" [sortOrder]="-1" [globalFilterFields]="['case_number','created_date']">
+                                    [filterDelay]="0" sortField="created_date" [sortOrder]="-1" [globalFilterFields]="['patient_id','created_date']">
                                     
                                     <ng-template pTemplate="caption">
                                         <div class="table-header">
@@ -31,40 +31,39 @@
     
                                     <ng-template pTemplate="header">
                                         <tr>
-                                            <th pSortableColumn="case_number" id="case_number">Case No<p-sortIcon field="case_number">
-                                                <p-columnFilter type="text" field="case_number" display="menu"></p-columnFilter>
+                                            <th pSortableColumn="patient_id" id="patient_id">patient_id<p-sortIcon field="patient_id">
+                                                <p-columnFilter type="text" field="patient_id" display="menu"></p-columnFilter>
                                             </p-sortIcon></th>
-                                            <th pSortableColumn="first_name" id="first_name">User Details<p-sortIcon field="case.details[0].first_name">
-                                                <p-columnFilter type="text" field="patient.details.first_name" display="menu"></p-columnFilter>
+                                            <th pSortableColumn="case_id" id="case_id">case_id<p-sortIcon field="case_id">
+                                                <p-columnFilter type="text" field="case_id" display="menu"></p-columnFilter>
                                             </p-sortIcon></th>
-                                            <th pSortableColumn="doc_name" id="doc_name">Doctor Details<p-sortIcon field="case.doctor.details[0].first_name">
-                                                <p-columnFilter type="text" field="case.doctor.details.first_name" display="menu"></p-columnFilter>
+                                            <th pSortableColumn="doctor_id" id="doctor_id">doctor_id<p-sortIcon field="doctor_id">
+                                                <p-columnFilter type="text" field="doctor_id" display="menu"></p-columnFilter>
                                             </p-sortIcon></th>
                                             <th pSortableColumn="vle_note" id="vle_note">VLE Note<p-sortIcon field="vle_note">
                                                 <p-columnFilter type="text" field="vle_note" display="menu"></p-columnFilter>
                                             </p-sortIcon></th>
-                                            <th pSortableColumn="created_date" id="created_date">Case Date<p-sortIcon field="created_date"></p-sortIcon></th>
-                                            <th pSortableColumn="case_status" id="case_status">Status<p-sortIcon field="case_status"></p-sortIcon></th>
-                                            <th  id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th>
+                                            <th pSortableColumn="case_date" id="case_date">Case Date<p-sortIcon field="case_date"></p-sortIcon></th>
+                                            <!-- <th pSortableColumn="case_status" id="case_status">Status<p-sortIcon field="case_status"></p-sortIcon></th> -->
+                                            <!-- <th  id="action" style="background-color: #1A5A91; color: #ffff;">Actions</th> -->
                                         </tr>
                                     </ng-template>
     
                                     <ng-template pTemplate="body" let-case>
                                         <tr>
-                                            <td>#{{case.case_number}}</td>
-                                            <td>{{case.patient.details[0].first_name + ' '+ case.patient.details[0].last_name}}</td>
-                                            <td *ngIf="case.case">{{case.case.doctor.details[0].first_name+ ' '+ case.case.doctor.details[0].last_name}}</td>
-                                            <td *ngIf="!case.case"></td>
+                                            <td>{{case.patient_id}}</td>
+                                            <td>{{case.case_id}}</td>
+                                            <td>{{case.doctor_id}}</td>
                                             <td>{{case.vle_note}}</td>
-                                            <td>{{case.created_date | date: 'MM/dd/yyyy'}}</td>
-                                            <td>
+                                            <td>{{case.case_date}}</td>
+                                             <!-- <td>
                                                 <div [ngClass]="{'active': case.case_status === 'active', 'inactive': case.case_status !== 'active' , 'treated': case.case_status === 'treated'}">
                                                     {{case.case_status}}
                                                 </div>
-                                            </td>
-                                            <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/user/case-details/{{case.case_id}}"></button>
-                                            </td>
+                                            </td>-->
+                                           <!-- <td style="text-align: left">
+                                                <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="pi pi-info-circle" pTooltip="View Details" tooltipPosition="bottom" routerLink="/health/user/case-details/{{case.case_id}}"></button> 
+                                            </td>  -->
                                         </tr>
                                     </ng-template>
     

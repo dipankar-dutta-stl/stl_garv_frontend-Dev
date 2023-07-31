@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
             this.userService.getUserDetailbyuid(this.uid).pipe(takeUntil(this.endSubs$)).subscribe(
                 (res)=>{
-                    console.log(res);
                     this.panchayatId=res.panchayat_ID;
                     this.f_name=res.first_NAME;
                     this.user_image=res.user_IMAGE;

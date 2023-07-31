@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserApiService {
+  getCaseDetailbyId(uid: any) {
+      throw new Error('Method not implemented.');
+  }
 
   constructor( private http: HttpClient, @Inject(ENVIRONMENT) private env: Environment) { }
 
