@@ -39,6 +39,8 @@ export class UpdateProfileComponent implements OnInit,OnDestroy {
     talukaId: number;
     stateId: number;
 
+    USER_DETAILS:any;
+
     villages =[];
     talukas =[];
     districts =[];
@@ -111,23 +113,24 @@ export class UpdateProfileComponent implements OnInit,OnDestroy {
             if(params.id) {
                 this.userId = params.id;
                 this.userService.getUserDetailbyuid(this.userId).pipe(takeUntil(this.endSubs$)).subscribe((userDetail) => {
-                    this.updateProfileForm.first_name.setValue(userDetail[0].details[0].first_name);
-                    this.updateProfileForm.middle_name.setValue(userDetail[0].details[0].middle_name);
-                    this.updateProfileForm.last_name.setValue(userDetail[0].details[0].last_name);
-                    this.updateProfileForm.whatsapp_no.setValue(userDetail[0].details[0].whatsapp_no);
-                    this.updateProfileForm.gender.setValue(userDetail[0].details[0].gender);
-                    this.updateProfileForm.date_of_birth.setValue(userDetail[0].details[0].date_of_birth);
-                    this.updateProfileForm.age.setValue(userDetail[0].details[0].age);
-                    this.updateProfileForm.state_id.setValue(userDetail[0].details[0].state_id);
-                    this.updateProfileForm.district_id.setValue(userDetail[0].details[0].district_id);
-                    this.updateProfileForm.taluka_id.setValue(userDetail[0].details[0].taluka_id);
-                    this.updateProfileForm.village_id.setValue(userDetail[0].details[0].village_id);
-                    this.updateProfileForm.panchayatfield.setValue(userDetail[0].details[0].panchayat_id);
-                    this.updateProfileForm.address.setValue(userDetail[0].details[0].address);
-                    this.updateProfileForm.unique_id.setValue(userDetail[0].unique_id);
-                    this.updateProfileForm.email.setValue(userDetail[0].email);
-                    this.roleId=userDetail[0].details[0].role_id;
-                    this.fetchimage=userDetail[0].details[0].user_image;
+                    this.USER_DETAILS=userDetail;
+                    this.updateProfileForm.first_name.setValue(userDetail.first_NAME);
+                    this.updateProfileForm.middle_name.setValue(userDetail.middle_NAME);
+                    this.updateProfileForm.last_name.setValue(userDetail.last_NAME);
+                    this.updateProfileForm.whatsapp_no.setValue(userDetail.whatsapp_NO);
+                    this.updateProfileForm.gender.setValue(userDetail.gender);
+                    this.updateProfileForm.date_of_birth.setValue(userDetail.date_OF_BIRTH);
+                    this.updateProfileForm.age.setValue(userDetail.age);
+                    this.updateProfileForm.state_id.setValue(userDetail.state_ID);
+                    this.updateProfileForm.district_id.setValue(userDetail.district_ID);
+                    this.updateProfileForm.taluka_id.setValue(userDetail.taluka_ID);
+                    this.updateProfileForm.village_id.setValue(userDetail.village_ID);
+                    this.updateProfileForm.panchayatfield.setValue(userDetail.panchayat_ID);
+                    this.updateProfileForm.address.setValue(userDetail.address);
+                    this.updateProfileForm.unique_id.setValue(userDetail.unique_ID);
+                    this.updateProfileForm.email.setValue(userDetail.email);
+                    this.roleId=userDetail.role_ID;
+                    this.fetchimage=userDetail.user_IMAGE;
                     this.detectFormChange();
                 })
             }
@@ -164,70 +167,66 @@ export class UpdateProfileComponent implements OnInit,OnDestroy {
         }
 
         const user_detail_body = {
-            first_name: this.updateProfileForm.first_name.value,
-            middle_name: this.updateProfileForm.middle_name.value,
-            last_name: this.updateProfileForm.last_name.value,
-            whatsapp_no: this.updateProfileForm.whatsapp_no.value,
+            user_DETAILS_ID:this.USER_DETAILS.user_DETAILS_ID,
+            user_ID:this.USER_DETAILS.user_ID,
+            reg_NUMBER:this.USER_DETAILS.reg_NUMBER,
+            user_STATUS:this.USER_DETAILS.user_STATUS,
+            created_DATE:this.USER_DETAILS.created_DATE,
+            first_NAME: this.updateProfileForm.first_name.value,
+            middle_NAME: this.updateProfileForm.middle_name.value,
+            last_NAME: this.updateProfileForm.last_name.value,
+            whatsapp_NO: this.updateProfileForm.whatsapp_no.value,
             gender: this.updateProfileForm.gender.value,
-            date_of_birth: this.updateProfileForm.date_of_birth.value,
+            date_OF_BIRTH: this.updateProfileForm.date_of_birth.value,
             age: this.updateProfileForm.age.value,
             address: this.updateProfileForm.address.value,
-            state_id: this.updateProfileForm.state_id.value,
-            district_id: this.updateProfileForm.district_id.value,
-            taluka_id: this.updateProfileForm.taluka_id.value,
-            village_id: this.updateProfileForm.village_id.value,
-            panchayat_id: this.updateProfileForm.panchayatfield.value,
-            role_id: this.roleId
+            state_ID: this.updateProfileForm.state_id.value,
+            district_ID: this.updateProfileForm.district_id.value,
+            taluka_ID: this.updateProfileForm.taluka_id.value,
+            village_ID: this.updateProfileForm.village_id.value,
+            panchayat_ID: this.updateProfileForm.panchayatfield.value,
+            role_ID: this.roleId
         }
-        //Update User Table
-        this.userService.updateUser(this.usrId, user_body).pipe(takeUntil(this.endSubs$)).subscribe(
-            () => {
-               //Update User Detail Table
-                this.userService.updateUserDetail(this.usrDetId, user_detail_body).pipe(takeUntil(this.endSubs$)).subscribe(
-                () => {
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: 'Profile updated successfully!'
-                    });
-                },
-                () => {
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Profile could not be updated!'
-                    });
-                }
-                );
-            },
-            () => {
-                this.messageService.add({
-                    severity: 'error',
-                    summary: 'Error',
-                    detail: 'Unable to update profile!'
-                });
-            }
+       //Update User Detail Table
+       this.userService.updateUserDetail(this.usrDetId, user_detail_body).pipe(takeUntil(this.endSubs$)).subscribe(
+        () => {
+            this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Profile updated successfully!'
+            });
+        },
+        () => {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Profile could not be updated!'
+            });
+        }
         );
 
         //Image Upload
-        if(this.isUploaded){
-            this.userService.postImage(this.usrDetId, this.file).pipe(takeUntil(this.endSubs$)).subscribe(
-                ()=>
-                {
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: 'Profile picture updated!'
-                    });
-                },
-                () => {
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Profile picture could not be updated!'
-                    });
-                })
-        }
+        // if(this.isUploaded){
+        //     this.userService.postImage(this.usrDetId, this.file).pipe(takeUntil(this.endSubs$)).subscribe(
+        //         ()=>
+        //         {
+        //             this.messageService.add({
+        //                 severity: 'success',
+        //                 summary: 'Success',
+        //                 detail: 'Profile picture updated!'
+        //             });
+        //         },
+        //         () => {
+        //             this.messageService.add({
+        //                 severity: 'error',
+        //                 summary: 'Error',
+        //                 detail: 'Profile picture could not be updated!'
+        //             });
+        //         })
+        // }
+
+        console.log(this.USER_DETAILS);
+        console.log(user_detail_body);
     }
 
     onImageUpload(event) {
@@ -271,8 +270,6 @@ export class UpdateProfileComponent implements OnInit,OnDestroy {
     private _getPanchayat(){
         this.userService.getPanchayat().pipe(takeUntil(this.endSubs$)).subscribe((p_name)=> {
             this.panchayat=p_name;
-            console.log(this.panchayat);
-            
         })
     }
 

@@ -55,7 +55,7 @@
                                     <ng-template pTemplate="body" let-source>
                                         <tr>
                                             <td> #{{source.id}}</td>
-                                            <td><img class="table_img" style="width: 120px;" src="{{cloudFrontURL}}entertain/assets/img/{{source.source_image}}" alt=""></td>
+                                            <td><img class="table_img" style="width: 120px;" src="/assets/entertainment/{{source.source_image}}" alt=""></td>
                                             <td>{{source.source_name}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': source.source_status === 'active', 'inactive': source.source_status !== 'active'}">

@@ -1,7 +1,7 @@
 <stl-garv-frontend-bread-crumb></stl-garv-frontend-bread-crumb>
 <div class="product-details">
 
-    <div class="grid global" *ngFor="let product of productDetails">
+    <div class="grid global" >
           <div class="col-12 md:col-12 lg:col-6">
                 <p-card styleClass="product-card">
                     <ng-template pTemplate="header">
@@ -31,16 +31,16 @@
             <h1 style="margin-bottom: 0px;">₹ {{product.product_psp_price}}</h1>
             <p style="margin-top: 8px; color: gray;"><s>₹ {{product.product_price}}</s></p>
 
-            <p> <p-inputNumber  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" 
+            <!-- <p> <p-inputNumber  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" 
                 :min="0" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
-               </p-inputNumber></p>
+               </p-inputNumber></p> -->
 
                <div class="grid">
                 <div class="col-2">
                         <p-dropdown
                             [disabled]="true" 
                             [style]="{width:'100%'}" 
-                            [options]="qty" 
+                            [options]="product.qty" 
                             optionLabel="name" 
                             optionValue="code"
                             placeholder="Qty"

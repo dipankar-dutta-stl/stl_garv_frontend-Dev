@@ -59,12 +59,12 @@ export class HealthMenuComponent implements OnInit {
             {label: 'My Cases',routerLink: '/health/user/cases-list', visible:this.isUser},
 
             {label: 'Dashboard',routerLink: '/admin/metadata', visible:this.isAdmin},
-            {label: 'Users',routerLink: '/admin/metadata/user-management/vle-mgmt', visible:this.isAdmin},
+            // {label: 'Users',routerLink: '/admin/metadata/user-management/vle-mgmt', visible:this.isAdmin},
             {label: 'Products',routerLink: '/admin/metadata/product-management/product/list', visible:this.isAdmin},
             {label: 'Region',routerLink: '/admin/metadata/region-management/state/list', visible:this.isAdmin},
             {label: 'Modules',routerLink: '/admin/module-mgmt', visible:this.isAdmin},
             {label: 'Entertain Sources',routerLink: '/admin/source-mgmt', visible:this.isAdmin},
-            {label: 'Kiosk',routerLink: '/admin/kiosk-management', visible:this.isAdmin}
+            // {label: 'Kiosk',routerLink: '/admin/kiosk-management', visible:this.isAdmin}
         ];
         this.activeItem = this.items[0];
             

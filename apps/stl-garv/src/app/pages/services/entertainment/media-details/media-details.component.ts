@@ -36,6 +36,7 @@ export class MediaDetailsComponent implements OnInit, OnDestroy {
 
     private _getMediaDetailByTitle() {
         this.mediaService.getMediaDetailByTitle(this.title).pipe(takeUntil(this.endSubs$)).subscribe(details=>{
+            console.log(details)
             this.mediaDetails= details;
         })
     }

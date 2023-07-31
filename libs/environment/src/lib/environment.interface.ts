@@ -1,6 +1,7 @@
 export interface Environment {
     production: boolean;
     apiURL: string;
-    apiURLhealth:string;
+    apiURL_Ecomm:string;
+    apiURLEntertain:String;
     cloudFrontURL: string;
-}
+} 

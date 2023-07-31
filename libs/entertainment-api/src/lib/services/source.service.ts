@@ -11,7 +11,7 @@ export class SourceService {
 
   constructor(private http: HttpClient, @Inject(ENVIRONMENT) private env: Environment) { }
 
-  apiURLEntertain = this.env.apiURL + 'entertain';
+  apiURLEntertain = this.env.apiURLEntertain + '/entertain';
 
   getAllSources():Observable<Source[]> {
        return this.http.get<Source[]>(`${this.apiURLEntertain}/get_all_sources`) 

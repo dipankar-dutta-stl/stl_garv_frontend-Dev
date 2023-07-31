@@ -66,16 +66,16 @@
     
                                     <ng-template pTemplate="body" let-region>
                                         <tr>
-                                            <td>{{region.state_id}}</td>
-                                            <td>{{region.state_name}}</td>
+                                            <td>{{region.state_ID}}</td>
+                                            <td>{{region.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                     {{region.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.state_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.state_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.state_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.state_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -102,6 +102,10 @@
     <ng-template pTemplate="content" >
         <form [formGroup]="region_form">
             <div class="field">
+                <input formControlName="state_id" type="text" pInputText id="name"  required autofocus disabled />
+            </div>
+
+            <div class="field">
                 <input formControlName="state_name" placeholder="State Name" type="text" pInputText id="name"  required autofocus />
                 <small *ngIf="createRegionForm.state_name.invalid && isSubmitted" class="p-error">
                     State Name is required!
@@ -121,6 +125,10 @@
                 <small *ngIf="createRegionForm.status.invalid && isSubmitted" class="p-error">
                     Status is required!
                 </small>
+            </div>
+
+            <div class="field">
+                <input formControlName="created_date" placeholder="" type="text" pInputText id="name"  required autofocus disabled />
             </div>
         </form>
         </ng-template>

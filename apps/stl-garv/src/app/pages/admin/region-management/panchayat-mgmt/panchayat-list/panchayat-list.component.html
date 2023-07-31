@@ -33,7 +33,7 @@
                             <p-table #dt [value]="panchayats" dataKey="panchayat_id" [rowHover]="true" styleClass="p-datatable-gridlines"
                             [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
                             [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                            [filterDelay]="0" [globalFilterFields]="['panchayat_unique_id','panchayat_name','pincode','belongs_to_village.belongs_to_taluka.taluka_name','belongs_to_village.village_name','belongs_to_village.belongs_to_taluka.belongs_to_district.district_name','belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name','status']">
+                            [filterDelay]="0" [globalFilterFields]="['panchayat_UNIQUE_ID','panchayat_NAME','pincode','belongs_to_village.belongs_to_taluka.taluka_name','belongs_to_village.village_name','belongs_to_village.belongs_to_taluka.belongs_to_district.district_name','belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name','status']">
                             
                             <ng-template pTemplate="caption">
                                 <div class="table-header">
@@ -80,17 +80,17 @@
     
                             <ng-template pTemplate="body" let-region>
                                 <tr>
-                                    <td>{{region.panchayat_unique_id}}</td>
-                                    <td>{{region.panchayat_name}}</td>
+                                    <td>{{region.panchayat_UNIQUE_ID}}</td>
+                                    <td>{{region.panchayat_NAME}}</td>
                                     <td>{{region.pincode}}</td>
-                                    <td>{{region.belongs_to_village.village_name}}</td>
-                                    <td>{{region.belongs_to_village.belongs_to_taluka.taluka_name}}</td>
-                                    <td>{{region.belongs_to_village.belongs_to_taluka.belongs_to_district.district_name}}</td>
-                                    <td>{{region.belongs_to_village.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name}}</td>
+                                    <td>{{region.belongs_TO_VILLAGE.village_NAME}}</td>
+                                    <td>{{region.belongs_TO_TALUKA.taluka_NAME}}</td>
+                                    <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                    <td>{{region.belongs_TO_STATE.state_NAME}}</td>
                                     <td style="text-align: left">
-                                        <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="bi bi-grid" pTooltip="Assign Modules" tooltipPosition="bottom" style="margin-right:10px" (click)="selectModule(region.panchayat_id)"></button>
-                                        <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.panchayat_id)"></button>
-                                        <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.panchayat_id)"></button>
+                                        <!-- <button pButton type="button" class="p-button-info p-button-rounded p-button-text" icon="bi bi-grid" pTooltip="Assign Modules" tooltipPosition="bottom" style="margin-right:10px" (click)="selectModule(region.panchayat_ID)"></button> -->
+                                        <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.panchayat_ID)"></button>
+                                        <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.panchayat_ID)"></button>
                                         <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-chart-pie" pTooltip="Module Count" tooltipPosition="bottom" style="margin-right:10px"  routerLink="/admin/metadata/region-management/panchayat/list/module-count/{{region.panchayat_id}}"></button>
                                     </td>
                                 </tr>
@@ -120,8 +120,8 @@
                     <p-dropdown 
                     formControlName="state_id"  
                     [options]="states" 
-                    optionLabel="state_name" 
-                    optionValue="state_id" 
+                    optionLabel="state_NAME" 
+                    optionValue="state_ID" 
                     placeholder="State"
                     [showClear]="true"
                     [filter]="true"
@@ -138,8 +138,8 @@
                     <p-dropdown 
                     formControlName="district_id"  
                     [options]="districts" 
-                    optionLabel="district_name" 
-                    optionValue="district_id" 
+                    optionLabel="district_NAME" 
+                    optionValue="district_ID" 
                     placeholder="District"
                     [showClear]="true"
                     [filter]="true"
@@ -155,8 +155,8 @@
                     <p-dropdown 
                     formControlName="taluka_id"  
                     [options]="talukas" 
-                    optionLabel="taluka_name" 
-                    optionValue="taluka_id" 
+                    optionLabel="taluka_NAME" 
+                    optionValue="taluka_ID" 
                     placeholder="Taluka"
                     [showClear]="true"
                     [filter]="true"
@@ -173,8 +173,8 @@
                     <p-dropdown 
                     formControlName="village_id"  
                     [options]="villages" 
-                    optionLabel="village_name" 
-                    optionValue="village_id" 
+                    optionLabel="village_NAME"
+                    optionValue="village_ID" 
                     placeholder="Village"
                     [showClear]="true"
                     [filter]="true"
@@ -246,14 +246,14 @@
                 [checkbox]="true" 
                 [filter]="true"
                 [multiple]="true" 
-                optionLabel="module_name" 
-                optionValue="module_id" 
+                optionLabel="module_NAME" 
+                optionValue="module_ID" 
                 [style]="{'width':'20rem', 'border':'none'}"
                 (ngModelChange)="onChange($event)"
             >
                 <ng-template let-module pTemplate="item">
                     <div class="country-item">
-                        <div>{{module.module_name}}</div>
+                        <div>{{module.module_NAME}}</div>
                     </div>
                 </ng-template>
             </p-listbox>

@@ -15,14 +15,15 @@ interface Status {
 }
 
 export interface Village {
-    village_id?: number,
-    taluka_id?: number,
-    village_name?: string,
+    village_ID?: number,
+    taluka_ID?: number,
+    village_NAME?: string,
     status?: string,
-    created_date?: string,
-    updated_date?: string,
-    belongs_to_taluka?: Taluka
-    // belongs_to_district?: District
+    created_DATE?: string,
+    updated_DATE?: string,
+    belongs_TO_TALUKA?: Taluka,
+    belongs_TO_DISTRICT?: District,
+    belongs_TO_STATE?:State
 }
 
 @Component({
@@ -55,6 +56,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
     states: State[]=[];
     region_form: FormGroup;
     villageId: number;
+    creatdDate: any;
     distId: number;
     talukaId: number;
     stateId: number;
@@ -120,7 +122,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(this.stateId){
             this.userService.getDistrictbyStateId(this.stateId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
             {
-                this.districts=res[0].has_district;
+                this.districts=res;
             });
         }
     }
@@ -137,7 +139,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(this.distId){
             this.userService.getTalukabyDistrictId(this.distId).pipe(takeUntil(this.endSubs$)).subscribe((res)=>
             {
-                this.talukas=res[0].has_taluka;  
+                this.talukas=res;  
             });
         }
     }
@@ -146,6 +148,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
     private _getAllTalukas(){
         this.userService.getTalukas().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.talukas=res;
+            
         })
     }
 
@@ -153,6 +156,7 @@ export class VillageListComponent implements OnInit, OnDestroy {
         this.userService.getVillages().pipe(takeUntil(this.endSubs$)).subscribe((res)=>{
             this.villages=res;
             this.loading=false;
+            this._mergeAllTheDetails();
         })
     }
 
@@ -169,14 +173,17 @@ export class VillageListComponent implements OnInit, OnDestroy {
         if(village_id){
             this.editmode=true;
             this.villageId=village_id;
-            this.userService.getVillageDetailbyId(village_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
-            {   
-                this.createRegionForm.village_name.setValue(data[0].village_name);
-                this.createRegionForm.state_id.setValue(data[0].belongs_to_taluka.belongs_to_district.belongs_to_state.state_id);
-                this.createRegionForm.district_id.setValue(data[0].belongs_to_taluka.belongs_to_district.district_id);
-                this.createRegionForm.taluka_id.setValue(data[0].belongs_to_taluka.taluka_id);
-                this.createRegionForm.status.setValue(data[0].status)
-            })
+            for(let v of this.villages){
+                if(v.village_ID==village_id){
+                    console.log(v);
+                    this.createRegionForm.village_name.setValue(v.village_NAME);
+                    this.createRegionForm.state_id.setValue(v.belongs_TO_STATE.state_ID);
+                    this.createRegionForm.district_id.setValue(v.belongs_TO_DISTRICT.district_ID);
+                    this.createRegionForm.taluka_id.setValue(v.belongs_TO_TALUKA.taluka_ID);
+                    this.createRegionForm.status.setValue(v.status);
+                    this.creatdDate = v.created_DATE;
+                }
+            }
         }
     }
 
@@ -187,13 +194,16 @@ export class VillageListComponent implements OnInit, OnDestroy {
 
         if(this.editmode){
             const update_village_Body = {
-                village_name: this.createRegionForm.village_name.value,
-                taluka_id: this.createRegionForm.taluka_id.value,
-                status: this.createRegionForm.status.value
+                village_ID: this.villageId,
+                village_NAME: this.createRegionForm.village_name.value,
+                taluka_ID: this.createRegionForm.taluka_id.value,
+                status: this.createRegionForm.status.value,
+                created_DATE: this.creatdDate
             }
-            this.userService.updateVillage(update_village_Body, this.villageId).pipe(takeUntil(this.endSubs$)).subscribe(
+            // console.log(update_village_Body);
+            this.userService.updateVillage(update_village_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
-                    this._getAllVillages();
+                    this.ngOnInit()
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -214,13 +224,14 @@ export class VillageListComponent implements OnInit, OnDestroy {
         else
         {
             const village_Body = {
-                village_name: this.createRegionForm.village_name.value,
-                taluka_id: this.createRegionForm.taluka_id.value,
+                village_NAME: this.createRegionForm.village_name.value,
+                taluka_ID: this.createRegionForm.taluka_id.value,
                 status: this.createRegionForm.status.value
             }
+            console.log(village_Body)
             this.userService.createVillage(village_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
-                    this._getAllVillages();
+                    this.ngOnInit();
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -303,5 +314,32 @@ export class VillageListComponent implements OnInit, OnDestroy {
 
     get createRegionForm() {
         return this.region_form.controls;
+    }
+
+
+    _mergeAllTheDetails(){
+        for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.talukas.length;y++){
+                if(this.villages[x].taluka_ID==this.talukas[y].taluka_ID){
+                    this.villages[x].belongs_TO_TALUKA=this.talukas[y];
+                }
+            }
+           }
+        
+           for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.districts.length;y++){
+                if(this.villages[x].belongs_TO_TALUKA.district_ID==this.districts[y].district_ID){
+                    this.villages[x].belongs_TO_DISTRICT=this.districts[y];
+                }
+            }
+           }
+
+           for(let x=0;x<this.villages.length;x++){
+            for(let y=0;y<this.states.length;y++){
+                if(this.villages[x].belongs_TO_DISTRICT.state_ID==this.states[y].state_ID){
+                    this.villages[x].belongs_TO_STATE=this.states[y];
+                }
+            }
+           }
     }
 }

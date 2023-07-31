@@ -70,20 +70,20 @@
                                         </tr>
                                     </ng-template>
     
-                                    <ng-template pTemplate="body" let-region>
+                                    <ng-template pTemplate="body" let-region >
                                         <tr>
-                                            <td>{{region.taluka_id}}</td>
-                                            <td>{{region.taluka_name}}</td>
-                                            <td>{{region.belongs_to_district.district_name}}</td>
-                                            <td>{{region.belongs_to_district.belongs_to_state.state_name}}</td>
+                                            <td>{{region.taluka_ID}}</td>
+                                            <td>{{region.taluka_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.belongs_TO_STATE.state_NAME}}</td>
                                             <td>
-                                                <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
+                                                <div [ngClass]="{'active': talukas.status === 'active', 'inactive': talukas.status !== 'active'}">
                                                     {{region.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.taluka_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.taluka_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.taluka_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.taluka_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -110,12 +110,12 @@
     <ng-template pTemplate="content" >
 
         <form [formGroup]="region_form">
-            <div class="field">
+            <div *ngIf="!editmode" class="field" >
                 <p-dropdown 
                 formControlName="state_id"  
                 [options]="states" 
-                optionLabel="state_name" 
-                optionValue="state_id" 
+                optionLabel="state_NAME" 
+                optionValue="state_ID" 
                 placeholder="State"
                 [showClear]="true"
                 [filter]="true"
@@ -133,12 +133,12 @@
                 <p-dropdown 
                 formControlName="district_id"  
                 [options]="districts" 
-                optionLabel="district_name" 
-                optionValue="district_id" 
+                optionLabel="district_NAME" 
+                optionValue="district_ID" 
                 placeholder="District"
                 [showClear]="true"
                 [filter]="true"
-                fiterBy="district_name"
+                fiterBy="district_NAME"
                 appendTo="body">
                 </p-dropdown>
                 <small *ngIf="createRegionForm.district_id.invalid && isSubmitted" class="p-error">

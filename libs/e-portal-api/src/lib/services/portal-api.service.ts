@@ -13,7 +13,7 @@ export class PortalApiService {
 
   constructor(private http: HttpClient, @Inject(ENVIRONMENT) private env: Environment) { }
 
-  apiURLPortal = this.env.apiURL + 'ecomm';
+  apiURLPortal = this.env.apiURL_Ecomm;// + 'ecomm';
   
   getAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiURLPortal}/view_products`);

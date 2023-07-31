@@ -33,7 +33,7 @@
                             <p-table #dt [value]="villages" dataKey="village_id" [rowHover]="true" styleClass="p-datatable-gridlines"
                                     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
                                     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                                    [filterDelay]="0" [globalFilterFields]="['village_id','belongs_to_taluka.belongs_to_district.belongs_to_state.state_name','village_name','belongs_to_taluka.taluka_name','belongs_to_taluka.belongs_to_district.district_name','status']">
+                                    [filterDelay]="0" [globalFilterFields]="['village_ID','belongs_to_taluka.belongs_to_district.belongs_to_state.state_name','village_NAME','belongs_to_taluka.taluka_name','belongs_to_taluka.belongs_to_district.district_name','status']">
                                     
                                     <ng-template pTemplate="caption">
                                         <div class="table-header">
@@ -75,19 +75,19 @@
     
                                     <ng-template pTemplate="body" let-region>
                                         <tr>
-                                            <td>{{region.village_id}}</td>
-                                            <td>{{region.village_name}}</td>
-                                            <td>{{region.belongs_to_taluka.taluka_name}}</td>
-                                            <td>{{region.belongs_to_taluka.belongs_to_district.district_name}}</td>
-                                            <td>{{region.belongs_to_taluka.belongs_to_district.belongs_to_state.state_name}}</td>
+                                            <td>{{region.village_ID}}</td>
+                                            <td>{{region.village_NAME}}</td>
+                                            <td>{{region.belongs_TO_TALUKA.taluka_NAME}}</td>
+                                            <td>{{region.belongs_TO_DISTRICT.district_NAME}}</td>
+                                            <td>{{region.belongs_TO_STATE.state_NAME}}</td>
                                             <td>
                                                 <div [ngClass]="{'active': region.status === 'active', 'inactive': region.status !== 'active'}">
                                                     {{region.status}}
                                                 </div>
                                             </td>
                                             <td style="text-align: left">
-                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.village_id)"></button>
-                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.village_id)"></button>
+                                                <button pButton type="button" class="p-button-secondary p-button-rounded p-button-text" icon="pi pi-pencil" pTooltip="Edit" tooltipPosition="bottom" style="margin-right:10px" (click)="editRegion(region.village_ID)"></button>
+                                                <button pButton type="button" class="p-button-danger p-button-rounded p-button-text" icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom" (click)="deleteRegion(region.village_ID)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -117,12 +117,12 @@
                     <p-dropdown 
                     formControlName="state_id"  
                     [options]="states" 
-                    optionLabel="state_name" 
-                    optionValue="state_id" 
+                    optionLabel="state_NAME" 
+                    optionValue="state_ID" 
                     placeholder="State"
                     [showClear]="true"
                     [filter]="true"
-                    fiterBy="state_name"
+                    fiterBy="state_NAME"
                     (onChange)="getDistbyStateId(createRegionForm.state_id.value)"
                     appendTo="body"
                     >
@@ -135,12 +135,12 @@
                     <p-dropdown 
                     formControlName="district_id"  
                     [options]="districts" 
-                    optionLabel="district_name" 
-                    optionValue="district_id" 
+                    optionLabel="district_NAME" 
+                    optionValue="district_ID" 
                     placeholder="District"
                     [showClear]="true"
                     [filter]="true"
-                    fiterBy="district_name"
+                    fiterBy="district_NAME"
                     (onChange)="getTalukabyDistrictId(createRegionForm.district_id.value)"
                     appendTo="body">
                     </p-dropdown>
@@ -152,12 +152,12 @@
                     <p-dropdown 
                     formControlName="taluka_id"  
                     [options]="talukas" 
-                    optionLabel="taluka_name" 
-                    optionValue="taluka_id" 
+                    optionLabel="taluka_NAME" 
+                    optionValue="taluka_ID" 
                     placeholder="Taluka"
                     [showClear]="true"
                     [filter]="true"
-                    fiterBy="taluka_name"
+                    fiterBy="taluka_NAME"
                     appendTo="body">
                     </p-dropdown>
                     <small *ngIf="createRegionForm.taluka_id.invalid && isSubmitted" class="p-error">

@@ -12,11 +12,11 @@ interface Status {
 }
 
 export interface State {
-    state_id?: number,
-    state_name?: string,
+    state_ID?: number,
+    state_NAME?: string,
     status?: string,
-    created_date?: string,
-    updated_date?: string
+    created_DATE?: string,
+    updated_DATE?: string
 }
 
 @Component({
@@ -86,8 +86,10 @@ export class StateListComponent implements OnInit, OnDestroy {
 
     private _initForm(){
         this.region_form = this.formBuilder.group({
+            state_id:[''],
             state_name: ['', Validators.required],
-            status: ['', Validators.required]
+            status: ['', Validators.required],
+            created_date:['']
         });
     }
 
@@ -113,8 +115,11 @@ export class StateListComponent implements OnInit, OnDestroy {
             this.stateId=state_id;
             this.userService.getStateDetailbyId(state_id).pipe(takeUntil(this.endSubs$)).subscribe((data)=>
             {
-                this.createRegionForm.state_name.setValue(data.state_name);
+               
+                this.createRegionForm.state_id.setValue(data.state_ID)
+                this.createRegionForm.state_name.setValue(data.state_NAME);
                 this.createRegionForm.status.setValue(data.status)
+                this.createRegionForm.created_date.setValue(data.create_DATE)
             })
         }
     }
@@ -126,10 +131,14 @@ export class StateListComponent implements OnInit, OnDestroy {
 
         if(this.editmode){
             const update_state_Body = {
-                state_name: this.createRegionForm.state_name.value,
-                status: this.createRegionForm.status.value
+
+                state_ID:this.createRegionForm.state_id.value,
+                state_NAME: this.createRegionForm.state_name.value,
+                status: this.createRegionForm.status.value,
+                create_DATE:this.createRegionForm.created_date.value
             }
-            this.userService.updateState(update_state_Body, this.stateId).pipe(takeUntil(this.endSubs$)).subscribe(
+            
+            this.userService.updateState(update_state_Body).pipe(takeUntil(this.endSubs$)).subscribe(
                 ()=> {
                     this._getAllStates();
                     this.messageService.add({
@@ -152,11 +161,13 @@ export class StateListComponent implements OnInit, OnDestroy {
         else
         {
             const state_Body = {
-                state_name: this.createRegionForm.state_name.value,
+                state_NAME: this.createRegionForm.state_name.value,
                 status: this.createRegionForm.status.value
             }
+            console.log(state_Body)
             this.userService.createState(state_Body).pipe(takeUntil(this.endSubs$)).subscribe(
-                ()=> {
+                (data)=> {
+                    console.log(data)
                     this._getAllStates();
                     this.messageService.add({
                         severity: 'success',
@@ -165,7 +176,8 @@ export class StateListComponent implements OnInit, OnDestroy {
                     });
                     this.stateDialog = false;
                 },
-                () => {
+                (err) => {
+                    console.log(err)
                     this.messageService.add({
                         severity: 'error',
                         summary: 'Error',

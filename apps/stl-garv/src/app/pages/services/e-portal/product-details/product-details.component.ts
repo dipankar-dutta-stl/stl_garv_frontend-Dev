@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     selectedQty: Qty;
     token = this.jwtDecode.tokenDecode();
    
-    productDetails: any;
+    product: any;//productDetails changed to product
 
     id: number;
     p_id: number;
@@ -85,9 +85,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private _getProductDetailById() {
         
         this.portalService.getProductDetailsById(this.id).pipe(takeUntil(this.endSubs$)).subscribe(res=>{
-            this.productDetails= res;
-            this.p_id=res[0].product_id;
-            this.prod_sp=res[0].product_psp_price;
+            this.product= res;
+            this.p_id=res?.product_id;
+            this.prod_sp=res?.product_psp_price;
             this.sub_total= this.prod_sp*this.p_qty;
             this.total=this.sub_total;
         })
