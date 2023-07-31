@@ -3,5 +3,6 @@ export interface Environment {
     apiURL: string;
     apiURL_Ecomm:string;
     apiURLEntertain:String;
+    apiURLhealth: String;
     cloudFrontURL: string;
 } 

@@ -9,6 +9,7 @@ export const environment: Environment = {
   apiURL: 'http://localhost:8001',
   apiURL_Ecomm: 'http://localhost:8084',
   apiURLEntertain:'http://localhost:8081',
+  apiURLhealth: 'http://localhost:8085',
   cloudFrontURL: 'https://d1ppcfmkludwal.cloudfront.net/'
 };
 
